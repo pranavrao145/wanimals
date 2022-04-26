@@ -3,7 +3,6 @@ package models.wanimals.types;
 import models.wanimals.Wanimal;
 
 public class WaterWanimal extends Wanimal {
-
   /**
    * Constructor method: this overload of this method takes an argument for
    * every possible attribute and uses them to create a new wanimal
