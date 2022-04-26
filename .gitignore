@@ -4,3 +4,5 @@
 bin
 *.class
 data
+dist
+*.jar
