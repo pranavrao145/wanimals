@@ -45,7 +45,7 @@ public class GUI {
   private JLabel lbl_battleEnemyHealth;
   private JLabel lbl_battleEnemyArmor;
   private JTextArea textArea_battleLog;
-  private JLabel lblNewLabel_4;
+  private JLabel lbl_battleTurn;
   private JLabel lbl_battlePlayerName;
   private JLabel lbl_battlePlayer;
   private JLabel lbl_battlePlayerHealth;
@@ -55,6 +55,14 @@ public class GUI {
   private JButton btn_battleSwitch;
   private JButton btn_battleFlee;
   private JButton btn_battleCatch;
+  private JPanel panel_battleInventory;
+  private JLabel lbl_battleInventoryWanimalHP;
+  private JLabel lbl_battleInventoryWanimalArmor;
+  private JLabel lbl_battleInventory;
+  private JButton btn_battleInventoryUsePotion;
+  private JButton btn_battleInventoryUseArmorPlate;
+  private JLabel lbl_battleInventoryPotionsRemaining;
+  private JLabel lbl_battleInventoryArmorPlatesRemaining;
 
   public GUI() {
     setupGUI();
@@ -81,7 +89,7 @@ public class GUI {
 
     lbl_title = new JLabel("Wanimals");
     lbl_title.setBounds(171, 99, 112, 17);
-    lbl_title.setFont(new Font("Dialog", 1, 20));
+    lbl_title.setFont(new Font("Dialog", Font.BOLD, 20));
     panel_title.add(lbl_title);
 
     lbl_titleNames = new JLabel("Pranav, Haseeb, Carson, Preet");
@@ -118,7 +126,8 @@ public class GUI {
     panel_battle.add(lbl_battlePlayerName);
 
     lbl_battlePlayer = new JLabel("PLAYER");
-    lbl_battlePlayer.setBounds(57, 26, 60, 17);
+    lbl_battlePlayer.setBounds(57, 30, 60, 17);
+    lbl_battlePlayer.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battle.add(lbl_battlePlayer);
 
     lbl_battlePlayerHealth = new JLabel("Wanimal Health");
@@ -134,7 +143,8 @@ public class GUI {
     panel_battle.add(lbl_battleEnemyName);
 
     lbl_battleEnemy = new JLabel("ENEMY");
-    lbl_battleEnemy.setBounds(320, 26, 60, 17);
+    lbl_battleEnemy.setBounds(320, 30, 60, 17);
+    lbl_battleEnemy.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battle.add(lbl_battleEnemy);
 
     lbl_battleEnemyHealth = new JLabel("Wanimal Health");
@@ -173,9 +183,46 @@ public class GUI {
     textArea_battleLog.setBounds(246, 149, 182, 105);
     panel_battle.add(textArea_battleLog);
 
-    lblNewLabel_4 = new JLabel("Player's Turn");
-    lblNewLabel_4.setBounds(178, 12, 93, 17);
-    panel_battle.add(lblNewLabel_4);
+    lbl_battleTurn = new JLabel("Player's Turn");
+    lbl_battleTurn.setBounds(170, 12, 112, 27);
+    lbl_battleTurn.setFont(new Font("Dialog", Font.BOLD, 16));
+    panel_battle.add(lbl_battleTurn);
+
+    panel_battleInventory = new JPanel();
+    frame.getContentPane().add(panel_battleInventory, "btn_battleInventory");
+    panel_battleInventory.setLayout(null);
+
+    lbl_battleInventory = new JLabel("Inventory");
+    lbl_battleInventory.setBounds(177, 12, 84, 27);
+    lbl_battleInventory.setFont(new Font("Dialog", Font.BOLD, 16));
+    panel_battleInventory.add(lbl_battleInventory);
+
+    btn_battleInventoryUsePotion = new JButton("Use Potion");
+    btn_battleInventoryUsePotion.setBounds(40, 145, 144, 62);
+    panel_battleInventory.add(btn_battleInventoryUsePotion);
+
+    btn_battleInventoryUseArmorPlate = new JButton("Use Armor Plate");
+    btn_battleInventoryUseArmorPlate.setBounds(252, 145, 144, 62);
+    panel_battleInventory.add(btn_battleInventoryUseArmorPlate);
+
+    lbl_battleInventoryPotionsRemaining = new JLabel("Potions remaining: 5");
+    lbl_battleInventoryPotionsRemaining.setBounds(50, 219, 134, 17);
+    panel_battleInventory.add(lbl_battleInventoryPotionsRemaining);
+
+    lbl_battleInventoryArmorPlatesRemaining =
+        new JLabel("Armor plates remaining: 5");
+    lbl_battleInventoryArmorPlatesRemaining.setBounds(244, 219, 166, 17);
+    panel_battleInventory.add(lbl_battleInventoryArmorPlatesRemaining);
+
+    lbl_battleInventoryWanimalHP = new JLabel("Current wanimal's HP: 0");
+    lbl_battleInventoryWanimalHP.setBounds(136, 60, 181, 17);
+    lbl_battleInventoryWanimalHP.setFont(new Font("Dialog", Font.BOLD, 14));
+    panel_battleInventory.add(lbl_battleInventoryWanimalHP);
+
+    lbl_battleInventoryWanimalArmor = new JLabel("Current wanimal's armor: 0");
+    lbl_battleInventoryWanimalArmor.setBounds(124, 89, 193, 17);
+    lbl_battleInventoryWanimalArmor.setFont(new Font("Dialog", Font.BOLD, 14));
+    panel_battleInventory.add(lbl_battleInventoryWanimalArmor);
   }
 
   /**
