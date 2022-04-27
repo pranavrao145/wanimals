@@ -256,6 +256,19 @@ public class GUI {
         quit();
       }
     });
+
+    /************************************************************************
+     * BATTLE SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to show the battle inventory screen when the inventory button is
+    // pressed on the battle screen
+    btn_battleInventory.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_battleInventory");
+      }
+    });
   }
 
   /**
