@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 
 public class GUI {
@@ -37,6 +38,23 @@ public class GUI {
   private JPanel panel_shutdown;
   private JLabel lbl_shutdownThanks;
   private JLabel lbl_shutdownMessage;
+  private JPanel panel_battle;
+  private JLabel lbl_battlePlayerArmor;
+  private JLabel lbl_battleEnemyName;
+  private JLabel lbl_battleEnemy;
+  private JLabel lbl_battleEnemyHealth;
+  private JLabel lbl_battleEnemyArmor;
+  private JTextArea textArea_battleLog;
+  private JLabel lblNewLabel_4;
+  private JLabel lbl_battlePlayerName;
+  private JLabel lbl_battlePlayer;
+  private JLabel lbl_battlePlayerHealth;
+  private JButton btn_battleAttack1;
+  private JButton btn_battleAttack2;
+  private JButton btn_battleInventory;
+  private JButton btn_battleSwitch;
+  private JButton btn_battleFlee;
+  private JButton btn_battleCatch;
 
   public GUI() {
     setupGUI();
@@ -90,6 +108,74 @@ public class GUI {
     lbl_shutdownMessage = new JLabel("Shutting down...");
     lbl_shutdownMessage.setBounds(171, 137, 110, 17);
     panel_shutdown.add(lbl_shutdownMessage);
+
+    panel_battle = new JPanel();
+    frame.getContentPane().add(panel_battle, "panel_battle");
+    panel_battle.setLayout(null);
+
+    lbl_battlePlayerName = new JLabel("Wanimal Name");
+    lbl_battlePlayerName.setBounds(38, 55, 93, 17);
+    panel_battle.add(lbl_battlePlayerName);
+
+    lbl_battlePlayer = new JLabel("PLAYER");
+    lbl_battlePlayer.setBounds(57, 26, 60, 17);
+    panel_battle.add(lbl_battlePlayer);
+
+    lbl_battlePlayerHealth = new JLabel("Wanimal Health");
+    lbl_battlePlayerHealth.setBounds(38, 73, 93, 17);
+    panel_battle.add(lbl_battlePlayerHealth);
+
+    lbl_battlePlayerArmor = new JLabel("Wanimal Armor");
+    lbl_battlePlayerArmor.setBounds(38, 92, 93, 17);
+    panel_battle.add(lbl_battlePlayerArmor);
+
+    lbl_battleEnemyName = new JLabel("Wanimal Name");
+    lbl_battleEnemyName.setBounds(301, 55, 93, 17);
+    panel_battle.add(lbl_battleEnemyName);
+
+    lbl_battleEnemy = new JLabel("ENEMY");
+    lbl_battleEnemy.setBounds(320, 26, 60, 17);
+    panel_battle.add(lbl_battleEnemy);
+
+    lbl_battleEnemyHealth = new JLabel("Wanimal Health");
+    lbl_battleEnemyHealth.setBounds(301, 73, 93, 17);
+    panel_battle.add(lbl_battleEnemyHealth);
+
+    lbl_battleEnemyArmor = new JLabel("Wanimal Armor");
+    lbl_battleEnemyArmor.setBounds(301, 92, 93, 17);
+    panel_battle.add(lbl_battleEnemyArmor);
+
+    btn_battleAttack1 = new JButton("Attack 1");
+    btn_battleAttack1.setBounds(12, 149, 105, 27);
+    panel_battle.add(btn_battleAttack1);
+
+    btn_battleAttack2 = new JButton("Attack 2");
+    btn_battleAttack2.setBounds(129, 149, 105, 27);
+    panel_battle.add(btn_battleAttack2);
+
+    btn_battleInventory = new JButton("Inventory");
+    btn_battleInventory.setBounds(129, 188, 105, 27);
+    panel_battle.add(btn_battleInventory);
+
+    btn_battleSwitch = new JButton("Switch");
+    btn_battleSwitch.setBounds(12, 188, 105, 27);
+    panel_battle.add(btn_battleSwitch);
+
+    btn_battleFlee = new JButton("Flee");
+    btn_battleFlee.setBounds(129, 227, 105, 27);
+    panel_battle.add(btn_battleFlee);
+
+    btn_battleCatch = new JButton("Catch");
+    btn_battleCatch.setBounds(12, 227, 105, 27);
+    panel_battle.add(btn_battleCatch);
+
+    textArea_battleLog = new JTextArea();
+    textArea_battleLog.setBounds(246, 149, 182, 105);
+    panel_battle.add(textArea_battleLog);
+
+    lblNewLabel_4 = new JLabel("Player's Turn");
+    lblNewLabel_4.setBounds(178, 12, 93, 17);
+    panel_battle.add(lblNewLabel_4);
   }
 
   /**
