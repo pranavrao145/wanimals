@@ -104,6 +104,9 @@ public class GUI {
     btn_titleQuit.setBounds(285, 217, 105, 27);
     panel_title.add(btn_titleQuit);
 
+    // show the title panel as the default panel when the app opens
+    masterLayout.show(contentPane, "panel_title");
+
     panel_shutdown = new JPanel();
     panel_shutdown.setLayout(null);
     frame.getContentPane().add(panel_shutdown, "panel_shutdown");
@@ -281,7 +284,8 @@ public class GUI {
 
           /**
            * This method will automatically fire when the above background
-           * task is done. It will set the label back to the old text.
+           * task is done. It will dispose of the frame and terminate the
+           * program.
            */
           @Override
           protected void done() {
