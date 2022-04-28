@@ -1,5 +1,6 @@
 package models.wanimals.types;
 
+import models.player.Player;
 import models.wanimals.Wanimal;
 
 public class WaterWanimal extends Wanimal {
@@ -21,9 +22,9 @@ public class WaterWanimal extends Wanimal {
    */
   public WaterWanimal(String name, String type, int level, int maxHitpoints,
                       int currentHitpoints, int baseAttack, int maxArmor,
-                      int currentArmor) {
+                      int currentArmor, Player owner) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor, currentArmor);
+          maxArmor, currentArmor, owner);
   }
 
   /**

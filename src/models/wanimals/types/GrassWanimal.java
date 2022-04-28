@@ -1,5 +1,6 @@
 package models.wanimals.types;
 
+import models.player.Player;
 import models.wanimals.Wanimal;
 
 public class GrassWanimal extends Wanimal {
@@ -21,10 +22,10 @@ public class GrassWanimal extends Wanimal {
    */
   public GrassWanimal(String name, String type, int level, int maxHitpoints,
                       int currentHitpoints, int baseAttack, int maxArmor,
-                      int currentArmor) {
+                      int currentArmor, Player owner) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor,
-          currentArmor); // call the superconstructor with the given values
+          maxArmor, currentArmor,
+          owner); // call the superconstructor with the given values
   }
 
   /**
@@ -41,6 +42,10 @@ public class GrassWanimal extends Wanimal {
     this.maxArmor = 20;
     this.currentArmor = 20;
   }
+
+  public GrassWanimal(String name, String type, int level, int maxHitpoints,
+                      int currentHitpoints, int baseAttack, int maxArmor,
+                      int currentArmor, Object owner) {}
 
   public void treeSmash() {}
 }

@@ -1,5 +1,6 @@
 package models.wanimals.wanimals.water;
 
+import models.player.Player;
 import models.wanimals.types.WaterWanimal;
 
 public class Aqua extends WaterWanimal {
@@ -21,10 +22,10 @@ public class Aqua extends WaterWanimal {
    */
   public Aqua(String name, String type, int level, int maxHitpoints,
               int currentHitpoints, int baseAttack, int maxArmor,
-              int currentArmor) {
+              int currentArmor, Player owner) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor,
-          currentArmor); // call the superconstructor with the given values
+          maxArmor, currentArmor,
+          owner); // call the superconstructor with the given values
   }
 
   /**
