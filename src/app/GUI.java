@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -63,11 +65,24 @@ public class GUI {
   private JButton btn_battleInventoryUseArmorPlate;
   private JLabel lbl_battleInventoryPotionsRemaining;
   private JLabel lbl_battleInventoryArmorPlatesRemaining;
+  private JPanel panel_battleSwitch;
+  private JLabel lbl_battleSwitch;
+  private JLabel lbl_battleSwitchPrompt;
+  private JComboBox<String> comboBox_battleSwitch;
+  private JButton btn_battleSwitchAdvance;
+
+  private DefaultComboBoxModel<String> defaultWanimalOptions;
 
   public GUI() {
+    initializeValues();
     setupGUI();
     attachListeners();
     frame.setVisible(true);
+  }
+
+  private void initializeValues() {
+    defaultWanimalOptions = new DefaultComboBoxModel<String>(
+        new String[] {"Wanimal 1", "Wanimal 2", "Wanimal 3", "Wanimal 4"});
   }
 
   private void setupGUI() {
@@ -226,6 +241,28 @@ public class GUI {
     lbl_battleInventoryWanimalArmor.setBounds(124, 89, 193, 17);
     lbl_battleInventoryWanimalArmor.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battleInventory.add(lbl_battleInventoryWanimalArmor);
+
+    panel_battleSwitch = new JPanel();
+    frame.getContentPane().add(panel_battleSwitch, "panel_battleSwitch");
+    panel_battleSwitch.setLayout(null);
+
+    lbl_battleSwitch = new JLabel("Switch Wanimal");
+    lbl_battleSwitch.setFont(new Font("Dialog", Font.BOLD, 16));
+    lbl_battleSwitch.setBounds(146, 12, 141, 27);
+    panel_battleSwitch.add(lbl_battleSwitch);
+
+    lbl_battleSwitchPrompt = new JLabel("Select a wanimal to switch to:");
+    lbl_battleSwitchPrompt.setFont(new Font("Dialog", Font.BOLD, 14));
+    lbl_battleSwitchPrompt.setBounds(113, 98, 214, 17);
+    panel_battleSwitch.add(lbl_battleSwitchPrompt);
+
+    comboBox_battleSwitch = new JComboBox<String>(defaultWanimalOptions);
+    comboBox_battleSwitch.setBounds(113, 127, 214, 26);
+    panel_battleSwitch.add(comboBox_battleSwitch);
+
+    btn_battleSwitchAdvance = new JButton("Advance");
+    btn_battleSwitchAdvance.setBounds(12, 231, 416, 27);
+    panel_battleSwitch.add(btn_battleSwitchAdvance);
   }
 
   /**
@@ -267,6 +304,15 @@ public class GUI {
       @Override
       public void actionPerformed(ActionEvent e) {
         masterLayout.show(contentPane, "panel_battleInventory");
+      }
+    });
+
+    // listener to show the battle switch screen when the switch button is
+    // pressed on the battle screen
+    btn_battleSwitch.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_battleSwitch");
       }
     });
   }
