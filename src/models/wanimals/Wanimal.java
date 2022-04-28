@@ -1,9 +1,12 @@
 package models.wanimals;
 
+import models.player.Player;
+
 public class Wanimal {
   protected String name, type;
   protected int level, maxHitpoints, currentHitpoints, baseAttack, maxArmor,
       currentArmor;
+  protected Player owner;
 
   /**
    * Constructor method: this overload of this method takes an argument for
@@ -20,10 +23,11 @@ public class Wanimal {
    * @param maxArmor - the max armor with which to create the new wanimal
    * @param currentArmor - the current armor with which to create the new
    *     wanimal
+   * @param owner - the owner with which to create the new wanimal
    */
   public Wanimal(String name, String type, int level, int maxHitpoints,
                  int currentHitpoints, int baseAttack, int maxArmor,
-                 int currentArmor) {
+                 int currentArmor, Player owner) {
     this.name = name;   // set the name of this wanimal to the name given
     this.type = type;   // set the type of this wanimal to the type given
     this.level = level; // set the level of this wanimal to the level given
@@ -38,6 +42,8 @@ public class Wanimal {
         maxArmor; // set the maxArmor of this wanimal to the maxArmor given
     this.currentArmor = currentArmor; // set the currentArmor of this wanimal to
                                       // the currentArmor given
+    this.owner = owner;               // set the owner of this wanimal to
+                                      // the owner given
   }
 
   /**
@@ -53,6 +59,7 @@ public class Wanimal {
     this.baseAttack = 10;
     this.maxArmor = 20;
     this.currentArmor = 20;
+    this.owner = null; // by default, a wanimal has no owner
   }
 
   // getters and setters
@@ -94,4 +101,8 @@ public class Wanimal {
   public void setCurrentArmor(int currentArmor) {
     this.currentArmor = currentArmor;
   }
+
+  public Player getOwner() { return owner; }
+
+  public void setOwner(Player owner) { this.owner = owner; }
 }

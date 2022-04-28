@@ -1,12 +1,16 @@
 package models.player;
 
+import java.util.ArrayList;
+import models.wanimals.Wanimal;
+
 public class Player {
-  String name;
-  int level, realm, numPotions, numArmorPlates;
+  private String name;
+  private int level, realm, numPotions, numArmorPlates;
+  private ArrayList<Wanimal> wanimals;
 
   /**
    * Constructor method: this overload of this method takes an argument for
-   * every possible attribute and uses them to create a new player
+  Wanimalevery possible attribute and uses them to create a new player
    *
    * @param name - the name with which to create the new player
    * @param level - the level with which to create the new player
@@ -15,16 +19,19 @@ public class Player {
    *     player
    * @param numArmorPlates - the number of armor plates with which to create the
    *     new player
+   * @param wanimals - the wanimals with which to create the new player
    */
   public Player(String name, int level, int realm, int numPotions,
-                int numArmorPlates) {
-    this.name = name;   // set the name of this wanimal to the name given
-    this.level = level; // set the level of this wanimal to the level given
-    this.realm = realm; // set the realm of this wanimal to the realm given
-    this.numPotions = numPotions; // set the numPotions of this wanimal to the
+                int numArmorPlates, ArrayList<Wanimal> wanimals) {
+    this.name = name;   // set the name of this player to the name given
+    this.level = level; // set the level of this player to the level given
+    this.realm = realm; // set the realm of this player to the realm given
+    this.numPotions = numPotions; // set the numPotions of this player to the
                                   // numPotions given
     this.numArmorPlates = numArmorPlates; // set the numArmorPlates of this
                                           // wanimal to the numArmorPlates given
+    this.wanimals = wanimals;             // set the wanimals of this
+                                          // player to the wanimals given
   }
 
   /**
@@ -37,6 +44,7 @@ public class Player {
     this.realm = 1;
     this.numPotions = 5;
     this.numArmorPlates = 5;
+    this.wanimals = new ArrayList<Wanimal>();
   }
 
   // getters and setters
@@ -61,5 +69,11 @@ public class Player {
 
   public void setNumArmorPlates(int numArmorPlates) {
     this.numArmorPlates = numArmorPlates;
+  }
+
+  public ArrayList<Wanimal> getWanimals() { return wanimals; }
+
+  public void setWanimals(ArrayList<Wanimal> wanimals) {
+    this.wanimals = wanimals;
   }
 }
