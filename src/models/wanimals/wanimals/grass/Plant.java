@@ -1,5 +1,6 @@
 package models.wanimals.wanimals.grass;
 
+import models.player.Player;
 import models.wanimals.types.GrassWanimal;
 
 public class Plant extends GrassWanimal {
@@ -21,10 +22,10 @@ public class Plant extends GrassWanimal {
    */
   public Plant(String name, String type, int level, int maxHitpoints,
                int currentHitpoints, int baseAttack, int maxArmor,
-               int currentArmor) {
+               int currentArmor, Player owner) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor,
-          currentArmor); // call the superconstructor with the given values
+          maxArmor, currentArmor,
+          owner); // call the superconstructor with the given values
   }
 
   /**
