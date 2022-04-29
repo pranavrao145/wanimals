@@ -72,6 +72,11 @@ public class GUI {
   private JButton btn_battleSwitchAdvance;
 
   private DefaultComboBoxModel<String> defaultWanimalOptions;
+  private JPanel panel_moveSelect;
+  private JLabel lbl_moveSelect;
+  private JButton btn_moveSelectAdvance;
+  private JButton btn_moveSelectInventory;
+  private JButton btn_moveSelectSaveAndQuit;
 
   public GUI() {
     initializeValues();
@@ -263,6 +268,27 @@ public class GUI {
     btn_battleSwitchAdvance = new JButton("Advance");
     btn_battleSwitchAdvance.setBounds(12, 231, 416, 27);
     panel_battleSwitch.add(btn_battleSwitchAdvance);
+
+    panel_moveSelect = new JPanel();
+    frame.getContentPane().add(panel_moveSelect, "panel_moveSelect");
+    panel_moveSelect.setLayout(null);
+
+    lbl_moveSelect = new JLabel("Select Next Move");
+    lbl_moveSelect.setFont(new Font("Dialog", Font.BOLD, 16));
+    lbl_moveSelect.setBounds(150, 37, 146, 17);
+    panel_moveSelect.add(lbl_moveSelect);
+
+    btn_moveSelectAdvance = new JButton("Advance");
+    btn_moveSelectAdvance.setBounds(123, 85, 189, 60);
+    panel_moveSelect.add(btn_moveSelectAdvance);
+
+    btn_moveSelectInventory = new JButton("Inventory");
+    btn_moveSelectInventory.setBounds(25, 179, 189, 60);
+    panel_moveSelect.add(btn_moveSelectInventory);
+
+    btn_moveSelectSaveAndQuit = new JButton("Save and Quit");
+    btn_moveSelectSaveAndQuit.setBounds(226, 179, 189, 60);
+    panel_moveSelect.add(btn_moveSelectSaveAndQuit);
   }
 
   /**
