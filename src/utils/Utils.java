@@ -5,7 +5,7 @@ import javax.swing.SwingWorker;
 public class Utils {
   public static void delay(int ms, Runnable callback) {
     // using a SwingWorker object, asynchronously wait for 2 seconds and then
-    // execute the given function
+    // execute the given method
     final SwingWorker<Object, Object> worker =
         new SwingWorker<Object, Object>() {
           /**
@@ -22,7 +22,7 @@ public class Utils {
 
           /**
            * This method will automatically fire when the above background
-           * task is done. It will run the callback function given
+           * task is done. It will run the callback method given
            */
           @Override
           protected void done() {
@@ -33,5 +33,14 @@ public class Utils {
 
     worker.execute(); // this method call executes the SwingWorker and the
                       // declared methods
+  }
+
+  public static void runMaybe(int percentageChance, Runnable callback) {
+    double randomNum = Math.random(); // get a random number from 0.0 to 1.0
+    if (randomNum <
+        percentageChance /
+            100) {    // if the random number is less than the number given
+      callback.run(); // then run the given method
+    }
   }
 }

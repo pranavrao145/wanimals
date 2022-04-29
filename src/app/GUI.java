@@ -274,7 +274,7 @@ public class GUI {
      * GENERAL LISTENERS
      *************************************************************************/
 
-    // listener to run the quit function when the user closes the window
+    // listener to run the quit method when the user closes the window
     frame.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(final WindowEvent e) {
@@ -286,7 +286,7 @@ public class GUI {
      * TITLE SCREEN LISTENERS
      *************************************************************************/
 
-    // listener to run the quit function when the user presses the quit button
+    // listener to run the quit method when the user presses the quit button
     btn_titleQuit.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
