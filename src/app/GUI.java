@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.SwingWorker;
+import utils.Utils;
 
 public class GUI {
   // the following set of fields represent the various GUI components used in
@@ -324,37 +324,13 @@ public class GUI {
   private void quit() {
     masterLayout.show(contentPane,
                       "panel_shutdown"); // switch to the shutdown panel
-
-    // using a SwingWorker object, asynchronously wait for 2 seconds and then
-    // quit the program
-    final SwingWorker<Object, Object> worker =
-        new SwingWorker<Object, Object>() {
-          /**
-           * This method sleeps for 1000 milliseconds in a separate thread
-           *
-           * @return - this method returns a generic Object
-           * @throws - this method throws an exception if it fails
-           */
-          @Override
-          protected Object doInBackground() throws Exception {
-            Thread.sleep(2000);
-            return null;
-          }
-
-          /**
-           * This method will automatically fire when the above background
-           * task is done. It will dispose of the frame and terminate the
-           * program.
-           */
-          @Override
-          protected void done() {
-            frame.dispose();
-            System.exit(0);
-            super.done();
-          }
-        };
-
-    worker.execute(); // this method call executes the SwingWorker and the
-                      // declared methods
+    // wait for 2 seconds, then quit the program
+    Utils.delay(2000, new Runnable() {
+      @Override
+      public void run() {
+        frame.dispose();
+        System.exit(0);
+      }
+    });
   }
 }
