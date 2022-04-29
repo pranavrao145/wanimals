@@ -3,6 +3,13 @@ package utils;
 import javax.swing.SwingWorker;
 
 public class Utils {
+  /**
+   * This method waits asynchronously a certain number of milliseconds before
+   * running the method given
+   *
+   * @param ms - the number of milliseconds for which to wait
+   * @param callback - the callback to run after the delay is done
+   */
   public static void delay(int ms, Runnable callback) {
     // using a SwingWorker object, asynchronously wait for 2 seconds and then
     // execute the given method
@@ -35,6 +42,16 @@ public class Utils {
                       // declared methods
   }
 
+  /**
+   * This method takes a percentage chance, and potentially runs the method.
+   * The higher the percentage chance is, the higher the chance of the method.
+   * running
+   *
+   * @param percentageChance - the percentage chance to follow for if the method
+   should be run or not
+   * @param callback - the method to execute if the percentage chance is
+   triggered
+   */
   public static void runMaybe(int percentageChance, Runnable callback) {
     double randomNum = Math.random(); // get a random number from 0.0 to 1.0
     if (randomNum <
