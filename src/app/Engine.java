@@ -1,7 +1,10 @@
 package app;
 
+import models.player.Player;
+
 public class Engine {
   private static GUI gui;
+  private static Player player;
 
   private static void initialize(GUI currentGUI) { gui = currentGUI; }
 
@@ -15,4 +18,6 @@ public class Engine {
   // getters and setters
 
   public static GUI getGui() { return gui; }
+
+  public static Player getPlayer() { return player; }
 }
