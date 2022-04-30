@@ -20,4 +20,6 @@ public class Engine {
   public static GUI getGui() { return gui; }
 
   public static Player getPlayer() { return player; }
+
+  public static void setPlayer(Player player) { Engine.player = player; }
 }

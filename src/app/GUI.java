@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import models.player.Player;
+import models.wanimals.wanimals.normal.Norman;
 import utils.Utils;
 
 public class GUI {
@@ -346,6 +348,22 @@ public class GUI {
     btn_titleNewGame.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
+        // TODO: add logic for new character creation instead of hardcoding
+        // player
+        Player player = new Player(); // create new player
+        player.setName(
+            "Player 1"); // set the name of the player to the name provided
+        player.getWanimals().add(
+            new Norman()); // give the player a default wanimal
+        Engine.setPlayer(
+            player); // set the player of the current game to the new player
+
+        lbl_moveSelectName.setText("Name: " + player.getName());
+        lbl_moveSelectRealm.setText("Realm: " + player.getRealm());
+        lbl_moveSelectLevel.setText("Level: " + player.getLevel());
+        lbl_moveSelectXP.setText("XP: " + player.getCurrentXP() + "/" +
+                                 player.getmaxXP());
+
         masterLayout.show(contentPane, "panel_moveSelect");
       }
     });
