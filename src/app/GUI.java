@@ -35,7 +35,7 @@ public class GUI {
   private JPanel panel_title;
   private JLabel lbl_title;
   private JLabel lbl_titleNames;
-  private JButton btn_titleStart;
+  private JButton btn_titleNewGame;
   private JButton btn_titleQuit;
   private JPanel panel_shutdown;
   private JLabel lbl_shutdownThanks;
@@ -77,6 +77,12 @@ public class GUI {
   private JButton btn_moveSelectAdvance;
   private JButton btn_moveSelectInventory;
   private JButton btn_moveSelectSaveAndQuit;
+  private JButton btn_moveSelectBattleBoss;
+  private JButton btn_titleLoadGame;
+  private JLabel lbl_moveSelectName;
+  private JLabel lbl_moveSelectRealm;
+  private JLabel lbl_moveSelectLevel;
+  private JLabel lbl_moveSelectXP;
 
   public GUI() {
     initializeValues();
@@ -116,13 +122,17 @@ public class GUI {
     lbl_titleNames.setBounds(136, 137, 185, 17);
     panel_title.add(lbl_titleNames);
 
-    btn_titleStart = new JButton("Start");
-    btn_titleStart.setBounds(57, 217, 105, 27);
-    panel_title.add(btn_titleStart);
+    btn_titleNewGame = new JButton("New Game");
+    btn_titleNewGame.setBounds(57, 217, 105, 27);
+    panel_title.add(btn_titleNewGame);
 
     btn_titleQuit = new JButton("Quit");
     btn_titleQuit.setBounds(285, 217, 105, 27);
     panel_title.add(btn_titleQuit);
+
+    btn_titleLoadGame = new JButton("Load");
+    btn_titleLoadGame.setBounds(171, 217, 105, 27);
+    panel_title.add(btn_titleLoadGame);
 
     // show the title panel as the default panel when the app opens
     masterLayout.show(contentPane, "panel_title");
@@ -275,11 +285,11 @@ public class GUI {
 
     lbl_moveSelect = new JLabel("Select Next Move");
     lbl_moveSelect.setFont(new Font("Dialog", Font.BOLD, 16));
-    lbl_moveSelect.setBounds(150, 37, 146, 17);
+    lbl_moveSelect.setBounds(25, 36, 146, 17);
     panel_moveSelect.add(lbl_moveSelect);
 
     btn_moveSelectAdvance = new JButton("Advance");
-    btn_moveSelectAdvance.setBounds(123, 85, 189, 60);
+    btn_moveSelectAdvance.setBounds(25, 91, 189, 60);
     panel_moveSelect.add(btn_moveSelectAdvance);
 
     btn_moveSelectInventory = new JButton("Inventory");
@@ -289,6 +299,27 @@ public class GUI {
     btn_moveSelectSaveAndQuit = new JButton("Save and Quit");
     btn_moveSelectSaveAndQuit.setBounds(226, 179, 189, 60);
     panel_moveSelect.add(btn_moveSelectSaveAndQuit);
+
+    btn_moveSelectBattleBoss = new JButton("Battle Boss");
+    btn_moveSelectBattleBoss.setEnabled(false);
+    btn_moveSelectBattleBoss.setBounds(226, 91, 189, 60);
+    panel_moveSelect.add(btn_moveSelectBattleBoss);
+
+    lbl_moveSelectName = new JLabel("Name");
+    lbl_moveSelectName.setBounds(226, 23, 97, 17);
+    panel_moveSelect.add(lbl_moveSelectName);
+
+    lbl_moveSelectRealm = new JLabel("Realm");
+    lbl_moveSelectRealm.setBounds(226, 50, 97, 17);
+    panel_moveSelect.add(lbl_moveSelectRealm);
+
+    lbl_moveSelectLevel = new JLabel("Level");
+    lbl_moveSelectLevel.setBounds(339, 23, 97, 17);
+    panel_moveSelect.add(lbl_moveSelectLevel);
+
+    lbl_moveSelectXP = new JLabel("XP");
+    lbl_moveSelectXP.setBounds(339, 50, 97, 17);
+    panel_moveSelect.add(lbl_moveSelectXP);
   }
 
   /**
@@ -313,6 +344,22 @@ public class GUI {
      *************************************************************************/
 
     // listener to run the quit method when the user presses the quit button
+    btn_titleNewGame.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelect");
+      }
+    });
+
+    // listener to run the quit method when the user presses the quit button
+    btn_titleLoadGame.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelect");
+      }
+    });
+
+    // listener to run the quit method when the user presses the quit button
     btn_titleQuit.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
@@ -321,11 +368,39 @@ public class GUI {
     });
 
     /************************************************************************
+     * MOVE SELECT SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to potentially run a battle (40% chance) every time the advance
+    // button is clicked
+    btn_moveSelectAdvance.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Utils.runMaybe(40, new Runnable() {
+          @Override
+          public void run() {
+            // TODO: inform the user that they are going into a battle
+            Engine.battle(); // start the battle
+          }
+        });
+      }
+    });
+
+    // listener to go back to the title screen when the save and quit button is
+    // clicked
+    btn_moveSelectSaveAndQuit.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_title");
+      }
+    });
+
+    /************************************************************************
      * BATTLE SCREEN LISTENERS
      *************************************************************************/
 
-    // listener to show the battle inventory screen when the inventory button is
-    // pressed on the battle screen
+    // listener to show the battle inventory screen when the inventory
+    // button is pressed on the battle screen
     btn_battleInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
