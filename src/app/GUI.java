@@ -78,7 +78,7 @@ public class GUI {
   private JButton btn_moveSelectInventory;
   private JButton btn_moveSelectSaveAndQuit;
   private JButton btn_moveSelectBattleBoss;
-  private JButton btn_titleLoad;
+  private JButton btn_titleLoadGame;
   private JLabel lbl_moveSelectName;
   private JLabel lbl_moveSelectRealm;
   private JLabel lbl_moveSelectLevel;
@@ -129,10 +129,10 @@ public class GUI {
     btn_titleQuit = new JButton("Quit");
     btn_titleQuit.setBounds(285, 217, 105, 27);
     panel_title.add(btn_titleQuit);
-    
-    btn_titleLoad = new JButton("Load");
-    btn_titleLoad.setBounds(171, 217, 105, 27);
-    panel_title.add(btn_titleLoad);
+
+    btn_titleLoadGame = new JButton("Load");
+    btn_titleLoadGame.setBounds(171, 217, 105, 27);
+    panel_title.add(btn_titleLoadGame);
 
     // show the title panel as the default panel when the app opens
     masterLayout.show(contentPane, "panel_title");
@@ -299,24 +299,24 @@ public class GUI {
     btn_moveSelectSaveAndQuit = new JButton("Save and Quit");
     btn_moveSelectSaveAndQuit.setBounds(226, 179, 189, 60);
     panel_moveSelect.add(btn_moveSelectSaveAndQuit);
-    
+
     btn_moveSelectBattleBoss = new JButton("Battle Boss");
     btn_moveSelectBattleBoss.setEnabled(false);
     btn_moveSelectBattleBoss.setBounds(226, 91, 189, 60);
     panel_moveSelect.add(btn_moveSelectBattleBoss);
-    
+
     lbl_moveSelectName = new JLabel("Name");
     lbl_moveSelectName.setBounds(226, 23, 97, 17);
     panel_moveSelect.add(lbl_moveSelectName);
-    
+
     lbl_moveSelectRealm = new JLabel("Realm");
     lbl_moveSelectRealm.setBounds(226, 50, 97, 17);
     panel_moveSelect.add(lbl_moveSelectRealm);
-    
+
     lbl_moveSelectLevel = new JLabel("Level");
     lbl_moveSelectLevel.setBounds(339, 23, 97, 17);
     panel_moveSelect.add(lbl_moveSelectLevel);
-    
+
     lbl_moveSelectXP = new JLabel("XP");
     lbl_moveSelectXP.setBounds(339, 50, 97, 17);
     panel_moveSelect.add(lbl_moveSelectXP);
@@ -342,6 +342,22 @@ public class GUI {
     /************************************************************************
      * TITLE SCREEN LISTENERS
      *************************************************************************/
+
+    // listener to run the quit method when the user presses the quit button
+    btn_titleNewGame.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelect");
+      }
+    });
+
+    // listener to run the quit method when the user presses the quit button
+    btn_titleLoadGame.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelect");
+      }
+    });
 
     // listener to run the quit method when the user presses the quit button
     btn_titleQuit.addActionListener(new ActionListener() {
