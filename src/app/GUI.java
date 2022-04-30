@@ -370,6 +370,9 @@ public class GUI {
     /************************************************************************
      * MOVE SELECT SCREEN LISTENERS
      *************************************************************************/
+
+    // listener to potentially run a battle (40% chance) every time the advance
+    // button is clicked
     btn_moveSelectAdvance.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -380,6 +383,15 @@ public class GUI {
             Engine.battle(); // start the battle
           }
         });
+      }
+    });
+
+    // listener to go back to the title screen when the save and quit button is
+    // clicked
+    btn_moveSelectSaveAndQuit.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_title");
       }
     });
 
