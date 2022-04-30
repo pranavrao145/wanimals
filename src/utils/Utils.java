@@ -56,8 +56,9 @@ public class Utils {
     double randomNum = Math.random(); // get a random number from 0.0 to 1.0
     if (randomNum <
         percentageChance /
-            100) {    // if the random number is less than the number given
-      callback.run(); // then run the given method
+            100.0) { // if the random number is less than the number given
+      System.out.println("Utils#runMaybe#if"); // __AUTO_GENERATED_PRINTF__
+      callback.run();                          // then run the given method
     }
   }
 }
