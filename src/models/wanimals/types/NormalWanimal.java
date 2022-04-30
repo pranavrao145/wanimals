@@ -19,13 +19,17 @@ public class NormalWanimal extends Wanimal {
    * @param maxArmor - the max armor with which to create the new wanimal
    * @param currentArmor - the current armor with which to create the new
    *     wanimal
+   * @param owner - the owner with which to create the new wanimal
+   * @param currentXP - the currentXP with which to create the new wanimal
+   * @param maxXP - the maxXP with which to create the new wanimal
    */
   public NormalWanimal(String name, String type, int level, int maxHitpoints,
                        int currentHitpoints, int baseAttack, int maxArmor,
-                       int currentArmor, Player owner) {
+                       int currentArmor, Player owner, int maxXP,
+                       int currentXP) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor, currentArmor,
-          owner); // call the superconstructor with the given values
+          maxArmor, currentArmor, owner, maxXP,
+          currentXP); // call the superconstructor with the given values
   }
 
   /**
@@ -41,6 +45,8 @@ public class NormalWanimal extends Wanimal {
     this.baseAttack = 10;
     this.maxArmor = 20;
     this.currentArmor = 20;
+    this.maxXP = 200;
+    this.currentXP = 0;
   }
 
   public void assault() {}

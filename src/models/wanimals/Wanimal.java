@@ -5,7 +5,7 @@ import models.player.Player;
 public class Wanimal {
   protected String name, type;
   protected int level, maxHitpoints, currentHitpoints, baseAttack, maxArmor,
-      currentArmor;
+      currentArmor, maxXP, currentXP;
   protected Player owner;
 
   /**
@@ -24,10 +24,12 @@ public class Wanimal {
    * @param currentArmor - the current armor with which to create the new
    *     wanimal
    * @param owner - the owner with which to create the new wanimal
+   * @param currentXP - the currentXP with which to create the new wanimal
+   * @param maxXP - the maxXP with which to create the new wanimal
    */
   public Wanimal(String name, String type, int level, int maxHitpoints,
                  int currentHitpoints, int baseAttack, int maxArmor,
-                 int currentArmor, Player owner) {
+                 int currentArmor, Player owner, int maxXP, int currentXP) {
     this.name = name;   // set the name of this wanimal to the name given
     this.type = type;   // set the type of this wanimal to the type given
     this.level = level; // set the level of this wanimal to the level given
@@ -44,6 +46,10 @@ public class Wanimal {
                                       // the currentArmor given
     this.owner = owner;               // set the owner of this wanimal to
                                       // the owner given
+    this.maxXP = maxXP;               // set the maxXP of this
+                                      // wanimal to the maxXP given
+    this.currentXP = currentXP;       // set the currentXP of this
+                                      // wanimal to the currentXP given
   }
 
   /**
@@ -60,6 +66,8 @@ public class Wanimal {
     this.maxArmor = 20;
     this.currentArmor = 20;
     this.owner = null; // by default, a wanimal has no owner
+    this.maxXP = 200;
+    this.currentXP = 0;
   }
 
   // getters and setters
