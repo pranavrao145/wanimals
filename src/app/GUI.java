@@ -35,7 +35,7 @@ public class GUI {
   private JPanel panel_title;
   private JLabel lbl_title;
   private JLabel lbl_titleNames;
-  private JButton btn_titleStart;
+  private JButton btn_titleNewGame;
   private JButton btn_titleQuit;
   private JPanel panel_shutdown;
   private JLabel lbl_shutdownThanks;
@@ -78,6 +78,7 @@ public class GUI {
   private JButton btn_moveSelectInventory;
   private JButton btn_moveSelectSaveAndQuit;
   private JButton btn_moveSelectBattleBoss;
+  private JButton btn_titleLoad;
 
   public GUI() {
     initializeValues();
@@ -117,13 +118,17 @@ public class GUI {
     lbl_titleNames.setBounds(136, 137, 185, 17);
     panel_title.add(lbl_titleNames);
 
-    btn_titleStart = new JButton("Start");
-    btn_titleStart.setBounds(57, 217, 105, 27);
-    panel_title.add(btn_titleStart);
+    btn_titleNewGame = new JButton("New Game");
+    btn_titleNewGame.setBounds(57, 217, 105, 27);
+    panel_title.add(btn_titleNewGame);
 
     btn_titleQuit = new JButton("Quit");
     btn_titleQuit.setBounds(285, 217, 105, 27);
     panel_title.add(btn_titleQuit);
+    
+    btn_titleLoad = new JButton("Load");
+    btn_titleLoad.setBounds(171, 217, 105, 27);
+    panel_title.add(btn_titleLoad);
 
     // show the title panel as the default panel when the app opens
     masterLayout.show(contentPane, "panel_title");
