@@ -77,6 +77,7 @@ public class GUI {
   private JButton btn_moveSelectAdvance;
   private JButton btn_moveSelectInventory;
   private JButton btn_moveSelectSaveAndQuit;
+  private JButton btn_moveSelectBattleBoss;
 
   public GUI() {
     initializeValues();
@@ -279,7 +280,7 @@ public class GUI {
     panel_moveSelect.add(lbl_moveSelect);
 
     btn_moveSelectAdvance = new JButton("Advance");
-    btn_moveSelectAdvance.setBounds(123, 85, 189, 60);
+    btn_moveSelectAdvance.setBounds(25, 91, 189, 60);
     panel_moveSelect.add(btn_moveSelectAdvance);
 
     btn_moveSelectInventory = new JButton("Inventory");
@@ -289,6 +290,11 @@ public class GUI {
     btn_moveSelectSaveAndQuit = new JButton("Save and Quit");
     btn_moveSelectSaveAndQuit.setBounds(226, 179, 189, 60);
     panel_moveSelect.add(btn_moveSelectSaveAndQuit);
+    
+    btn_moveSelectBattleBoss = new JButton("Battle Boss");
+    btn_moveSelectBattleBoss.setEnabled(false);
+    btn_moveSelectBattleBoss.setBounds(226, 91, 189, 60);
+    panel_moveSelect.add(btn_moveSelectBattleBoss);
   }
 
   /**
