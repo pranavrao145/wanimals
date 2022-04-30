@@ -79,6 +79,10 @@ public class GUI {
   private JButton btn_moveSelectSaveAndQuit;
   private JButton btn_moveSelectBattleBoss;
   private JButton btn_titleLoad;
+  private JLabel lbl_moveSelectName;
+  private JLabel lbl_moveSelectRealm;
+  private JLabel lbl_moveSelectLevel;
+  private JLabel lbl_moveSelectXP;
 
   public GUI() {
     initializeValues();
@@ -281,7 +285,7 @@ public class GUI {
 
     lbl_moveSelect = new JLabel("Select Next Move");
     lbl_moveSelect.setFont(new Font("Dialog", Font.BOLD, 16));
-    lbl_moveSelect.setBounds(150, 37, 146, 17);
+    lbl_moveSelect.setBounds(25, 36, 146, 17);
     panel_moveSelect.add(lbl_moveSelect);
 
     btn_moveSelectAdvance = new JButton("Advance");
@@ -300,6 +304,22 @@ public class GUI {
     btn_moveSelectBattleBoss.setEnabled(false);
     btn_moveSelectBattleBoss.setBounds(226, 91, 189, 60);
     panel_moveSelect.add(btn_moveSelectBattleBoss);
+    
+    lbl_moveSelectName = new JLabel("Name");
+    lbl_moveSelectName.setBounds(226, 23, 97, 17);
+    panel_moveSelect.add(lbl_moveSelectName);
+    
+    lbl_moveSelectRealm = new JLabel("Realm");
+    lbl_moveSelectRealm.setBounds(226, 50, 97, 17);
+    panel_moveSelect.add(lbl_moveSelectRealm);
+    
+    lbl_moveSelectLevel = new JLabel("Level");
+    lbl_moveSelectLevel.setBounds(339, 23, 97, 17);
+    panel_moveSelect.add(lbl_moveSelectLevel);
+    
+    lbl_moveSelectXP = new JLabel("XP");
+    lbl_moveSelectXP.setBounds(339, 50, 97, 17);
+    panel_moveSelect.add(lbl_moveSelectXP);
   }
 
   /**
