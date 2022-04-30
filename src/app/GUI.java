@@ -321,11 +321,27 @@ public class GUI {
     });
 
     /************************************************************************
+     * MOVE SELECT SCREEN LISTENERS
+     *************************************************************************/
+    btn_moveSelectAdvance.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Utils.runMaybe(40, new Runnable() {
+          @Override
+          public void run() {
+            // TODO: inform the user that they are going into a battle
+            Engine.battle(); // start the battle
+          }
+        });
+      }
+    });
+
+    /************************************************************************
      * BATTLE SCREEN LISTENERS
      *************************************************************************/
 
-    // listener to show the battle inventory screen when the inventory button is
-    // pressed on the battle screen
+    // listener to show the battle inventory screen when the inventory
+    // button is pressed on the battle screen
     btn_battleInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {

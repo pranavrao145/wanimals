@@ -7,5 +7,12 @@ public class Engine {
 
   public static void run(GUI currentGUI) { initialize(currentGUI); }
 
+  public static void battle() {
+    throw new UnsupportedOperationException(
+        "This operation has not been implemented yet.");
+  }
+
+  // getters and setters
+
   public static GUI getGui() { return gui; }
 }
