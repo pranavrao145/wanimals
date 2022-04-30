@@ -70,7 +70,6 @@ public class GUI {
   private JLabel lbl_battleSwitchPrompt;
   private JComboBox<String> comboBox_battleSwitch;
   private JButton btn_battleSwitchAdvance;
-
   private DefaultComboBoxModel<String> defaultWanimalOptions;
   private JPanel panel_moveSelect;
   private JLabel lbl_moveSelect;
@@ -434,4 +433,9 @@ public class GUI {
       }
     });
   }
+
+  // getters and setters
+  public CardLayout getMasterLayout() { return this.masterLayout; }
+
+  public Container getContentPane() { return this.contentPane; }
 }
