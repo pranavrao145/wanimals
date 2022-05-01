@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import models.player.Player;
 import models.wanimals.wanimals.normal.Norman;
+import utils.GameUtils;
 import utils.Utils;
 
 public class GUI {
@@ -413,7 +414,8 @@ public class GUI {
             // TODO: inform the user that they are going into a battle
             // TODO: maybe we shouldn't outsource the battle, and just keep it
             // within the GUI code
-            Engine.battle();
+            Engine.battle(
+                GameUtils.generateRandomWanimal(Engine.getPlayer().getRealm()));
           }
         });
       }
