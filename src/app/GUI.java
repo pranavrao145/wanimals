@@ -397,7 +397,9 @@ public class GUI {
           @Override
           public void run() {
             // TODO: inform the user that they are going into a battle
-            Engine.battle(); // start the battle
+            // TODO: maybe we shouldn't outsource the battle, and just keep it
+            // within the GUI code
+            Engine.battle();
           }
         });
       }
