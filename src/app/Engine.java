@@ -1,6 +1,7 @@
 package app;
 
 import models.player.Player;
+import models.wanimals.Wanimal;
 
 public class Engine {
   private static GUI gui;
@@ -10,7 +11,12 @@ public class Engine {
 
   public static void run(GUI currentGUI) { initialize(currentGUI); }
 
-  public static void battle() {
+  /**
+   * This method starts a battle with the given enemy.
+   *
+   * @param enemy - the enemy with which to start the new battle
+   */
+  public static void battle(Wanimal enemy) {
     throw new UnsupportedOperationException(
         "This operation has not been implemented yet.");
   }
