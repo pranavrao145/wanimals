@@ -468,6 +468,17 @@ public class GUI {
     });
   }
 
+  /**
+   * This method refreshes the GUI at the beginning of a battle turn. This
+   * method will be called by the Engine during a battle.
+   *
+   * @param battle - the battle object with which to refresh the GUI
+   */
+  public void refreshBattleGUI(Battle battle) {
+    throw new UnsupportedOperationException(
+        "This operation has not been implemented yet.");
+  }
+
   // getters and setters
   public CardLayout getMasterLayout() { return this.masterLayout; }
 
