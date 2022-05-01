@@ -85,6 +85,10 @@ public class GUI {
   private JLabel lbl_moveSelectLevel;
   private JLabel lbl_moveSelectXP;
 
+  /**
+   * This is a constructor for the GUI. When the GUI is made in the App class,
+   * this method will be called.
+   */
   public GUI() {
     initializeValues();
     setupGUI();
@@ -92,11 +96,21 @@ public class GUI {
     frame.setVisible(true);
   }
 
+  /**
+   * This method is responsible for setting intial values for some variables
+   * above, specifically the option models for the comboBox components.
+   */
   private void initializeValues() {
     defaultWanimalOptions = new DefaultComboBoxModel<String>(
         new String[] {"Wanimal 1", "Wanimal 2", "Wanimal 3", "Wanimal 4"});
   }
 
+  /**
+   * This method draws the GUI itself (i.e. it initializes the components
+   * above). It will essentially create various panels for each view and put
+   * them all into a CardLayout (masterLayout variable above) so that it is
+   * possible to easily switch between the panels
+   */
   private void setupGUI() {
     frame = new JFrame();
     contentPane = frame.getContentPane();
