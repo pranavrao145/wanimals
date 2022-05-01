@@ -5,12 +5,12 @@ import models.wanimals.Wanimal;
 
 public class Player {
   private String name;
-  private int level, realm, numPotions, numArmorPlates;
+  private int level, realm, numPotions, numArmorPlates, currentXP, maxXP;
   private ArrayList<Wanimal> wanimals;
 
   /**
    * Constructor method: this overload of this method takes an argument for
-  Wanimalevery possible attribute and uses them to create a new player
+   * every possible attribute and uses them to create a new player
    *
    * @param name - the name with which to create the new player
    * @param level - the level with which to create the new player
@@ -20,9 +20,12 @@ public class Player {
    * @param numArmorPlates - the number of armor plates with which to create the
    *     new player
    * @param wanimals - the wanimals with which to create the new player
+   * @param maxXP - the maxXP with which to create the new player
+   * @param currentXP - the currentXP with which to create the new player
    */
   public Player(String name, int level, int realm, int numPotions,
-                int numArmorPlates, ArrayList<Wanimal> wanimals) {
+                int numArmorPlates, ArrayList<Wanimal> wanimals, int currentXP,
+                int maxXP) {
     this.name = name;   // set the name of this player to the name given
     this.level = level; // set the level of this player to the level given
     this.realm = realm; // set the realm of this player to the realm given
@@ -32,6 +35,10 @@ public class Player {
                                           // wanimal to the numArmorPlates given
     this.wanimals = wanimals;             // set the wanimals of this
                                           // player to the wanimals given
+    this.maxXP = maxXP;                   // set the maxXP of this
+                                          // player to the maxXP given
+    this.currentXP = currentXP;           // set the currentXP of this
+                                          // player to the currentXP given
   }
 
   /**
@@ -45,6 +52,8 @@ public class Player {
     this.numPotions = 5;
     this.numArmorPlates = 5;
     this.wanimals = new ArrayList<Wanimal>();
+    this.maxXP = 200;
+    this.currentXP = 0;
   }
 
   // getters and setters
@@ -76,4 +85,12 @@ public class Player {
   public void setWanimals(ArrayList<Wanimal> wanimals) {
     this.wanimals = wanimals;
   }
+
+  public int getCurrentXP() { return currentXP; }
+
+  public void setCurrentXP(int currentXP) { this.currentXP = currentXP; }
+
+  public int getmaxXP() { return maxXP; }
+
+  public void setmaxXP(int maxXP) { this.maxXP = maxXP; }
 }

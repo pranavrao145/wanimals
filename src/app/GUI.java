@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import models.player.Player;
+import models.wanimals.wanimals.normal.Norman;
 import utils.Utils;
 
 public class GUI {
@@ -70,7 +72,6 @@ public class GUI {
   private JLabel lbl_battleSwitchPrompt;
   private JComboBox<String> comboBox_battleSwitch;
   private JButton btn_battleSwitchAdvance;
-
   private DefaultComboBoxModel<String> defaultWanimalOptions;
   private JPanel panel_moveSelect;
   private JLabel lbl_moveSelect;
@@ -84,6 +85,10 @@ public class GUI {
   private JLabel lbl_moveSelectLevel;
   private JLabel lbl_moveSelectXP;
 
+  /**
+   * This is a constructor for the GUI. When the GUI is made in the App class,
+   * this method will be called.
+   */
   public GUI() {
     initializeValues();
     setupGUI();
@@ -91,11 +96,21 @@ public class GUI {
     frame.setVisible(true);
   }
 
+  /**
+   * This method is responsible for setting intial values for some variables
+   * above, specifically the option models for the comboBox components.
+   */
   private void initializeValues() {
     defaultWanimalOptions = new DefaultComboBoxModel<String>(
         new String[] {"Wanimal 1", "Wanimal 2", "Wanimal 3", "Wanimal 4"});
   }
 
+  /**
+   * This method draws the GUI itself (i.e. it initializes the components
+   * above). It will essentially create various panels for each view and put
+   * them all into a CardLayout (masterLayout variable above) so that it is
+   * possible to easily switch between the panels
+   */
   private void setupGUI() {
     frame = new JFrame();
     contentPane = frame.getContentPane();
@@ -347,6 +362,22 @@ public class GUI {
     btn_titleNewGame.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
+        // TODO: add logic for new character creation instead of hardcoding
+        // player
+        Player player = new Player(); // create new player
+        player.setName(
+            "Player 1"); // set the name of the player to the name provided
+        player.getWanimals().add(
+            new Norman()); // give the player a default wanimal
+        Engine.setPlayer(
+            player); // set the player of the current game to the new player
+
+        lbl_moveSelectName.setText("Name: " + player.getName());
+        lbl_moveSelectRealm.setText("Realm: " + player.getRealm());
+        lbl_moveSelectLevel.setText("Level: " + player.getLevel());
+        lbl_moveSelectXP.setText("XP: " + player.getCurrentXP() + "/" +
+                                 player.getmaxXP());
+
         masterLayout.show(contentPane, "panel_moveSelect");
       }
     });
@@ -380,7 +411,9 @@ public class GUI {
           @Override
           public void run() {
             // TODO: inform the user that they are going into a battle
-            Engine.battle(); // start the battle
+            // TODO: maybe we shouldn't outsource the battle, and just keep it
+            // within the GUI code
+            Engine.battle();
           }
         });
       }
@@ -434,4 +467,20 @@ public class GUI {
       }
     });
   }
+
+  /**
+   * This method refreshes the GUI at the beginning of a battle turn. This
+   * method will be called by the Engine during a battle.
+   *
+   * @param battle - the battle object with which to refresh the GUI
+   */
+  public void refreshBattleGUI(Battle battle) {
+    throw new UnsupportedOperationException(
+        "This operation has not been implemented yet.");
+  }
+
+  // getters and setters
+  public CardLayout getMasterLayout() { return this.masterLayout; }
+
+  public Container getContentPane() { return this.contentPane; }
 }
