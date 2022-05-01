@@ -429,6 +429,20 @@ public class GUI {
         masterLayout.show(contentPane, "panel_title");
       }
     });
+    
+    // listener for the INVENTORY button
+    btn_moveSelectInventory.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+   
+    	}
+    });
+    
+    // listener for the BOSS button
+    btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		
+    	}
+    });
 
     /************************************************************************
      * BATTLE SCREEN LISTENERS
