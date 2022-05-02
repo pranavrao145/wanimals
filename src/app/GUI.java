@@ -18,6 +18,10 @@ import models.player.Player;
 import models.wanimals.wanimals.normal.Norman;
 import utils.GameUtils;
 import utils.Utils;
+import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class GUI {
   // the following set of fields represent the various GUI components used in
@@ -85,6 +89,12 @@ public class GUI {
   private JLabel lbl_moveSelectRealm;
   private JLabel lbl_moveSelectLevel;
   private JLabel lbl_moveSelectXP;
+  private JPanel panel_moveInventory;
+  private JTable table_moveInventory;
+  private JLabel lbl_moveInventoryPotions;
+  private JLabel lbl_moveInventoryArmourPlates;
+  private JScrollPane scrollPane_moveInventoryTable;
+  
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -336,6 +346,39 @@ public class GUI {
     lbl_moveSelectXP = new JLabel("XP");
     lbl_moveSelectXP.setBounds(339, 50, 97, 17);
     panel_moveSelect.add(lbl_moveSelectXP);
+    
+    panel_moveInventory = new JPanel();
+    frame.getContentPane().add(panel_moveInventory, "name_29070680417700");
+    panel_moveInventory.setLayout(null);
+    
+    scrollPane_moveInventoryTable = new JScrollPane();
+    scrollPane_moveInventoryTable.setBounds(50, 61, 348, 91);
+    panel_moveInventory.add(scrollPane_moveInventoryTable);
+    
+    table_moveInventory = new JTable();
+    table_moveInventory.setModel(new DefaultTableModel(
+    	new Object[][] {
+    		{null, null, null},
+    		{null, null, null},
+    		{null, null, null},
+    		{null, null, null},
+    	},
+    	new String[] {
+    		"Name", "Level", "XP"
+    	}
+    ));
+    table_moveInventory.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+    scrollPane_moveInventoryTable.setViewportView(table_moveInventory);
+    
+    lbl_moveInventoryPotions = new JLabel("Number of Potions: ");
+    lbl_moveInventoryPotions.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+    lbl_moveInventoryPotions.setBounds(65, 192, 213, 33);
+    panel_moveInventory.add(lbl_moveInventoryPotions);
+    
+    lbl_moveInventoryArmourPlates = new JLabel("Number of Armour Plates:");
+    lbl_moveInventoryArmourPlates.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+    lbl_moveInventoryArmourPlates.setBounds(65, 236, 213, 24);
+    panel_moveInventory.add(lbl_moveInventoryArmourPlates);
   }
 
   /**
@@ -432,12 +475,20 @@ public class GUI {
 
     // listener for the INVENTORY button
     btn_moveSelectInventory.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {}
+      @Override
+      public void actionPerformed(ActionEvent e) {
+    	// TODO: code the logic to display all the wanimals owned by the user
+    	lbl_moveInventoryPotions.setText("Number of Potions: " + Engine.getPlayer().getNumPotions());
+    	lbl_moveInventoryArmourPlates.setText("Number of Armour Plates: " + Engine.getPlayer().getNumArmorPlates());
+      	masterLayout.show(contentPane, "panel_moveInventory");
+      }
     });
 
     // listener for the BATTLE BOSS button
     btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {}
+      public void actionPerformed(ActionEvent e) {
+    	  
+      }
     });
 
     /************************************************************************
