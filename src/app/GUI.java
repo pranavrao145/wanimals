@@ -348,7 +348,7 @@ public class GUI {
     panel_moveSelect.add(lbl_moveSelectXP);
     
     panel_moveInventory = new JPanel();
-    frame.getContentPane().add(panel_moveInventory, "name_29070680417700");
+    frame.getContentPane().add(panel_moveInventory, "panel_moveInventory");
     panel_moveInventory.setLayout(null);
     
     scrollPane_moveInventoryTable = new JScrollPane();
@@ -367,17 +367,17 @@ public class GUI {
     		"Name", "Level", "XP"
     	}
     ));
-    table_moveInventory.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+    table_moveInventory.setFont(new Font("Dialog", Font.PLAIN, 12));
     scrollPane_moveInventoryTable.setViewportView(table_moveInventory);
     
     lbl_moveInventoryPotions = new JLabel("Number of Potions: ");
-    lbl_moveInventoryPotions.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+    lbl_moveInventoryPotions.setFont(new Font("Dialog", Font.PLAIN, 20));
     lbl_moveInventoryPotions.setBounds(65, 192, 213, 33);
     panel_moveInventory.add(lbl_moveInventoryPotions);
     
     lbl_moveInventoryArmourPlates = new JLabel("Number of Armour Plates:");
-    lbl_moveInventoryArmourPlates.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-    lbl_moveInventoryArmourPlates.setBounds(65, 236, 213, 24);
+    lbl_moveInventoryArmourPlates.setFont(new Font("Dialog", Font.PLAIN, 20));
+    lbl_moveInventoryArmourPlates.setBounds(65, 227, 262, 33);
     panel_moveInventory.add(lbl_moveInventoryArmourPlates);
   }
 
