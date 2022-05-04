@@ -18,7 +18,6 @@ import models.player.Player;
 import models.wanimals.wanimals.normal.Norman;
 import utils.GameUtils;
 import utils.Utils;
-import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -169,7 +168,7 @@ public class GUI {
 
     lbl_shutdownThanks = new JLabel("Thanks for playing!");
     lbl_shutdownThanks.setFont(new Font("Dialog", Font.BOLD, 20));
-    lbl_shutdownThanks.setBounds(125, 99, 197, 26);
+    lbl_shutdownThanks.setBounds(120, 97, 237, 26);
     panel_shutdown.add(lbl_shutdownThanks);
 
     lbl_shutdownMessage = new JLabel("Shutting down...");
