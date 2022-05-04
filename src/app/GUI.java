@@ -93,6 +93,19 @@ public class GUI {
   private JLabel lbl_moveInventoryPotions;
   private JLabel lbl_moveInventoryArmourPlates;
   private JScrollPane scrollPane_moveInventoryTable;
+  private JPanel panel_battleInform;
+  private JLabel lbl_battleInformPlayerWanimalArmor;
+  private JLabel lbl_battleInformPlayerWanimalBaseAttack;
+  private JLabel lbl_battleInformEnemyWanimal;
+  private JLabel lbl_battleInformEnemyWanimalLevel;
+  private JLabel lbl_battleInformEnemyWanimalHP;
+  private JLabel lbl_battleInformEnemyWanimalArmor;
+  private JLabel lbl_battleInformEnemyBaseAttack;
+  private JLabel lbl_battleInformVersus;
+  private JLabel lbl_battleInform;
+  private JLabel lbl_battleInformPlayerWanimal;
+  private JLabel lbl_battleInformPlayerWanimalLevel;
+  private JLabel lbl_battleInformPlayerWanimalHP;
   
 
   /**
@@ -378,6 +391,58 @@ public class GUI {
     lbl_moveInventoryArmourPlates.setFont(new Font("Dialog", Font.PLAIN, 20));
     lbl_moveInventoryArmourPlates.setBounds(65, 227, 262, 33);
     panel_moveInventory.add(lbl_moveInventoryArmourPlates);
+    
+    panel_battleInform = new JPanel();
+    frame.getContentPane().add(panel_battleInform, "panel_battleInform");
+    panel_battleInform.setLayout(null);
+    
+    lbl_battleInform = new JLabel("Battle Started!");
+    lbl_battleInform.setBounds(171, 12, 91, 17);
+    panel_battleInform.add(lbl_battleInform);
+    
+    lbl_battleInformPlayerWanimal = new JLabel("Player's Wanimal");
+    lbl_battleInformPlayerWanimal.setBounds(34, 64, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimal);
+    
+    lbl_battleInformPlayerWanimalLevel = new JLabel("Level: ");
+    lbl_battleInformPlayerWanimalLevel.setBounds(34, 84, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimalLevel);
+    
+    lbl_battleInformPlayerWanimalHP = new JLabel("HP:");
+    lbl_battleInformPlayerWanimalHP.setBounds(34, 103, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimalHP);
+    
+    lbl_battleInformPlayerWanimalArmor = new JLabel("Armor:");
+    lbl_battleInformPlayerWanimalArmor.setBounds(34, 122, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimalArmor);
+    
+    lbl_battleInformPlayerWanimalBaseAttack = new JLabel("Base Attack:");
+    lbl_battleInformPlayerWanimalBaseAttack.setBounds(34, 141, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimalBaseAttack);
+    
+    lbl_battleInformEnemyWanimal = new JLabel("Enemy Wanimal");
+    lbl_battleInformEnemyWanimal.setBounds(285, 141, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimal);
+    
+    lbl_battleInformEnemyWanimalLevel = new JLabel("Level: ");
+    lbl_battleInformEnemyWanimalLevel.setBounds(285, 161, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimalLevel);
+    
+    lbl_battleInformEnemyWanimalHP = new JLabel("HP:");
+    lbl_battleInformEnemyWanimalHP.setBounds(285, 180, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimalHP);
+    
+    lbl_battleInformEnemyWanimalArmor = new JLabel("Armor:");
+    lbl_battleInformEnemyWanimalArmor.setBounds(285, 199, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimalArmor);
+    
+    lbl_battleInformEnemyBaseAttack = new JLabel("Base Attack:");
+    lbl_battleInformEnemyBaseAttack.setBounds(285, 218, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyBaseAttack);
+    
+    lbl_battleInformVersus = new JLabel("VS.");
+    lbl_battleInformVersus.setBounds(200, 122, 31, 17);
+    panel_battleInform.add(lbl_battleInformVersus);
   }
 
   /**
