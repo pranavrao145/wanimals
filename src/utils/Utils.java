@@ -10,7 +10,7 @@ public class Utils {
    * @param ms - the number of milliseconds for which to wait
    * @param callback - the callback to run after the delay is done
    */
-  public static void delay(int ms, Runnable callback) {
+  public static void delayRun(int ms, Runnable callback) {
     // using a SwingWorker object, asynchronously wait for 2 seconds and then
     // execute the given method
     final SwingWorker<Object, Object> worker =

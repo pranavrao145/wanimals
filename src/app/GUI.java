@@ -586,7 +586,7 @@ public class GUI {
     masterLayout.show(contentPane,
                       "panel_shutdown"); // switch to the shutdown panel
     // wait for 2 seconds, then quit the program
-    Utils.delay(2000, new Runnable() {
+    Utils.delayRun(2000, new Runnable() {
       @Override
       public void run() {
         frame.dispose();
