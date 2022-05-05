@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-
 import models.player.Player;
 import models.wanimals.wanimals.normal.Norman;
 import utils.GameUtils;
@@ -516,7 +514,18 @@ public class GUI {
         Utils.runMaybe(40, new Runnable() {
           @Override
           public void run() {
-            // TODO: inform the user that they are going into a battle
+            // show the panel informing the user of the battle
+            masterLayout.show(contentPane, "panel_battleInform");
+
+            // wait for 4 seconds, then prepare and switch to the actual battle
+            // panel
+            Utils.delayRun(4000, new Runnable() {
+              @Override
+              public void run() {
+                masterLayout.show(contentPane, "panel_battle");
+              }
+            });
+
             // TODO: maybe we shouldn't outsource the battle, and just keep it
             // within the GUI code
             Engine.battle(
