@@ -595,6 +595,19 @@ public class GUI {
         masterLayout.show(contentPane, "panel_battleSwitch");
       }
     });
+
+    /************************************************************************
+     * MOVE INVENTORY SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to show the move select panel when the back button is
+    // pressed on the move inventory screen
+    btn_moveInventoryBack.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelect");
+      }
+    });
   }
 
   /**
