@@ -10,7 +10,7 @@ public class Battle {
              // the enemy wanimal
   private int currentTurn; // 1 for player, 0 for enemy
   private boolean
-      battleRunning; // to keep track of if the battle is currently running
+      running; // to keep track of if the battle is currently running
 
   /**
    * Constructor method: this is the only overload of the constructor because
@@ -26,7 +26,7 @@ public class Battle {
                                         // battle to the player's wanimal given
     this.enemy = enemy;   // set the enemy of the wanimal to the enemy given
     this.currentTurn = 1; // start with the player's turn
-    this.battleRunning = true; // the battle is always running be defualt
+    this.running = true;  // the battle is always running be defualt
   }
 
   public Player getPlayer() { return player; }
@@ -49,9 +49,9 @@ public class Battle {
     this.currentTurn = currentTurn;
   }
 
-  public boolean isBattleRunning() { return battleRunning; }
+  public boolean isRunning() { return running; }
 
-  public void setBattleRunning(boolean battleRunning) {
-    this.battleRunning = battleRunning;
+  public void setIsRunning(boolean battleRunning) {
+    this.running = battleRunning;
   }
 }

@@ -13,15 +13,14 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 import models.player.Player;
 import models.wanimals.wanimals.normal.Norman;
 import utils.GameUtils;
 import utils.Utils;
-import javax.swing.JTextField;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
 public class GUI {
   // the following set of fields represent the various GUI components used in
@@ -94,7 +93,19 @@ public class GUI {
   private JLabel lbl_moveInventoryPotions;
   private JLabel lbl_moveInventoryArmourPlates;
   private JScrollPane scrollPane_moveInventoryTable;
-  
+  private JPanel panel_battleInform;
+  private JLabel lbl_battleInformPlayerWanimalArmor;
+  private JLabel lbl_battleInformPlayerWanimalBaseAttack;
+  private JLabel lbl_battleInformEnemyWanimal;
+  private JLabel lbl_battleInformEnemyWanimalLevel;
+  private JLabel lbl_battleInformEnemyWanimalHP;
+  private JLabel lbl_battleInformEnemyWanimalArmor;
+  private JLabel lbl_battleInformEnemyBaseAttack;
+  private JLabel lbl_battleInformVersus;
+  private JLabel lbl_battleInform;
+  private JLabel lbl_battleInformPlayerWanimal;
+  private JLabel lbl_battleInformPlayerWanimalLevel;
+  private JLabel lbl_battleInformPlayerWanimalHP;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -145,7 +156,7 @@ public class GUI {
     panel_title.add(lbl_title);
 
     lbl_titleNames = new JLabel("Pranav, Haseeb, Carson, Preet");
-    lbl_titleNames.setBounds(136, 137, 185, 17);
+    lbl_titleNames.setBounds(130, 136, 194, 17);
     panel_title.add(lbl_titleNames);
 
     btn_titleNewGame = new JButton("New Game");
@@ -169,7 +180,7 @@ public class GUI {
 
     lbl_shutdownThanks = new JLabel("Thanks for playing!");
     lbl_shutdownThanks.setFont(new Font("Dialog", Font.BOLD, 20));
-    lbl_shutdownThanks.setBounds(125, 99, 197, 26);
+    lbl_shutdownThanks.setBounds(120, 97, 237, 26);
     panel_shutdown.add(lbl_shutdownThanks);
 
     lbl_shutdownMessage = new JLabel("Shutting down...");
@@ -346,39 +357,88 @@ public class GUI {
     lbl_moveSelectXP = new JLabel("XP");
     lbl_moveSelectXP.setBounds(339, 50, 97, 17);
     panel_moveSelect.add(lbl_moveSelectXP);
-    
+
     panel_moveInventory = new JPanel();
     frame.getContentPane().add(panel_moveInventory, "panel_moveInventory");
     panel_moveInventory.setLayout(null);
-    
+
     scrollPane_moveInventoryTable = new JScrollPane();
     scrollPane_moveInventoryTable.setBounds(50, 61, 348, 91);
     panel_moveInventory.add(scrollPane_moveInventoryTable);
-    
+
     table_moveInventory = new JTable();
     table_moveInventory.setModel(new DefaultTableModel(
-    	new Object[][] {
-    		{null, null, null},
-    		{null, null, null},
-    		{null, null, null},
-    		{null, null, null},
-    	},
-    	new String[] {
-    		"Name", "Level", "XP"
-    	}
-    ));
+        new Object[][] {
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+        },
+        new String[] {"Name", "Level", "XP"}));
     table_moveInventory.setFont(new Font("Dialog", Font.PLAIN, 12));
     scrollPane_moveInventoryTable.setViewportView(table_moveInventory);
-    
+
     lbl_moveInventoryPotions = new JLabel("Number of Potions: ");
     lbl_moveInventoryPotions.setFont(new Font("Dialog", Font.PLAIN, 20));
     lbl_moveInventoryPotions.setBounds(65, 192, 213, 33);
     panel_moveInventory.add(lbl_moveInventoryPotions);
-    
+
     lbl_moveInventoryArmourPlates = new JLabel("Number of Armour Plates:");
     lbl_moveInventoryArmourPlates.setFont(new Font("Dialog", Font.PLAIN, 20));
     lbl_moveInventoryArmourPlates.setBounds(65, 227, 262, 33);
     panel_moveInventory.add(lbl_moveInventoryArmourPlates);
+
+    panel_battleInform = new JPanel();
+    frame.getContentPane().add(panel_battleInform, "panel_battleInform");
+    panel_battleInform.setLayout(null);
+
+    lbl_battleInform = new JLabel("Battle Started!");
+    lbl_battleInform.setBounds(171, 12, 91, 17);
+    panel_battleInform.add(lbl_battleInform);
+
+    lbl_battleInformPlayerWanimal = new JLabel("Player's Wanimal");
+    lbl_battleInformPlayerWanimal.setBounds(34, 64, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimal);
+
+    lbl_battleInformPlayerWanimalLevel = new JLabel("Level: ");
+    lbl_battleInformPlayerWanimalLevel.setBounds(34, 84, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimalLevel);
+
+    lbl_battleInformPlayerWanimalHP = new JLabel("HP:");
+    lbl_battleInformPlayerWanimalHP.setBounds(34, 103, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimalHP);
+
+    lbl_battleInformPlayerWanimalArmor = new JLabel("Armor:");
+    lbl_battleInformPlayerWanimalArmor.setBounds(34, 122, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimalArmor);
+
+    lbl_battleInformPlayerWanimalBaseAttack = new JLabel("Base Attack:");
+    lbl_battleInformPlayerWanimalBaseAttack.setBounds(34, 141, 110, 17);
+    panel_battleInform.add(lbl_battleInformPlayerWanimalBaseAttack);
+
+    lbl_battleInformEnemyWanimal = new JLabel("Enemy Wanimal");
+    lbl_battleInformEnemyWanimal.setBounds(285, 141, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimal);
+
+    lbl_battleInformEnemyWanimalLevel = new JLabel("Level: ");
+    lbl_battleInformEnemyWanimalLevel.setBounds(285, 161, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimalLevel);
+
+    lbl_battleInformEnemyWanimalHP = new JLabel("HP:");
+    lbl_battleInformEnemyWanimalHP.setBounds(285, 180, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimalHP);
+
+    lbl_battleInformEnemyWanimalArmor = new JLabel("Armor:");
+    lbl_battleInformEnemyWanimalArmor.setBounds(285, 199, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimalArmor);
+
+    lbl_battleInformEnemyBaseAttack = new JLabel("Base Attack:");
+    lbl_battleInformEnemyBaseAttack.setBounds(285, 218, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyBaseAttack);
+
+    lbl_battleInformVersus = new JLabel("VS.");
+    lbl_battleInformVersus.setBounds(200, 122, 31, 17);
+    panel_battleInform.add(lbl_battleInformVersus);
   }
 
   /**
@@ -454,7 +514,18 @@ public class GUI {
         Utils.runMaybe(40, new Runnable() {
           @Override
           public void run() {
-            // TODO: inform the user that they are going into a battle
+            // show the panel informing the user of the battle
+            masterLayout.show(contentPane, "panel_battleInform");
+
+            // wait for 4 seconds, then prepare and switch to the actual battle
+            // panel
+            Utils.delayRun(4000, new Runnable() {
+              @Override
+              public void run() {
+                masterLayout.show(contentPane, "panel_battle");
+              }
+            });
+
             // TODO: maybe we shouldn't outsource the battle, and just keep it
             // within the GUI code
             Engine.battle(
@@ -477,18 +548,19 @@ public class GUI {
     btn_moveSelectInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-    	// TODO: code the logic to display all the wanimals owned by the user
-    	lbl_moveInventoryPotions.setText("Number of Potions: " + Engine.getPlayer().getNumPotions());
-    	lbl_moveInventoryArmourPlates.setText("Number of Armour Plates: " + Engine.getPlayer().getNumArmorPlates());
-      	masterLayout.show(contentPane, "panel_moveInventory");
+        // TODO: code the logic to display all the wanimals owned by the user
+        lbl_moveInventoryPotions.setText("Number of Potions: " +
+                                         Engine.getPlayer().getNumPotions());
+        lbl_moveInventoryArmourPlates.setText(
+            "Number of Armour Plates: " +
+            Engine.getPlayer().getNumArmorPlates());
+        masterLayout.show(contentPane, "panel_moveInventory");
       }
     });
 
     // listener for the BATTLE BOSS button
     btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-    	  
-      }
+      public void actionPerformed(ActionEvent e) {}
     });
 
     /************************************************************************
@@ -522,7 +594,7 @@ public class GUI {
     masterLayout.show(contentPane,
                       "panel_shutdown"); // switch to the shutdown panel
     // wait for 2 seconds, then quit the program
-    Utils.delay(2000, new Runnable() {
+    Utils.delayRun(2000, new Runnable() {
       @Override
       public void run() {
         frame.dispose();
