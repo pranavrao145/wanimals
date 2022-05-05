@@ -156,7 +156,7 @@ public class GUI {
     panel_title.add(lbl_title);
 
     lbl_titleNames = new JLabel("Pranav, Haseeb, Carson, Preet");
-    lbl_titleNames.setBounds(136, 137, 185, 17);
+    lbl_titleNames.setBounds(130, 136, 194, 17);
     panel_title.add(lbl_titleNames);
 
     btn_titleNewGame = new JButton("New Game");
