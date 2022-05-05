@@ -106,6 +106,8 @@ public class GUI {
   private JLabel lbl_battleInformPlayerWanimal;
   private JLabel lbl_battleInformPlayerWanimalLevel;
   private JLabel lbl_battleInformPlayerWanimalHP;
+  private JLabel lbl_moveInventoryTitle;
+  private JButton btn_moveInventoryBack;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -363,7 +365,7 @@ public class GUI {
     panel_moveInventory.setLayout(null);
 
     scrollPane_moveInventoryTable = new JScrollPane();
-    scrollPane_moveInventoryTable.setBounds(50, 61, 348, 91);
+    scrollPane_moveInventoryTable.setBounds(52, 69, 348, 91);
     panel_moveInventory.add(scrollPane_moveInventoryTable);
 
     table_moveInventory = new JTable();
@@ -375,18 +377,27 @@ public class GUI {
             {null, null, null},
         },
         new String[] {"Name", "Level", "XP"}));
-    table_moveInventory.setFont(new Font("Dialog", Font.PLAIN, 12));
+    table_moveInventory.setFont(new Font("Dialog", Font.BOLD, 12));
     scrollPane_moveInventoryTable.setViewportView(table_moveInventory);
 
     lbl_moveInventoryPotions = new JLabel("Number of Potions: ");
-    lbl_moveInventoryPotions.setFont(new Font("Dialog", Font.PLAIN, 20));
-    lbl_moveInventoryPotions.setBounds(65, 192, 213, 33);
+    lbl_moveInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 14));
+    lbl_moveInventoryPotions.setBounds(52, 172, 213, 33);
     panel_moveInventory.add(lbl_moveInventoryPotions);
 
     lbl_moveInventoryArmourPlates = new JLabel("Number of Armour Plates:");
-    lbl_moveInventoryArmourPlates.setFont(new Font("Dialog", Font.PLAIN, 20));
-    lbl_moveInventoryArmourPlates.setBounds(65, 227, 262, 33);
+    lbl_moveInventoryArmourPlates.setFont(new Font("Dialog", Font.BOLD, 14));
+    lbl_moveInventoryArmourPlates.setBounds(52, 207, 262, 33);
     panel_moveInventory.add(lbl_moveInventoryArmourPlates);
+
+    lbl_moveInventoryTitle = new JLabel("Inventory");
+    lbl_moveInventoryTitle.setFont(new Font("Dialog", Font.BOLD, 16));
+    lbl_moveInventoryTitle.setBounds(174, 34, 98, 23);
+    panel_moveInventory.add(lbl_moveInventoryTitle);
+
+    btn_moveInventoryBack = new JButton("Back");
+    btn_moveInventoryBack.setBounds(12, 12, 107, 27);
+    panel_moveInventory.add(btn_moveInventoryBack);
 
     panel_battleInform = new JPanel();
     frame.getContentPane().add(panel_battleInform, "panel_battleInform");
