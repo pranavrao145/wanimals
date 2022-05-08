@@ -19,8 +19,8 @@ public class Engine {
    * @param enemy - the enemy with which to start the new battle
    */
   public static void createBattle(Wanimal enemy) {
-    Engine.currentBattle =
-        new Battle(Engine.player, Engine.player.getWanimals().get(1), enemy);
+    Engine.setCurrentBattle(
+        new Battle(Engine.player, Engine.player.getWanimals().get(1), enemy));
   }
 
   // getters and setters
@@ -30,4 +30,10 @@ public class Engine {
   public static Player getPlayer() { return player; }
 
   public static void setPlayer(Player player) { Engine.player = player; }
+
+  public static Battle getCurrentBattle() { return currentBattle; }
+
+  public static void setCurrentBattle(Battle currentBattle) {
+    Engine.currentBattle = currentBattle;
+  }
 }
