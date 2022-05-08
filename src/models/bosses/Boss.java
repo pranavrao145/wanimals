@@ -1,9 +1,12 @@
 package models.bosses;
 
+import models.battles.Attack;
+
 public class Boss {
   protected String name, type;
   protected int maxHitPoints, currentHitPoints, maxArmor, currentArmor,
       experienceOffered, requiredLevel;
+  protected Attack firstAttack, secondAttack;
 
   /**
    * Constructor method: this overload of this method takes an argument for
@@ -19,10 +22,12 @@ public class Boss {
    * @param experienceOffered - the experience offered with which to create the
    *     new boss
    * @param requiredLevel - the required level with which to create the new boss
+   * @param firstAttack - the firstAttack with which to create the new boss
+   * @param secondAttack - the secondAttack with which to create the new boss
    */
   public Boss(String name, String type, int maxHitPoints, int currentHitPoints,
               int maxArmor, int currentArmor, int experienceOffered,
-              int requiredLevel) {
+              int requiredLevel, Attack firstAttack, Attack secondAttack) {
     this.name = name; // set the name of this boss to the name given
     this.type = type; // set the type of this boss to the type given
     this.maxHitPoints = maxHitPoints; // set the maxHitPoints of this boss to
@@ -39,6 +44,10 @@ public class Boss {
                            // experienceOffered given
     this.requiredLevel = requiredLevel; // set the requiredLevel of this boss to
                                         // the requiredLevel given
+    this.firstAttack = firstAttack;     // set the firstAttack of this boss to
+                                        // the firstAttack given
+    this.secondAttack = secondAttack;   // set the secondAttack of this boss to
+                                        // the secondAttack given
   }
 
   /**
@@ -54,6 +63,8 @@ public class Boss {
     this.currentArmor = 60;
     this.experienceOffered = 300;
     this.requiredLevel = 5;
+    this.firstAttack = null;
+    this.secondAttack = null;
   }
 
   // getters and setters
@@ -98,5 +109,17 @@ public class Boss {
 
   public void setRequiredLevel(int requiredLevel) {
     this.requiredLevel = requiredLevel;
+  }
+
+  public Attack getFirstAttack() { return firstAttack; }
+
+  public void setFirstAttack(Attack firstAttack) {
+    this.firstAttack = firstAttack;
+  }
+
+  public Attack getSecondAttack() { return secondAttack; }
+
+  public void setSecondAttack(Attack secondAttack) {
+    this.secondAttack = secondAttack;
   }
 }
