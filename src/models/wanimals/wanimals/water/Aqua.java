@@ -45,6 +45,4 @@ public class Aqua extends WaterWanimal {
     this.maxArmor = 32;
     this.currentArmor = 32;
   }
-
-  public void flashFlood() {}
 }

@@ -47,6 +47,4 @@ public class FireWanimal extends Wanimal {
     this.maxXP = 200;
     this.currentXP = 0;
   }
-
-  public void fireBlast() {}
 }

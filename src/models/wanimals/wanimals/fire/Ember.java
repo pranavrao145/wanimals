@@ -45,6 +45,4 @@ public class Ember extends FireWanimal {
     this.maxArmor = 16;
     this.currentArmor = 16;
   }
-
-  public void burn() {}
 }

@@ -48,6 +48,4 @@ public class NormalWanimal extends Wanimal {
     this.maxXP = 200;
     this.currentXP = 0;
   }
-
-  public void assault() {}
 }

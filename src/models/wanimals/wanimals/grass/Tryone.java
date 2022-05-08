@@ -45,6 +45,4 @@ public class Tryone extends GrassWanimal {
     this.maxArmor = 18;
     this.currentArmor = 18;
   }
-
-  public void grassBlade() {}
 }

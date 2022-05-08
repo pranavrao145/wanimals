@@ -45,6 +45,4 @@ public class Ash extends FireWanimal {
     this.maxArmor = 20;
     this.currentArmor = 20;
   }
-
-  public void incinerate() {}
 }

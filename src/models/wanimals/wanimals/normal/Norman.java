@@ -45,6 +45,4 @@ public class Norman extends NormalWanimal {
     this.maxArmor = 28;
     this.currentArmor = 28;
   }
-
-  public void damagingKick() {}
 }

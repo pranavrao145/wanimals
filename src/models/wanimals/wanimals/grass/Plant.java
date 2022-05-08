@@ -45,6 +45,4 @@ public class Plant extends GrassWanimal {
     this.maxArmor = 26;
     this.currentArmor = 26;
   }
-
-  public void plantBarrage() {}
 }

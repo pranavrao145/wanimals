@@ -45,6 +45,4 @@ public class Wumbo extends NormalWanimal {
     this.maxArmor = 30;
     this.currentArmor = 30;
   }
-
-  public void superPunch() {}
 }

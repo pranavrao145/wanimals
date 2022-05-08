@@ -45,6 +45,4 @@ public class Hydron extends WaterWanimal {
     this.maxArmor = 24;
     this.currentArmor = 24;
   }
-
-  public void crushingCurrent() {}
 }

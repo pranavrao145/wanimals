@@ -48,6 +48,4 @@ public class GrassWanimal extends Wanimal {
     this.maxXP = 200;
     this.currentXP = 0;
   }
-
-  public void treeSmash() {}
 }
