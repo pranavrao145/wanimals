@@ -33,7 +33,7 @@ public class Aqua extends WaterWanimal {
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new wanimal with default values with each attribute
+   * creates a new wanimal with default values for each attribute
    */
   public Aqua() {
     this.name = "Aqua";

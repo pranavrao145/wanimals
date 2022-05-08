@@ -28,7 +28,7 @@ public class HydronPrime extends Boss {
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new boss with default values with each attribute
+   * creates a new boss with default values for each attribute
    */
   public HydronPrime() {
     this.name = "Hydron Prime";

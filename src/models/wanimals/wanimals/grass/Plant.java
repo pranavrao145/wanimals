@@ -33,7 +33,7 @@ public class Plant extends GrassWanimal {
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new wanimal with default values with each attribute
+   * creates a new wanimal with default values for each attribute
    */
   public Plant() {
     this.name = "Plant";
