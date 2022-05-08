@@ -1,5 +1,6 @@
 package models.wanimals.wanimals.grass;
 
+import models.battles.Attack;
 import models.player.Player;
 import models.wanimals.types.GrassWanimal;
 
@@ -22,13 +23,16 @@ public class Plant extends GrassWanimal {
    * @param owner - the owner with which to create the new wanimal
    * @param currentXP - the currentXP with which to create the new wanimal
    * @param maxXP - the maxXP with which to create the new wanimal
+   * @param firstAttack - the firstAttack with which to create the new wanimal
+   * @param secondAttack - the secondAttack with which to create the new wanimal
    */
   public Plant(String name, String type, int level, int maxHitpoints,
                int currentHitpoints, int baseAttack, int maxArmor,
-               int currentArmor, Player owner, int maxXP, int currentXP) {
+               int currentArmor, Player owner, int maxXP, int currentXP,
+               Attack firstAttack, Attack secondAttack) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor, currentArmor, owner, maxXP,
-          currentXP); // call the superconstructor with the given values
+          maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
+          secondAttack); // call the superconstructor with the given values
   }
 
   /**
@@ -44,5 +48,7 @@ public class Plant extends GrassWanimal {
     this.baseAttack = 12;
     this.maxArmor = 26;
     this.currentArmor = 26;
+    this.firstAttack = new Attack("Tree Smash", 1);
+    this.secondAttack = new Attack("Plant Barrage", 2);
   }
 }

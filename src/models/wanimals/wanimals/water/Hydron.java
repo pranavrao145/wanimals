@@ -1,5 +1,6 @@
 package models.wanimals.wanimals.water;
 
+import models.battles.Attack;
 import models.player.Player;
 import models.wanimals.types.WaterWanimal;
 
@@ -22,13 +23,16 @@ public class Hydron extends WaterWanimal {
    * @param owner - the owner with which to create the new wanimal
    * @param currentXP - the currentXP with which to create the new wanimal
    * @param maxXP - the maxXP with which to create the new wanimal
+   * @param firstAttack - the firstAttack with which to create the new wanimal
+   * @param secondAttack - the secondAttack with which to create the new wanimal
    */
   public Hydron(String name, String type, int level, int maxHitpoints,
                 int currentHitpoints, int baseAttack, int maxArmor,
-                int currentArmor, Player owner, int maxXP, int currentXP) {
+                int currentArmor, Player owner, int maxXP, int currentXP,
+                Attack firstAttack, Attack secondAttack) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor, currentArmor, owner, maxXP,
-          currentXP); // call the superconstructor with the given values
+          maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
+          secondAttack); // call the superconstructor with the given values
   }
 
   /**
@@ -44,5 +48,7 @@ public class Hydron extends WaterWanimal {
     this.baseAttack = 13;
     this.maxArmor = 24;
     this.currentArmor = 24;
+    this.firstAttack = new Attack("Drown", 1);
+    this.secondAttack = new Attack("Crushing Current", 2);
   }
 }
