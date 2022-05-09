@@ -43,7 +43,7 @@ public class Player {
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new player with default values with each attribute
+   * creates a new player with default values for each attribute
    */
   public Player() {
     this.name = "no_name";

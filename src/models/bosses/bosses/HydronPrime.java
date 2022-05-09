@@ -1,5 +1,6 @@
 package models.bosses.bosses;
 
+import models.battles.attacks.BossAttack;
 import models.bosses.Boss;
 
 public class HydronPrime extends Boss {
@@ -17,28 +18,35 @@ public class HydronPrime extends Boss {
    * @param experienceOffered - the experience offered with which to create the
    *     new boss
    * @param requiredLevel - the required level with which to create the new boss
+   * @param firstBossAttack - the firstBossAttack with which to create the new
+   *     boss
+   * @param secondBossAttack - the secondBossAttack with which to create the new
+   *     boss
    */
   public HydronPrime(String name, String type, int maxHitPoints,
                      int currentHitPoints, int maxArmor, int currentArmor,
-                     int experienceOffered, int requiredLevel) {
+                     int experienceOffered, int requiredLevel,
+                     BossAttack firstBossAttack, BossAttack secondBossAttack) {
     super(name, type, maxHitPoints, currentHitPoints, maxArmor, currentArmor,
-          experienceOffered,
-          requiredLevel); // call the superconstructor with the given values
+          experienceOffered, requiredLevel, firstBossAttack,
+          secondBossAttack); // call the superconstructor with the given values
   }
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new boss with default values with each attribute
+   * creates a new boss with default values for each attribute
    */
   public HydronPrime() {
     this.name = "Hydron Prime";
     this.type = "water";
-    this.maxHitPoints = 400;
-    this.currentHitPoints = 400;
+    this.maxHitpoints = 400;
+    this.currentHitpoints = 400;
     this.maxArmor = 120;
     this.currentArmor = 120;
     this.experienceOffered = 400;
     this.requiredLevel = 10;
+    this.firstBossAttack = new BossAttack("Enhanced Drown", 1, 40);
+    this.secondBossAttack = new BossAttack("Mega Flood", 2, 55);
   }
 
   public void enhancedDrown() {}

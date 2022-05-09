@@ -1,5 +1,6 @@
 package models.bosses.bosses;
 
+import models.battles.attacks.BossAttack;
 import models.bosses.Boss;
 
 public class WumboPrime extends Boss {
@@ -17,28 +18,35 @@ public class WumboPrime extends Boss {
    * @param experienceOffered - the experience offered with which to create the
    *     new boss
    * @param requiredLevel - the required level with which to create the new boss
+   * @param firstBossAttack - the firstBossAttack with which to create the new
+   *     boss
+   * @param secondBossAttack - the secondBossAttack with which to create the new
+   *     boss
    */
   public WumboPrime(String name, String type, int maxHitPoints,
                     int currentHitPoints, int maxArmor, int currentArmor,
-                    int experienceOffered, int requiredLevel) {
+                    int experienceOffered, int requiredLevel,
+                    BossAttack firstBossAttack, BossAttack secondBossAttack) {
     super(name, type, maxHitPoints, currentHitPoints, maxArmor, currentArmor,
-          experienceOffered,
-          requiredLevel); // call the superconstructor with the given values
+          experienceOffered, requiredLevel, firstBossAttack,
+          secondBossAttack); // call the superconstructor with the given values
   }
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new boss with default values with each attribute
+   * creates a new boss with default values for each attribute
    */
   public WumboPrime() {
     this.name = "Wumbo Prime";
     this.type = "normal";
-    this.maxHitPoints = 200;
-    this.currentHitPoints = 200;
+    this.maxHitpoints = 200;
+    this.currentHitpoints = 200;
     this.maxArmor = 60;
     this.currentArmor = 60;
     this.experienceOffered = 300;
     this.requiredLevel = 5;
+    this.firstBossAttack = new BossAttack("Armed Assault", 1, 30);
+    this.secondBossAttack = new BossAttack("Extreme Super Punch", 2, 45);
   }
 
   public void armedAssault() {}

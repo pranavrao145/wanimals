@@ -1,5 +1,6 @@
 package models.wanimals.wanimals.grass;
 
+import models.battles.attacks.Attack;
 import models.player.Player;
 import models.wanimals.types.GrassWanimal;
 
@@ -22,18 +23,21 @@ public class Tryone extends GrassWanimal {
    * @param owner - the owner with which to create the new wanimal
    * @param currentXP - the currentXP with which to create the new wanimal
    * @param maxXP - the maxXP with which to create the new wanimal
+   * @param firstAttack - the firstAttack with which to create the new wanimal
+   * @param secondAttack - the secondAttack with which to create the new wanimal
    */
   public Tryone(String name, String type, int level, int maxHitpoints,
                 int currentHitpoints, int baseAttack, int maxArmor,
-                int currentArmor, Player owner, int maxXP, int currentXP) {
+                int currentArmor, Player owner, int maxXP, int currentXP,
+                Attack firstAttack, Attack secondAttack) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor, currentArmor, owner, maxXP,
-          currentXP); // call the superconstructor with the given values
+          maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
+          secondAttack); // call the superconstructor with the given values
   }
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new wanimal with default values with each attribute
+   * creates a new wanimal with default values for each attribute
    */
   public Tryone() {
     this.name = "Tryone";
@@ -44,7 +48,7 @@ public class Tryone extends GrassWanimal {
     this.baseAttack = 16;
     this.maxArmor = 18;
     this.currentArmor = 18;
+    this.firstAttack = new Attack("Tree Smash", 1);
+    this.secondAttack = new Attack("Grass Blade", 2);
   }
-
-  public void grassBlade() {}
 }

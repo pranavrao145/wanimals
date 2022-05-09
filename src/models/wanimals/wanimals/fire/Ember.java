@@ -1,5 +1,6 @@
 package models.wanimals.wanimals.fire;
 
+import models.battles.attacks.Attack;
 import models.player.Player;
 import models.wanimals.types.FireWanimal;
 
@@ -22,18 +23,21 @@ public class Ember extends FireWanimal {
    * @param owner - the owner with which to create the new wanimal
    * @param currentXP - the currentXP with which to create the new wanimal
    * @param maxXP - the maxXP with which to create the new wanimal
+   * @param firstAttack - the firstAttack with which to create the new wanimal
+   * @param secondAttack - the secondAttack with which to create the new wanimal
    */
   public Ember(String name, String type, int level, int maxHitpoints,
                int currentHitpoints, int baseAttack, int maxArmor,
-               int currentArmor, Player owner, int maxXP, int currentXP) {
+               int currentArmor, Player owner, int maxXP, int currentXP,
+               Attack firstAttack, Attack secondAttack) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
-          maxArmor, currentArmor, owner, maxXP,
-          currentXP); // call the superconstructor with the given values
+          maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
+          secondAttack); // call the superconstructor with the given values
   }
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new wanimal with default values with each attribute
+   * creates a new wanimal with default values for each attribute
    */
   public Ember() {
     this.name = "Ember";
@@ -44,7 +48,7 @@ public class Ember extends FireWanimal {
     this.baseAttack = 17;
     this.maxArmor = 16;
     this.currentArmor = 16;
+    this.firstAttack = new Attack("Fire Blast", 1);
+    this.secondAttack = new Attack("Burn", 2);
   }
-
-  public void burn() {}
 }

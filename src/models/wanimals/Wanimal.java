@@ -1,5 +1,6 @@
 package models.wanimals;
 
+import models.battles.attacks.Attack;
 import models.player.Player;
 
 public class Wanimal {
@@ -7,6 +8,7 @@ public class Wanimal {
   protected int level, maxHitpoints, currentHitpoints, baseAttack, maxArmor,
       currentArmor, maxXP, currentXP;
   protected Player owner;
+  protected Attack firstAttack, secondAttack;
 
   /**
    * Constructor method: this overload of this method takes an argument for
@@ -26,10 +28,13 @@ public class Wanimal {
    * @param owner - the owner with which to create the new wanimal
    * @param currentXP - the currentXP with which to create the new wanimal
    * @param maxXP - the maxXP with which to create the new wanimal
+   * @param firstAttack - the firstAttack with which to create the new wanimal
+   * @param secondAttack - the secondAttack with which to create the new wanimal
    */
   public Wanimal(String name, String type, int level, int maxHitpoints,
                  int currentHitpoints, int baseAttack, int maxArmor,
-                 int currentArmor, Player owner, int maxXP, int currentXP) {
+                 int currentArmor, Player owner, int maxXP, int currentXP,
+                 Attack firstAttack, Attack secondAttack) {
     this.name = name;   // set the name of this wanimal to the name given
     this.type = type;   // set the type of this wanimal to the type given
     this.level = level; // set the level of this wanimal to the level given
@@ -50,11 +55,15 @@ public class Wanimal {
                                       // wanimal to the maxXP given
     this.currentXP = currentXP;       // set the currentXP of this
                                       // wanimal to the currentXP given
+    this.firstAttack = firstAttack;   // set the firstAttack of this
+                                      // wanimal to the firstAttack given
+    this.secondAttack = secondAttack; // set the secondAttack of this
+                                      // wanimal to the secondAttack given
   }
 
   /**
    * Constructor method: this overload of this method takes no arguments and
-   * creates a new wanimal with default values with each attribute
+   * creates a new wanimal with default values for each attribute
    */
   public Wanimal() {
     this.name = "no_name";
@@ -68,6 +77,8 @@ public class Wanimal {
     this.owner = null; // by default, a wanimal has no owner
     this.maxXP = 200;
     this.currentXP = 0;
+    this.firstAttack = null;
+    this.secondAttack = null;
   }
 
   // getters and setters
@@ -113,4 +124,24 @@ public class Wanimal {
   public Player getOwner() { return owner; }
 
   public void setOwner(Player owner) { this.owner = owner; }
+
+  public int getMaxXP() { return maxXP; }
+
+  public void setMaxXP(int maxXP) { this.maxXP = maxXP; }
+
+  public int getCurrentXP() { return currentXP; }
+
+  public void setCurrentXP(int currentXP) { this.currentXP = currentXP; }
+
+  public Attack getFirstAttack() { return firstAttack; }
+
+  public void setFirstAttack(Attack firstAttack) {
+    this.firstAttack = firstAttack;
+  }
+
+  public Attack getSecondAttack() { return secondAttack; }
+
+  public void setSecondAttack(Attack secondAttack) {
+    this.secondAttack = secondAttack;
+  }
 }
