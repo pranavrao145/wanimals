@@ -570,7 +570,7 @@ public class GUI {
       }
     });
 
-    // listener for the BATTLE BOSS button
+    // listener for the battle boss button
     btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {}
     });
