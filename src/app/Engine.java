@@ -1,6 +1,6 @@
 package app;
 
-import models.battles.Battle;
+import models.battles.battles.Battle;
 import models.player.Player;
 import models.wanimals.Wanimal;
 

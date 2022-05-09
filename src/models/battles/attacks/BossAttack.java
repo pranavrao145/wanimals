@@ -1,4 +1,4 @@
-package models.battles;
+package models.battles.attacks;
 
 import models.wanimals.Wanimal;
 

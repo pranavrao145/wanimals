@@ -1,6 +1,6 @@
 package models.bosses.bosses;
 
-import models.battles.BossAttack;
+import models.battles.attacks.BossAttack;
 import models.bosses.Boss;
 
 public class HydronPrime extends Boss {

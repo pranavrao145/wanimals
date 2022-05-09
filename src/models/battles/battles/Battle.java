@@ -1,4 +1,4 @@
-package models.battles;
+package models.battles.battles;
 
 import models.player.Player;
 import models.wanimals.Wanimal;

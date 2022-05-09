@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-import models.battles.Battle;
+import models.battles.battles.Battle;
 import models.player.Player;
 import models.wanimals.Wanimal;
 import models.wanimals.wanimals.normal.Norman;

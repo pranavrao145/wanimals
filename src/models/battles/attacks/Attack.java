@@ -1,4 +1,4 @@
-package models.battles;
+package models.battles.attacks;
 
 import models.bosses.Boss;
 import models.wanimals.Wanimal;

@@ -1,6 +1,6 @@
 package models.bosses;
 
-import models.battles.BossAttack;
+import models.battles.attacks.BossAttack;
 
 public class Boss {
   protected String name, type;

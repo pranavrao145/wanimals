@@ -1,6 +1,6 @@
 package models.wanimals.wanimals.water;
 
-import models.battles.Attack;
+import models.battles.attacks.Attack;
 import models.player.Player;
 import models.wanimals.types.WaterWanimal;
 

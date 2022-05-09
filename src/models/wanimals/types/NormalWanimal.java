@@ -1,6 +1,6 @@
 package models.wanimals.types;
 
-import models.battles.Attack;
+import models.battles.attacks.Attack;
 import models.player.Player;
 import models.wanimals.Wanimal;
 
