@@ -1,8 +1,8 @@
 package models.battles;
 
 public class Attack {
-  private String name; // the name of the attack
-  private int type;    // the type of attack (1 or 2)
+  protected String name; // the name of the attack
+  protected int type;    // the type of attack (1 or 2)
 
   /**
    * Constructor method: this overload of this method takes an argument for
@@ -12,8 +12,8 @@ public class Attack {
    * @param type - the type with which to create the new attack
    */
   public Attack(String name, int type) {
-    this.name = name;
-    this.type = type;
+    this.name = name; // set the name of this attack to the name given
+    this.type = type; // set the type of this attack to the type given
   }
 
   /**

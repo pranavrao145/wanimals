@@ -1,12 +1,12 @@
 package models.bosses;
 
-import models.battles.Attack;
+import models.battles.BossAttack;
 
 public class Boss {
   protected String name, type;
   protected int maxHitPoints, currentHitPoints, maxArmor, currentArmor,
       experienceOffered, requiredLevel;
-  protected Attack firstAttack, secondAttack;
+  protected BossAttack firstBossAttack, secondBossAttack;
 
   /**
    * Constructor method: this overload of this method takes an argument for
@@ -22,12 +22,15 @@ public class Boss {
    * @param experienceOffered - the experience offered with which to create the
    *     new boss
    * @param requiredLevel - the required level with which to create the new boss
-   * @param firstAttack - the firstAttack with which to create the new boss
-   * @param secondAttack - the secondAttack with which to create the new boss
+   * @param firstBossAttack - the firstBossAttack with which to create the new
+   *     boss
+   * @param secondBossAttack - the secondBossAttack with which to create the new
+   *     boss
    */
   public Boss(String name, String type, int maxHitPoints, int currentHitPoints,
               int maxArmor, int currentArmor, int experienceOffered,
-              int requiredLevel, Attack firstAttack, Attack secondAttack) {
+              int requiredLevel, BossAttack firstBossAttack,
+              BossAttack secondBossAttack) {
     this.name = name; // set the name of this boss to the name given
     this.type = type; // set the type of this boss to the type given
     this.maxHitPoints = maxHitPoints; // set the maxHitPoints of this boss to
@@ -44,10 +47,11 @@ public class Boss {
                            // experienceOffered given
     this.requiredLevel = requiredLevel; // set the requiredLevel of this boss to
                                         // the requiredLevel given
-    this.firstAttack = firstAttack;     // set the firstAttack of this boss to
-                                        // the firstAttack given
-    this.secondAttack = secondAttack;   // set the secondAttack of this boss to
-                                        // the secondAttack given
+    this.firstBossAttack = firstBossAttack; // set the firstBossAttack of this
+                                            // boss to the firstBossAttack given
+    this.secondBossAttack =
+        secondBossAttack; // set the secondBossAttack of this boss to
+                          // the secondBossAttack given
   }
 
   /**
@@ -63,8 +67,8 @@ public class Boss {
     this.currentArmor = 60;
     this.experienceOffered = 300;
     this.requiredLevel = 5;
-    this.firstAttack = null;
-    this.secondAttack = null;
+    this.firstBossAttack = null;
+    this.secondBossAttack = null;
   }
 
   // getters and setters
@@ -111,15 +115,15 @@ public class Boss {
     this.requiredLevel = requiredLevel;
   }
 
-  public Attack getFirstAttack() { return firstAttack; }
+  public BossAttack getFirstBossAttack() { return firstBossAttack; }
 
-  public void setFirstAttack(Attack firstAttack) {
-    this.firstAttack = firstAttack;
+  public void setFirstBossAttack(BossAttack firstBossAttack) {
+    this.firstBossAttack = firstBossAttack;
   }
 
-  public Attack getSecondAttack() { return secondAttack; }
+  public BossAttack getSecondBossAttack() { return secondBossAttack; }
 
-  public void setSecondAttack(Attack secondAttack) {
-    this.secondAttack = secondAttack;
+  public void setSecondBossAttack(BossAttack secondBossAttack) {
+    this.secondBossAttack = secondBossAttack;
   }
 }
