@@ -39,8 +39,8 @@ public class MrJone extends Boss {
   public MrJone() {
     this.name = "Mr. Jone";
     this.type = "normal";
-    this.maxHitPoints = 600;
-    this.currentHitPoints = 600;
+    this.maxHitpoints = 600;
+    this.currentHitpoints = 600;
     this.maxArmor = 180;
     this.currentArmor = 180;
     this.experienceOffered = 500;

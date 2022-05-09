@@ -29,7 +29,7 @@ public class BossAttack extends Attack {
   }
 
   /**
-   * This function executes the attack, applying the appropriate damage to the
+   * This method executes the attack, applying the appropriate damage to the
    * enemy wanimal. This method overrides the execute defined by the Attack
    * class
    *

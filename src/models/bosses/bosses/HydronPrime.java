@@ -39,8 +39,8 @@ public class HydronPrime extends Boss {
   public HydronPrime() {
     this.name = "Hydron Prime";
     this.type = "water";
-    this.maxHitPoints = 400;
-    this.currentHitPoints = 400;
+    this.maxHitpoints = 400;
+    this.currentHitpoints = 400;
     this.maxArmor = 120;
     this.currentArmor = 120;
     this.experienceOffered = 400;

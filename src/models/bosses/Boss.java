@@ -4,7 +4,7 @@ import models.battles.BossAttack;
 
 public class Boss {
   protected String name, type;
-  protected int maxHitPoints, currentHitPoints, maxArmor, currentArmor,
+  protected int maxHitpoints, currentHitpoints, maxArmor, currentArmor,
       experienceOffered, requiredLevel;
   protected BossAttack firstBossAttack, secondBossAttack;
 
@@ -14,8 +14,8 @@ public class Boss {
    *
    * @param name - the name with which to create the new boss
    * @param type - the type with which to create the new boss
-   * @param maxHitPoints - the max hit points with which to create the new boss
-   * @param currentHitPoints - the current hit points with which to create the
+   * @param maxHitpoints - the max hit points with which to create the new boss
+   * @param currentHitpoints - the current hit points with which to create the
    *     new boss
    * @param maxArmor - the max armor with which to create the new boss
    * @param currentArmor - the current armor with which to create the new boss
@@ -27,16 +27,16 @@ public class Boss {
    * @param secondBossAttack - the secondBossAttack with which to create the new
    *     boss
    */
-  public Boss(String name, String type, int maxHitPoints, int currentHitPoints,
+  public Boss(String name, String type, int maxHitpoints, int currentHitpoints,
               int maxArmor, int currentArmor, int experienceOffered,
               int requiredLevel, BossAttack firstBossAttack,
               BossAttack secondBossAttack) {
     this.name = name; // set the name of this boss to the name given
     this.type = type; // set the type of this boss to the type given
-    this.maxHitPoints = maxHitPoints; // set the maxHitPoints of this boss to
+    this.maxHitpoints = maxHitpoints; // set the maxHitPoints of this boss to
                                       // the maxHitPoints given
-    this.currentHitPoints =
-        currentHitPoints; // set the currentHitPoints of this boss to the
+    this.currentHitpoints =
+        currentHitpoints; // set the currentHitPoints of this boss to the
                           // currentHitPoints given
     this.maxArmor =
         maxArmor; // set the maxArmor of this boss to the maxArmor given
@@ -61,8 +61,8 @@ public class Boss {
   public Boss() {
     this.name = "no_name";
     this.type = "no_type";
-    this.maxHitPoints = 200;
-    this.currentHitPoints = 200;
+    this.maxHitpoints = 200;
+    this.currentHitpoints = 200;
     this.maxArmor = 60;
     this.currentArmor = 60;
     this.experienceOffered = 300;
@@ -81,16 +81,16 @@ public class Boss {
 
   public void setType(String type) { this.type = type; }
 
-  public int getMaxHitPoints() { return maxHitPoints; }
+  public int getMaxHitpoints() { return maxHitpoints; }
 
-  public void setMaxHitPoints(int maxHitPoints) {
-    this.maxHitPoints = maxHitPoints;
+  public void setMaxHitpoints(int maxHitPoints) {
+    this.maxHitpoints = maxHitPoints;
   }
 
-  public int getCurrentHitPoints() { return currentHitPoints; }
+  public int getCurrentHitpoints() { return currentHitpoints; }
 
-  public void setCurrentHitPoints(int currentHitPoints) {
-    this.currentHitPoints = currentHitPoints;
+  public void setCurrentHitpoints(int currentHitPoints) {
+    this.currentHitpoints = currentHitPoints;
   }
 
   public int getMaxArmor() { return maxArmor; }

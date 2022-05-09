@@ -39,8 +39,8 @@ public class WumboPrime extends Boss {
   public WumboPrime() {
     this.name = "Wumbo Prime";
     this.type = "normal";
-    this.maxHitPoints = 200;
-    this.currentHitPoints = 200;
+    this.maxHitpoints = 200;
+    this.currentHitpoints = 200;
     this.maxArmor = 60;
     this.currentArmor = 60;
     this.experienceOffered = 300;
