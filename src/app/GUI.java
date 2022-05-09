@@ -19,6 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import models.battles.Battle;
 import models.player.Player;
+import models.wanimals.Wanimal;
 import models.wanimals.wanimals.normal.Norman;
 import utils.GameUtils;
 import utils.Utils;
@@ -34,10 +35,10 @@ public class GUI {
   private JFrame frame;
   private Container
       contentPane; // this is a special variable that will store the content
-                   // pane of the frame so it does not need to be re-read every
-                   // time we want to use it
+  // pane of the frame so it does not need to be re-read every
+  // time we want to use it
   private CardLayout masterLayout; // this CardLayout is being stored because it
-                                   // will be essential in switching views
+  // will be essential in switching views
 
   private JPanel panel_title;
   private JLabel lbl_title;
@@ -145,7 +146,7 @@ public class GUI {
     frame.setBounds(100, 100, 450, 300);
     frame.setDefaultCloseOperation(
         JFrame.DO_NOTHING_ON_CLOSE); // overriding default close behaviour so
-                                     // custom close methods can run
+    // custom close methods can run
 
     contentPane.setLayout(masterLayout);
 
@@ -554,7 +555,8 @@ public class GUI {
       }
     });
 
-    // listener for the INVENTORY button
+    // listener to go display the user's inventory when the inventory button is
+    // clicked
     btn_moveSelectInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -605,6 +607,46 @@ public class GUI {
       @Override
       public void actionPerformed(ActionEvent e) {
         masterLayout.show(contentPane, "panel_moveSelect");
+      }
+    });
+
+    /************************************************************************
+     * BATTLE SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to run the current wanimal's attack 1 when the attack 1 button
+    // is clicked
+    btn_battleAttack1.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // get the player's wanimal
+        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+
+        // execute the player's first attack on the enemy
+        playerWanimal.getFirstAttack().execute(
+            playerWanimal, Engine.getCurrentBattle().getEnemy());
+
+        refreshBattleGUI(
+            Engine.getCurrentBattle()); // update the GUI with the new
+                                        // information about the battle
+      }
+    });
+
+    // listener to run the current wanimal's attack 1 when the attack 1 button
+    // is clicked
+    btn_battleAttack2.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // get the player's wanimal
+        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+
+        // execute the player's first attack on the enemy
+        playerWanimal.getSecondAttack().execute(
+            playerWanimal, Engine.getCurrentBattle().getEnemy());
+
+        refreshBattleGUI(
+            Engine.getCurrentBattle()); // update the GUI with the new
+                                        // information about the battle
       }
     });
   }
