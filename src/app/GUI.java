@@ -675,19 +675,26 @@ public class GUI {
    * @param battle - the battle object with which to refresh the GUI
    */
   public void refreshBattleGUI(Battle battle) {
-	  
-	  lbl_battlePlayerName.setText(Engine.getCurrentBattle().getPlayerWanimal().getName());
-	  lbl_battlePlayerArmor.setText(String.valueOf(Engine.getCurrentBattle().getPlayerWanimal().getCurrentArmor()));
-	  lbl_battlePlayerHealth.setText(String.valueOf(Engine.getCurrentBattle().getPlayerWanimal().getCurrentHitpoints()));
-	  lbl_battlePlayer.setText(Engine.getCurrentBattle().getPlayer().getName());
-	  
-	  lbl_battleEnemyName.setText(Engine.getCurrentBattle().getEnemy().getName());
-	  lbl_battleEnemyArmor.setText(String.valueOf(Engine.getCurrentBattle().getEnemy().getCurrentArmor()));
-	  lbl_battleEnemyHealth.setText(String.valueOf(Engine.getCurrentBattle().getEnemy().getCurrentHitpoints()));
-	  
-	  if (Engine.getCurrentBattle().getCurrentTurn() == 0 ) { lbl_battleTurn.setText("Player's Turn"); }
-	  else { lbl_battleTurn.setText("Enemy's Turn"); }
-	  
+
+    lbl_battlePlayerName.setText(
+        Engine.getCurrentBattle().getPlayerWanimal().getName());
+    lbl_battlePlayerArmor.setText(String.valueOf(
+        Engine.getCurrentBattle().getPlayerWanimal().getCurrentArmor()));
+    lbl_battlePlayerHealth.setText(String.valueOf(
+        Engine.getCurrentBattle().getPlayerWanimal().getCurrentHitpoints()));
+    lbl_battlePlayer.setText(Engine.getCurrentBattle().getPlayer().getName());
+
+    lbl_battleEnemyName.setText(Engine.getCurrentBattle().getEnemy().getName());
+    lbl_battleEnemyArmor.setText(
+        String.valueOf(Engine.getCurrentBattle().getEnemy().getCurrentArmor()));
+    lbl_battleEnemyHealth.setText(String.valueOf(
+        Engine.getCurrentBattle().getEnemy().getCurrentHitpoints()));
+
+    if (Engine.getCurrentBattle().getCurrentTurn() == 0) {
+      lbl_battleTurn.setText("Player's Turn");
+    } else {
+      lbl_battleTurn.setText("Enemy's Turn");
+    }
   }
 
   // getters and setters
