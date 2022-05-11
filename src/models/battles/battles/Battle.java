@@ -8,7 +8,7 @@ public class Battle {
   protected Wanimal
       playerWanimal;     // to keep track of which wanimal the player is using
   private Wanimal enemy; // to keep track of the the enemy wanimal
-  protected int currentTurn; // 1 for player, 0 for enemy
+  protected volatile int currentTurn; // 1 for player turn, 0 for enemy turn
   protected boolean
       running; // to keep track of if the battle is currently running
 

@@ -706,7 +706,7 @@ public class GUI {
     lbl_battleEnemyHealth.setText(String.valueOf(
         Engine.getCurrentBattle().getEnemy().getCurrentHitpoints()));
 
-    if (Engine.getCurrentBattle().getCurrentTurn() == 0) {
+    if (Engine.getCurrentBattle().getCurrentTurn() == 1) {
       lbl_battleTurn.setText("Player's Turn");
     } else {
       lbl_battleTurn.setText("Enemy's Turn");
