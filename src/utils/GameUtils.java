@@ -29,14 +29,19 @@ public class GameUtils {
    * @return - the randomly generated wanimal
    */
   public static Wanimal generateRandomWanimal(int realm) {
-    Class<? extends Wanimal> randomWanimalClass = wanimalList.get(
-        ThreadLocalRandom.current().nextInt(wanimalList.size()));
+    Class<? extends Wanimal> randomWanimalClass =
+        wanimalList.get(ThreadLocalRandom.current().nextInt(
+            wanimalList
+                .size())); // get a random wanimal class from the list above
 
     Wanimal randomWanimal =
         new Wanimal(); // variable to store random wanimal created below
 
     try { // attempt to create the new wanimal, else handle the exception
-      randomWanimal = randomWanimalClass.getDeclaredConstructor().newInstance();
+      randomWanimal = randomWanimalClass.getDeclaredConstructor()
+                          .newInstance(); // this special way of initializing
+                                          // the wanimal must be used because
+                                          // the class' constructor is ambiguous
     } catch (InstantiationException | IllegalAccessException |
              IllegalArgumentException | InvocationTargetException |
              NoSuchMethodException | SecurityException e) {
