@@ -90,11 +90,11 @@ public class GUI {
   private JLabel lbl_moveSelectRealm;
   private JLabel lbl_moveSelectLevel;
   private JLabel lbl_moveSelectXP;
-  private JPanel panel_moveInventory;
-  private JTable table_moveInventory;
-  private JLabel lbl_moveInventoryPotions;
-  private JLabel lbl_moveInventoryArmourPlates;
-  private JScrollPane scrollPane_moveInventoryTable;
+  private JPanel panel_moveSelectInventory;
+  private JTable table_moveSelectInventory;
+  private JLabel lbl_moveSelectInventoryPotions;
+  private JLabel lbl_moveSelectInventoryArmorPlates;
+  private JScrollPane scrollPane_moveSelectInventoryTable;
   private JPanel panel_battleInform;
   private JLabel lbl_battleInformPlayerWanimalArmor;
   private JLabel lbl_battleInformPlayerWanimalBaseAttack;
@@ -108,8 +108,8 @@ public class GUI {
   private JLabel lbl_battleInformPlayerWanimal;
   private JLabel lbl_battleInformPlayerWanimalLevel;
   private JLabel lbl_battleInformPlayerWanimalHP;
-  private JLabel lbl_moveInventoryTitle;
-  private JButton btn_moveInventoryBack;
+  private JLabel lbl_moveSelectInventoryTitle;
+  private JButton btn_moveSelectInventoryBack;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -362,16 +362,17 @@ public class GUI {
     lbl_moveSelectXP.setBounds(339, 50, 97, 17);
     panel_moveSelect.add(lbl_moveSelectXP);
 
-    panel_moveInventory = new JPanel();
-    frame.getContentPane().add(panel_moveInventory, "panel_moveInventory");
-    panel_moveInventory.setLayout(null);
+    panel_moveSelectInventory = new JPanel();
+    frame.getContentPane().add(panel_moveSelectInventory,
+                               "panel_moveInventory");
+    panel_moveSelectInventory.setLayout(null);
 
-    scrollPane_moveInventoryTable = new JScrollPane();
-    scrollPane_moveInventoryTable.setBounds(52, 69, 348, 91);
-    panel_moveInventory.add(scrollPane_moveInventoryTable);
+    scrollPane_moveSelectInventoryTable = new JScrollPane();
+    scrollPane_moveSelectInventoryTable.setBounds(52, 69, 348, 91);
+    panel_moveSelectInventory.add(scrollPane_moveSelectInventoryTable);
 
-    table_moveInventory = new JTable();
-    table_moveInventory.setModel(new DefaultTableModel(
+    table_moveSelectInventory = new JTable();
+    table_moveSelectInventory.setModel(new DefaultTableModel(
         new Object[][] {
             {null, null, null},
             {null, null, null},
@@ -379,27 +380,29 @@ public class GUI {
             {null, null, null},
         },
         new String[] {"Name", "Level", "XP"}));
-    table_moveInventory.setFont(new Font("Dialog", Font.BOLD, 12));
-    scrollPane_moveInventoryTable.setViewportView(table_moveInventory);
+    table_moveSelectInventory.setFont(new Font("Dialog", Font.BOLD, 12));
+    scrollPane_moveSelectInventoryTable.setViewportView(
+        table_moveSelectInventory);
 
-    lbl_moveInventoryPotions = new JLabel("Number of Potions: ");
-    lbl_moveInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 14));
-    lbl_moveInventoryPotions.setBounds(52, 172, 213, 33);
-    panel_moveInventory.add(lbl_moveInventoryPotions);
+    lbl_moveSelectInventoryPotions = new JLabel("Number of Potions: ");
+    lbl_moveSelectInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 14));
+    lbl_moveSelectInventoryPotions.setBounds(52, 172, 213, 33);
+    panel_moveSelectInventory.add(lbl_moveSelectInventoryPotions);
 
-    lbl_moveInventoryArmourPlates = new JLabel("Number of Armour Plates:");
-    lbl_moveInventoryArmourPlates.setFont(new Font("Dialog", Font.BOLD, 14));
-    lbl_moveInventoryArmourPlates.setBounds(52, 207, 262, 33);
-    panel_moveInventory.add(lbl_moveInventoryArmourPlates);
+    lbl_moveSelectInventoryArmorPlates = new JLabel("Number of Armour Plates:");
+    lbl_moveSelectInventoryArmorPlates.setFont(
+        new Font("Dialog", Font.BOLD, 14));
+    lbl_moveSelectInventoryArmorPlates.setBounds(52, 207, 262, 33);
+    panel_moveSelectInventory.add(lbl_moveSelectInventoryArmorPlates);
 
-    lbl_moveInventoryTitle = new JLabel("Inventory");
-    lbl_moveInventoryTitle.setFont(new Font("Dialog", Font.BOLD, 16));
-    lbl_moveInventoryTitle.setBounds(174, 34, 98, 23);
-    panel_moveInventory.add(lbl_moveInventoryTitle);
+    lbl_moveSelectInventoryTitle = new JLabel("Inventory");
+    lbl_moveSelectInventoryTitle.setFont(new Font("Dialog", Font.BOLD, 16));
+    lbl_moveSelectInventoryTitle.setBounds(174, 34, 98, 23);
+    panel_moveSelectInventory.add(lbl_moveSelectInventoryTitle);
 
-    btn_moveInventoryBack = new JButton("Back");
-    btn_moveInventoryBack.setBounds(12, 12, 107, 27);
-    panel_moveInventory.add(btn_moveInventoryBack);
+    btn_moveSelectInventoryBack = new JButton("Back");
+    btn_moveSelectInventoryBack.setBounds(12, 12, 107, 27);
+    panel_moveSelectInventory.add(btn_moveSelectInventoryBack);
 
     panel_battleInform = new JPanel();
     frame.getContentPane().add(panel_battleInform, "panel_battleInform");
@@ -561,9 +564,9 @@ public class GUI {
       @Override
       public void actionPerformed(ActionEvent e) {
         // TODO: code the logic to display all the wanimals owned by the user
-        lbl_moveInventoryPotions.setText("Number of Potions: " +
-                                         Engine.getPlayer().getNumPotions());
-        lbl_moveInventoryArmourPlates.setText(
+        lbl_moveSelectInventoryPotions.setText(
+            "Number of Potions: " + Engine.getPlayer().getNumPotions());
+        lbl_moveSelectInventoryArmorPlates.setText(
             "Number of Armour Plates: " +
             Engine.getPlayer().getNumArmorPlates());
         masterLayout.show(contentPane, "panel_moveInventory");
@@ -598,12 +601,12 @@ public class GUI {
     });
 
     /************************************************************************
-     * MOVE INVENTORY SCREEN LISTENERS
+     * MOVE SELECT INVENTORY SCREEN LISTENERS
      *************************************************************************/
 
     // listener to show the move select panel when the back button is
-    // pressed on the move inventory screen
-    btn_moveInventoryBack.addActionListener(new ActionListener() {
+    // pressed on the move select inventory screen
+    btn_moveSelectInventoryBack.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         masterLayout.show(contentPane, "panel_moveSelect");
@@ -675,7 +678,6 @@ public class GUI {
    * @param battle - the battle object with which to refresh the GUI
    */
   public void refreshBattleGUI(Battle battle) {
-
     lbl_battlePlayerName.setText(
         Engine.getCurrentBattle().getPlayerWanimal().getName());
     lbl_battlePlayerArmor.setText(String.valueOf(
