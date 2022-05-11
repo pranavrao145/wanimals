@@ -573,9 +573,23 @@ public class GUI {
       }
     });
 
-    // listener for the battle boss button
+    // listener for the battle boss button (only available if the player's level
+    // is the more than the required for the next realm)
     btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {}
+    });
+
+    /************************************************************************
+     * MOVE SELECT INVENTORY SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to show the move select panel when the back button is
+    // pressed on the move select inventory screen
+    btn_moveSelectInventoryBack.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelect");
+      }
     });
 
     /************************************************************************
@@ -601,12 +615,12 @@ public class GUI {
     });
 
     /************************************************************************
-     * MOVE SELECT INVENTORY SCREEN LISTENERS
+     * BATTLE SWITCH SCREEN LISTENERS
      *************************************************************************/
 
     // listener to show the move select panel when the back button is
-    // pressed on the move select inventory screen
-    btn_moveSelectInventoryBack.addActionListener(new ActionListener() {
+    // pressed on the move select switch screen
+    btn_battleSwitchAdvance.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         masterLayout.show(contentPane, "panel_moveSelect");
