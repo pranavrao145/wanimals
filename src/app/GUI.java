@@ -21,6 +21,7 @@ import models.battles.battles.Battle;
 import models.player.Player;
 import models.wanimals.Wanimal;
 import models.wanimals.wanimals.normal.Norman;
+import utils.BattleUtils;
 import utils.GameUtils;
 import utils.Utils;
 
@@ -542,8 +543,10 @@ public class GUI {
               }
             });
 
-            Engine.createBattle(
-                GameUtils.generateRandomWanimal(Engine.getPlayer().getRealm()));
+            BattleUtils.createBattle(GameUtils.generateRandomWanimal(
+                Engine.getPlayer()
+                    .getRealm())); // create a new battle between the player and
+                                   // a random wanimal in this realm
           }
         });
       }
