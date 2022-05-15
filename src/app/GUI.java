@@ -692,25 +692,45 @@ public class GUI {
    * @param battle - the battle object with which to refresh the GUI
    */
   public void refreshBattleGUI(Battle battle) {
-    lbl_battlePlayerName.setText(
+	  
+	  //Resets the the information displayed by the Allied and Enemy Wanimal battle info labels
+	  //This includes Name, health,and armor plate number
+    lbl_battlePlayerName.setText("Name: " +
         Engine.getCurrentBattle().getPlayerWanimal().getName());
-    lbl_battlePlayerArmor.setText(String.valueOf(
+    lbl_battlePlayerArmor.setText("Armor: " + String.valueOf(
         Engine.getCurrentBattle().getPlayerWanimal().getCurrentArmor()));
-    lbl_battlePlayerHealth.setText(String.valueOf(
+    lbl_battlePlayerHealth.setText("Health: " + String.valueOf(
         Engine.getCurrentBattle().getPlayerWanimal().getCurrentHitpoints()));
     lbl_battlePlayer.setText(Engine.getCurrentBattle().getPlayer().getName());
 
-    lbl_battleEnemyName.setText(Engine.getCurrentBattle().getEnemy().getName());
-    lbl_battleEnemyArmor.setText(
+    lbl_battleEnemyName.setText("Name: " + Engine.getCurrentBattle().getEnemy().getName());
+    lbl_battleEnemyArmor.setText("Armor: " + 
         String.valueOf(Engine.getCurrentBattle().getEnemy().getCurrentArmor()));
-    lbl_battleEnemyHealth.setText(String.valueOf(
+    lbl_battleEnemyHealth.setText("Health: " + String.valueOf(
         Engine.getCurrentBattle().getEnemy().getCurrentHitpoints()));
 
+    //Uses if statement to check the battles current turn, then properly displays if it is a user or enemy turn
     if (Engine.getCurrentBattle().getCurrentTurn() == 0) {
       lbl_battleTurn.setText("Player's Turn");
     } else {
       lbl_battleTurn.setText("Enemy's Turn");
     }
+  }
+  
+  /**
+   * This method refreshes the GUI whenever the move select menu is supposed to show up.
+   * This method will be called by the engine whenever the menu is supposed to appear
+   */
+  public void refreshMoveSelectGUI() {
+	  
+	  //Refreshes all the information in the menu labels
+	  lbl_moveSelectName.setText("Name: " + Engine.getPlayer().getName());
+	  lbl_moveSelectLevel.setText("Level: " + Engine.getPlayer().getLevel());
+	  lbl_moveSelectRealm.setText("Realm: " + String.valueOf(Engine.getPlayer().getRealm()));
+	  
+	  //Displays the users current XP out of the total XP needed to level up
+	  lbl_moveSelectXP.setText("XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) + " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
+	  
   }
 
   // getters and setters
