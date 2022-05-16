@@ -5,10 +5,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import models.battles.attacks.Attack;
-import models.battles.attacks.BossAttack;
 import models.battles.battles.Battle;
-import models.battles.battles.BossBattle;
-import models.bosses.Boss;
 import models.wanimals.Wanimal;
 
 public class BattleUtils {
@@ -82,37 +79,6 @@ public class BattleUtils {
         enemy,
         Engine.getCurrentBattle()
             .getPlayerWanimal()); // execute the attack on the player's wanimal
-  }
-
-  /**
-   * This method takes a boss battle and makes the boss in that battle attack
-   * the player's current active wanimal in that battle
-   *
-   * @param battle - the boss battle information to use to execute the attack
-   */
-  public static void bossEnemyAttack(BossBattle battle) {
-    Boss boss = battle.getEnemyBoss(); // get and store the boss in a variable
-    // for easier access
-    BossAttack attackToExecute =
-        boss.getFirstBossAttack(); // this variable stores the attack to
-    // execute. Set the attack to execute to the
-    // first attack of the boss by default
-    // (this may change later)
-
-    double randomNum = Math.random(); // get a random number from 0.0 to 1.0
-
-    if (randomNum < 90.0 / 100.0) { // if the 90% chance of the boss using their
-      // second attack is satisfied
-      attackToExecute =
-          boss.getSecondBossAttack(); // set the attack to execute to the
-      // boss's second attack instead of the
-      // default first attack
-    }
-
-    attackToExecute.execute(boss,
-                            Engine.getCurrentBattle()
-                                .getPlayerWanimal()); // execute the boss attack
-    // on the player's wanimal
   }
 
   /**
