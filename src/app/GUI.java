@@ -695,6 +695,7 @@ public class GUI {
    * @param battle - the battle object with which to refresh the GUI
    */
   public void refreshBattleGUI(Battle battle) {
+    // set all the labels with their updated values
     lbl_battlePlayerName.setText(battle.getPlayerWanimal().getName());
     lbl_battlePlayerArmor.setText(
         String.valueOf(battle.getPlayerWanimal().getCurrentArmor()));
@@ -707,11 +708,15 @@ public class GUI {
     lbl_battleEnemyHealth.setText(
         String.valueOf(battle.getEnemy().getCurrentHitpoints()));
 
+    // set the turn label with the correct turn
     if (battle.getCurrentTurn() == 1) {
       lbl_battleTurn.setText("Player's Turn");
     } else {
       lbl_battleTurn.setText("Enemy's Turn");
     }
+
+    // show the battle panel
+    masterLayout.show(contentPane, "panel_battle");
   }
   
   /**
