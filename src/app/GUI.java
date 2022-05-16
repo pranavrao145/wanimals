@@ -534,19 +534,20 @@ public class GUI {
             // show the panel informing the user of the battle
             masterLayout.show(contentPane, "panel_battleInform");
 
+            BattleUtils.createBattle(GameUtils.generateRandomWanimal(
+                Engine.getPlayer()
+                    .getRealm())); // create a new battle between the player and
+                                   // a random wanimal in this realm
+
             // wait for 4 seconds, then prepare and switch to the actual battle
             // panel
             Utils.delayRun(4000, new Runnable() {
               @Override
               public void run() {
-                masterLayout.show(contentPane, "panel_battle");
+                Engine.getGui().refreshBattleGUI(
+                    Engine.getCurrentBattle()); // refresh the battle GUI
               }
             });
-
-            BattleUtils.createBattle(GameUtils.generateRandomWanimal(
-                Engine.getPlayer()
-                    .getRealm())); // create a new battle between the player and
-                                   // a random wanimal in this realm
           }
         });
       }
@@ -646,6 +647,9 @@ public class GUI {
         playerWanimal.getFirstAttack().execute(
             playerWanimal, Engine.getCurrentBattle().getEnemy());
 
+        Engine.getCurrentBattle().setCurrentTurn(
+            0); // set the turn to the enemy turn
+
         refreshBattleGUI(
             Engine.getCurrentBattle()); // update the GUI with the new
                                         // information about the battle
@@ -663,6 +667,9 @@ public class GUI {
         // execute the player's first attack on the enemy
         playerWanimal.getSecondAttack().execute(
             playerWanimal, Engine.getCurrentBattle().getEnemy());
+
+        Engine.getCurrentBattle().setCurrentTurn(
+            0); // set the turn to the enemy turn
 
         refreshBattleGUI(
             Engine.getCurrentBattle()); // update the GUI with the new
