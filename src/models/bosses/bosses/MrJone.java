@@ -1,7 +1,8 @@
 package models.bosses.bosses;
 
-import models.battles.attacks.BossAttack;
+import models.battles.attacks.Attack;
 import models.bosses.Boss;
+import models.player.Player;
 
 public class MrJone extends Boss {
   /**
@@ -10,26 +11,34 @@ public class MrJone extends Boss {
    *
    * @param name - the name with which to create the new boss
    * @param type - the type with which to create the new boss
-   * @param maxHitPoints - the max hit points with which to create the new boss
-   * @param currentHitPoints - the current hit points with which to create the
-   *     new boss
-   * @param maxArmor - the max armor with which to create the new boss
-   * @param currentArmor - the current armor with which to create the new boss
-   * @param experienceOffered - the experience offered with which to create the
-   *     new boss
-   * @param requiredLevel - the required level with which to create the new boss
-   * @param firstBossAttack - the firstBossAttack with which to create the new
+   * @param level - the level with which to create the new boss
+   * @param maxHitpoints - the max hitpoints with which to create the new
    *     boss
-   * @param secondBossAttack - the secondBossAttack with which to create the new
+   * @param currentHitpoints - the current hitpoints with which to create the
+   *     new boss
+   * @param baseAttack - the base attack with which to create the new boss
+   * @param maxArmor - the max armor with which to create the new boss
+   * @param currentArmor - the current armor with which to create the new
+   *     boss
+   * @param owner - the owner with which to create the new boss
+   * @param currentXP - the currentXP with which to create the new boss
+   * @param maxXP - the maxXP with which to create the new boss
+   * @param firstAttack - the firstAttack with which to create the new boss
+   * @param secondAttack - the secondAttack with which to create the new boss
+   * @param experienceOffered - the experienceOffered with which to create the
+   *     new boss
+   * @param requiredLevel - the requiredLevel with which to create the new
    *     boss
    */
-  public MrJone(String name, String type, int maxHitPoints,
-                int currentHitPoints, int maxArmor, int currentArmor,
-                int experienceOffered, int requiredLevel,
-                BossAttack firstBossAttack, BossAttack secondBossAttack) {
-    super(name, type, maxHitPoints, currentHitPoints, maxArmor, currentArmor,
-          experienceOffered, requiredLevel, firstBossAttack,
-          secondBossAttack); // call the superconstructor with the given values
+  public MrJone(String name, String type, int level, int maxHitpoints,
+                int currentHitpoints, int baseAttack, int maxArmor,
+                int currentArmor, Player owner, int maxXP, int currentXP,
+                Attack firstAttack, Attack secondAttack, int experienceOffered,
+                int requiredLevel) {
+    super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
+          maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
+          secondAttack, experienceOffered,
+          requiredLevel); // call superconstructor
   }
 
   /**
@@ -39,17 +48,18 @@ public class MrJone extends Boss {
   public MrJone() {
     this.name = "Mr. Jone";
     this.type = "normal";
+    this.level = 10;
+    this.baseAttack = 50;
     this.maxHitpoints = 600;
     this.currentHitpoints = 600;
     this.maxArmor = 180;
     this.currentArmor = 180;
+    this.owner = null; // bosses have no owner
     this.experienceOffered = 500;
     this.requiredLevel = 15;
-    this.firstBossAttack = new BossAttack("Give Assignment", 1, 50);
-    this.secondBossAttack = new BossAttack("Give Test", 2, 65);
+    this.maxXP = 600;
+    this.currentXP = 0;
+    this.firstAttack = new Attack("Give Assignment", 1);
+    this.secondAttack = new Attack("Give Test", 2);
   }
-
-  public void giveAssignment() {}
-
-  public void giveTest() {}
 }
