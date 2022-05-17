@@ -703,24 +703,35 @@ public class GUI {
    */
   public void refreshBattleGUI(Battle battle) {
     // set all the labels with their updated values
-    lbl_battlePlayerName.setText(battle.getPlayerWanimal().getName());
-    lbl_battlePlayerArmor.setText(
-        String.valueOf(battle.getPlayerWanimal().getCurrentArmor()));
-    lbl_battlePlayerHealth.setText(
-        String.valueOf(battle.getPlayerWanimal().getCurrentHitpoints()));
     lbl_battlePlayer.setText(battle.getPlayer().getName());
-    lbl_battleEnemyName.setText(battle.getEnemy().getName());
+
+    Wanimal playerWanimal = battle.getPlayerWanimal();
+    Wanimal enemy = battle.getEnemy();
+
+    // update player information
+    lbl_battlePlayerName.setText(playerWanimal.getName() + "(Lvl " +
+                                 String.valueOf(playerWanimal.getLevel()) +
+                                 ")");
+    lbl_battlePlayerArmor.setText(
+        "Armor: " + String.valueOf(playerWanimal.getCurrentArmor()) + "/" +
+        String.valueOf(playerWanimal.getMaxArmor()));
+    lbl_battlePlayerHealth.setText(
+        "HP: " + String.valueOf(playerWanimal.getCurrentHitpoints()) + "/" +
+        String.valueOf(playerWanimal.getMaxHitpoints()));
+
+    // update enemy information
+    lbl_battleEnemyName.setText(enemy.getName() + "(Lvl " +
+                                String.valueOf(enemy.getLevel()) + ")");
     lbl_battleEnemyArmor.setText(
-        String.valueOf(battle.getEnemy().getCurrentArmor()));
+        "Armor: " + String.valueOf(enemy.getCurrentArmor()) + "/" +
+        String.valueOf(enemy.getMaxArmor()));
     lbl_battleEnemyHealth.setText(
-        String.valueOf(battle.getEnemy().getCurrentHitpoints()));
+        "HP: " + String.valueOf(enemy.getCurrentHitpoints()) + "/" +
+        String.valueOf(enemy.getMaxHitpoints()));
 
     // set the turn label with the correct turn
-    if (battle.getCurrentTurn() == 1) {
-      lbl_battleTurn.setText("Player's Turn");
-    } else {
-      lbl_battleTurn.setText("Enemy's Turn");
-    }
+    lbl_battleTurn.setText(battle.getCurrentTurn() == 1 ? "Player's Turn"
+                                                        : "Enemy's Turn");
 
     // show the battle panel
     masterLayout.show(contentPane, "panel_battle");
