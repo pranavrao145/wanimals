@@ -5,6 +5,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -21,6 +23,7 @@ import models.battles.battles.Battle;
 import models.player.Player;
 import models.wanimals.Wanimal;
 import models.wanimals.wanimals.normal.Norman;
+import utils.BattleUtils;
 import utils.GameUtils;
 import utils.Utils;
 
@@ -255,6 +258,7 @@ public class GUI {
 
     textArea_battleLog = new JTextArea();
     textArea_battleLog.setBounds(246, 149, 182, 105);
+    textArea_battleLog.setEditable(false);
     panel_battle.add(textArea_battleLog);
 
     lbl_battleTurn = new JLabel("Player's Turn");
@@ -522,6 +526,26 @@ public class GUI {
      * MOVE SELECT SCREEN LISTENERS
      *************************************************************************/
 
+    // listener to update the move select GUI every time it appears
+    panel_moveSelect.addComponentListener(new ComponentListener() {
+      // the three methods below do not need an implementation as we do not want
+      // to do anything when those events are fired
+      @Override
+      public void componentHidden(ComponentEvent e) {}
+
+      @Override
+      public void componentMoved(ComponentEvent e) {}
+
+      @Override
+      public void componentResized(ComponentEvent e) {}
+
+      @Override
+      public void componentShown(
+          ComponentEvent e) {   // when the move select panel is shown
+        refreshMoveSelectGUI(); // refresh the move select panel
+      }
+    });
+
     // listener to potentially run a battle (40% chance) every time the advance
     // button is clicked
     btn_moveSelectAdvance.addActionListener(new ActionListener() {
@@ -533,17 +557,20 @@ public class GUI {
             // show the panel informing the user of the battle
             masterLayout.show(contentPane, "panel_battleInform");
 
+            BattleUtils.createBattle(GameUtils.generateRandomWanimal(
+                Engine.getPlayer()
+                    .getRealm())); // create a new battle between the player and
+                                   // a random wanimal in this realm
+
             // wait for 4 seconds, then prepare and switch to the actual battle
             // panel
             Utils.delayRun(4000, new Runnable() {
               @Override
               public void run() {
-                masterLayout.show(contentPane, "panel_battle");
+                Engine.getGui().refreshBattleGUI(
+                    Engine.getCurrentBattle()); // refresh the battle GUI
               }
             });
-
-            Engine.createBattle(
-                GameUtils.generateRandomWanimal(Engine.getPlayer().getRealm()));
           }
         });
       }
@@ -643,6 +670,9 @@ public class GUI {
         playerWanimal.getFirstAttack().execute(
             playerWanimal, Engine.getCurrentBattle().getEnemy());
 
+        Engine.getCurrentBattle().setCurrentTurn(
+            0); // set the turn to the enemy turn
+
         refreshBattleGUI(
             Engine.getCurrentBattle()); // update the GUI with the new
                                         // information about the battle
@@ -660,6 +690,9 @@ public class GUI {
         // execute the player's first attack on the enemy
         playerWanimal.getSecondAttack().execute(
             playerWanimal, Engine.getCurrentBattle().getEnemy());
+
+        Engine.getCurrentBattle().setCurrentTurn(
+            0); // set the turn to the enemy turn
 
         refreshBattleGUI(
             Engine.getCurrentBattle()); // update the GUI with the new
@@ -686,50 +719,108 @@ public class GUI {
   }
 
   /**
+   * This method will enable or disable all the buttons on the player's battle
+   * screen, depending on the enabled flag given
+   *
+   * @param enabled - whether to enable or disable all the buttons on the battle
+   *     screen
+   */
+  public void setBattleButtonsEnabled(boolean enabled) {
+    // list of all buttons on the battle screen (to be used to dynamically
+    // enable or disable buttons depending on enabled flag given)
+    JButton[] battleButtons = {btn_battleAttack1,   btn_battleAttack2,
+                               btn_battleInventory, btn_battleSwitch,
+                               btn_battleCatch,     btn_battleFlee};
+
+    // set each button disabled or enabled based on the enabled flag given
+    for (JButton battleButton : battleButtons) {
+      battleButton.setEnabled(enabled);
+    }
+  }
+
+  /**
    * This method refreshes the GUI at the beginning of a battle turn. This
    * method will be called by the Engine during a battle.
    *
    * @param battle - the battle object with which to refresh the GUI
    */
   public void refreshBattleGUI(Battle battle) {
-    lbl_battlePlayerName.setText(
-        Engine.getCurrentBattle().getPlayerWanimal().getName());
-    lbl_battlePlayerArmor.setText(String.valueOf(
-        Engine.getCurrentBattle().getPlayerWanimal().getCurrentArmor()));
-    lbl_battlePlayerHealth.setText(String.valueOf(
-        Engine.getCurrentBattle().getPlayerWanimal().getCurrentHitpoints()));
-    lbl_battlePlayer.setText(Engine.getCurrentBattle().getPlayer().getName());
-
-    lbl_battleEnemyName.setText(Engine.getCurrentBattle().getEnemy().getName());
-    lbl_battleEnemyArmor.setText(
-        String.valueOf(Engine.getCurrentBattle().getEnemy().getCurrentArmor()));
-    lbl_battleEnemyHealth.setText(String.valueOf(
-        Engine.getCurrentBattle().getEnemy().getCurrentHitpoints()));
-
-    if (Engine.getCurrentBattle().getCurrentTurn() == 0) {
-      lbl_battleTurn.setText("Player's Turn");
-    } else {
-      lbl_battleTurn.setText("Enemy's Turn");
+    if (!Engine.getCurrentBattle()
+             .isRunning()) { // if the battle is not running, no need to update
+                             // the GUI
+      return;                // return immediately
     }
+
+    // set all the labels with their updated values
+    lbl_battlePlayer.setText(battle.getPlayer().getName());
+
+    Wanimal playerWanimal = battle.getPlayerWanimal(),
+            enemy = battle.getEnemy(); // get the player and enemy wanimals for
+                                       // later use
+
+    // update player information
+    lbl_battlePlayerName.setText(playerWanimal.getName() + " (Lvl " +
+                                 String.valueOf(playerWanimal.getLevel()) +
+                                 ")");
+    lbl_battlePlayerArmor.setText(
+        "Armor: " + String.valueOf(playerWanimal.getCurrentArmor()) + "/" +
+        String.valueOf(playerWanimal.getMaxArmor()));
+    lbl_battlePlayerHealth.setText(
+        "HP: " + String.valueOf(playerWanimal.getCurrentHitpoints()) + "/" +
+        String.valueOf(playerWanimal.getMaxHitpoints()));
+
+    // update enemy information
+    lbl_battleEnemyName.setText(enemy.getName() + " (Lvl " +
+                                String.valueOf(enemy.getLevel()) + ")");
+    lbl_battleEnemyArmor.setText(
+        "Armor: " + String.valueOf(enemy.getCurrentArmor()) + "/" +
+        String.valueOf(enemy.getMaxArmor()));
+    lbl_battleEnemyHealth.setText(
+        "HP: " + String.valueOf(enemy.getCurrentHitpoints()) + "/" +
+        String.valueOf(enemy.getMaxHitpoints()));
+
+    // set the turn label with the correct turn
+    lbl_battleTurn.setText(battle.getCurrentTurn() == 1 ? "Player's Turn"
+                                                        : "Enemy's Turn");
+
+    if (battle.getCurrentTurn() == 0) { // if it is the enemy's turn
+      setBattleButtonsEnabled(false);
+    } else { // if it is the player's turn
+      setBattleButtonsEnabled(true);
+    }
+
+    // if the player's wanimal is less than level 5 (they haven't unlocked
+    // their second attack yet)
+    if (battle.getPlayerWanimal().getLevel() < 5) {
+      btn_battleAttack2.setEnabled(
+          false); // re-disable the second attack button
+    }
+
+    // show the battle panel
+    masterLayout.show(contentPane, "panel_battle");
   }
-  
+
   /**
-   * This method refreshes the GUI whenever the move select menu is supposed to show up.
-   * This method will be called by the engine whenever the menu is supposed to appear
+   * This method refreshes the GUI whenever the move select menu is supposed to
+   * show up. This method will be called by the engine whenever the move select
+   * menu is supposed to appear.
    */
   public void refreshMoveSelectGUI() {
-	  
-	  //Refreshes all the information in the menu labels
-	  lbl_moveSelectName.setText("Name: " + Engine.getPlayer().getName());
-	  lbl_moveSelectLevel.setText("Level: " + Engine.getPlayer().getLevel());
-	  lbl_moveSelectRealm.setText("Realm: " + String.valueOf(Engine.getPlayer().getRealm()));
-	  
-	  //Displays the users current XP out of the total XP needed to level up
-	  lbl_moveSelectXP.setText("XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) + " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
-	  
+    // Refreshes all the information in the menu labels
+    lbl_moveSelectName.setText("Name: " + Engine.getPlayer().getName());
+    lbl_moveSelectLevel.setText("Level: " +
+                                String.valueOf(Engine.getPlayer().getLevel()));
+    lbl_moveSelectRealm.setText("Realm: " +
+                                String.valueOf(Engine.getPlayer().getRealm()));
+
+    // Displays the users current XP out of the total XP needed to level up
+    lbl_moveSelectXP.setText(
+        "XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) +
+        " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
   }
 
   // getters and setters
+
   public CardLayout getMasterLayout() { return this.masterLayout; }
 
   public Container getContentPane() { return this.contentPane; }
