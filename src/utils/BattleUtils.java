@@ -31,14 +31,33 @@ public class BattleUtils {
     timer.scheduleAtFixedRate(new TimerTask() {
       @Override
       public void run() {
-        if (!(Engine.getCurrentBattle() != null &&
-              Engine.getCurrentBattle()
+        Battle currentBattle = Engine.getCurrentBattle();
+
+        if (!(currentBattle != null &&
+              currentBattle
                   .isRunning())) { // if there isn't a battle or if it's not
           // running
           timer.cancel(); // cancel the current timer immediately
         }
+
+        if (currentBattle.getCurrentTurn() == 0) { // if it is the enemy's turn
+          currentBattle.setCurrentTurn(
+              1); // revert to the player's turn as fast as possible so nothing
+                  // runs more than it has to
+
+          // wait one second and execute the enemy attack. The wait will give
+          // time for adding to the battle logs
+          Utils.delayRun(1000, new Runnable() {
+            @Override
+            public void run() {
+              BattleUtils.enemyAttack(currentBattle);
+              Engine.getGui().refreshBattleGUI(
+                  currentBattle); // refresh the battle GUI
+            }
+          });
+        }
       }
-    }, new Date(), 2000);
+    }, new Date(), 1000);
   }
 
   /**
