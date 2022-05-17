@@ -33,15 +33,19 @@ public class BattleUtils {
       @Override
       public void run() {
         Battle currentBattle = Engine.getCurrentBattle();
+        GUI gui = Engine.getGui(); // get the current GUI
 
         if (!(currentBattle != null &&
               currentBattle
                   .isRunning())) { // if there isn't a battle or if it's not
+          gui.setBattleButtonsEnabled(
+              false); // immediately disable all battle buttons
           // running
           timer.cancel(); // cancel the current timer immediately
         }
 
-        if (currentBattle.getCurrentTurn() == 0) { // if it is the enemy's turn
+        if (currentBattle.getCurrentTurn() ==
+            0) { // if the battle is running and it is the enemy's turn
           currentBattle.setCurrentTurn(
               1); // revert to the player's turn as fast as possible so nothing
                   // runs more than it has to
@@ -65,10 +69,9 @@ public class BattleUtils {
           Engine.getCurrentBattle().setIsRunning(
               false); // end the battle immediately
 
-          GUI gui = Engine.getGui(); // get the current GUI
-
           gui.setBattleButtonsEnabled(
-              false); // set all buttons on the battle screen to disabled
+              false); // set all buttons on the battle screen to disabled if
+                      // they are not already disabled
 
           // wait two seconds
           Utils.delayRun(2000, new Runnable() {

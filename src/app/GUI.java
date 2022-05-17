@@ -5,6 +5,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -524,6 +526,26 @@ public class GUI {
      * MOVE SELECT SCREEN LISTENERS
      *************************************************************************/
 
+    // listener to update the move select GUI every time it appears
+    panel_moveSelect.addComponentListener(new ComponentListener() {
+      // the three methods below do not need an implementation as we do not want
+      // to do anything when those events are fired
+      @Override
+      public void componentHidden(ComponentEvent e) {}
+
+      @Override
+      public void componentMoved(ComponentEvent e) {}
+
+      @Override
+      public void componentResized(ComponentEvent e) {}
+
+      @Override
+      public void componentShown(
+          ComponentEvent e) {   // when the move select panel is shown
+        refreshMoveSelectGUI(); // refresh the move select panel
+      }
+    });
+
     // listener to potentially run a battle (40% chance) every time the advance
     // button is clicked
     btn_moveSelectAdvance.addActionListener(new ActionListener() {
@@ -723,6 +745,12 @@ public class GUI {
    * @param battle - the battle object with which to refresh the GUI
    */
   public void refreshBattleGUI(Battle battle) {
+    if (!Engine.getCurrentBattle()
+             .isRunning()) { // if the battle is not running, no need to update
+                             // the GUI
+      return;                // return immediately
+    }
+
     // set all the labels with their updated values
     lbl_battlePlayer.setText(battle.getPlayer().getName());
 
