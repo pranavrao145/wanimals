@@ -1,6 +1,7 @@
 package utils;
 
 import app.Engine;
+import app.GUI;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -53,6 +54,29 @@ public class BattleUtils {
               BattleUtils.enemyAttack(currentBattle);
               Engine.getGui().refreshBattleGUI(
                   currentBattle); // refresh the battle GUI
+            }
+          });
+        }
+
+        if (currentBattle.getPlayerWanimal().getCurrentHitpoints() == 0 ||
+            currentBattle.getEnemy().getCurrentHitpoints() ==
+                0) { // if at any point the health of the player's wanimal (or
+                     // the enemy) is depleted
+          Engine.getCurrentBattle().setIsRunning(
+              false); // end the battle immediately
+
+          GUI gui = Engine.getGui(); // get the current GUI
+
+          gui.setBattleButtonsEnabled(
+              false); // set all buttons on the battle screen to disabled
+
+          // wait two seconds
+          Utils.delayRun(2000, new Runnable() {
+            @Override
+            public void run() {
+              // go back to the move select screen
+              gui.getMasterLayout().show(gui.getContentPane(),
+                                         "panel_moveSelect");
             }
           });
         }
