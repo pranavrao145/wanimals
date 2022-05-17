@@ -762,24 +762,28 @@ public class GUI {
     // show the battle panel
     masterLayout.show(contentPane, "panel_battle");
   }
-  
+
   /**
-   * This method refreshes the GUI whenever the move select menu is supposed to show up.
-   * This method will be called by the engine whenever the menu is supposed to appear
+   * This method refreshes the GUI whenever the move select menu is supposed to
+   * show up. This method will be called by the engine whenever the move select
+   * menu is supposed to appear.
    */
   public void refreshMoveSelectGUI() {
-	  
-	  //Refreshes all the information in the menu labels
-	  lbl_moveSelectName.setText("Name: " + Engine.getPlayer().getName());
-	  lbl_moveSelectLevel.setText("Level: " + Engine.getPlayer().getLevel());
-	  lbl_moveSelectRealm.setText("Realm: " + String.valueOf(Engine.getPlayer().getRealm()));
-	  
-	  //Displays the users current XP out of the total XP needed to level up
-	  lbl_moveSelectXP.setText("XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) + " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
-	  
+    // Refreshes all the information in the menu labels
+    lbl_moveSelectName.setText("Name: " + Engine.getPlayer().getName());
+    lbl_moveSelectLevel.setText("Level: " +
+                                String.valueOf(Engine.getPlayer().getLevel()));
+    lbl_moveSelectRealm.setText("Realm: " +
+                                String.valueOf(Engine.getPlayer().getRealm()));
+
+    // Displays the users current XP out of the total XP needed to level up
+    lbl_moveSelectXP.setText(
+        "XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) +
+        " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
   }
 
   // getters and setters
+
   public CardLayout getMasterLayout() { return this.masterLayout; }
 
   public Container getContentPane() { return this.contentPane; }
