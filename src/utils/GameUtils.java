@@ -54,7 +54,7 @@ public class GameUtils {
     switch (realm) { // depending on the realm the user is in
     case 1:          // if the user is in the first realm
       randomWanimal.setLevel(
-          ThreadLocalRandom.current().nextInt(0, 6)); // assign a level from 1-5
+          ThreadLocalRandom.current().nextInt(1, 6)); // assign a level from 1-5
       break;
     case 2: // if the user is in the second realm
       randomWanimal.setLevel(ThreadLocalRandom.current().nextInt(
@@ -66,14 +66,20 @@ public class GameUtils {
       break;
     }
 
-    // update the base attack to the base attack for the wanimal's level
-    randomWanimal.setBaseAttack((int)(randomWanimal.getBaseAttack() *
-                                      (randomWanimal.getLevel() - 1) * 1.10));
-    // update the hitpoints to the hitpoints for the wanimal's level
-    randomWanimal.setMaxHitpoints((int)(randomWanimal.getMaxHitpoints() *
-                                        (randomWanimal.getLevel() - 1) * 1.20));
+    // update the base attack to match the level of the new wanimal
+    for (int i = 0; i < randomWanimal.getLevel() - 1; i++) {
+      randomWanimal.setBaseAttack((int)(randomWanimal.getBaseAttack() * 1.10));
+    }
+
+    // update the max hitpoints to match the level of the new wanimal
+    for (int i = 0; i < randomWanimal.getLevel() - 1; i++) {
+      randomWanimal.setMaxHitpoints(
+          (int)(randomWanimal.getMaxHitpoints() * 1.10));
+    }
+
     // update the armor to the armor for the wanimal's level
-    randomWanimal.setMaxArmor((int)0.20 * randomWanimal.getMaxHitpoints());
+    randomWanimal.setMaxArmor(
+        (int)Math.round(0.20 * randomWanimal.getMaxHitpoints()));
 
     // restore health and armor to full
     randomWanimal.setCurrentHitpoints(randomWanimal.getMaxHitpoints());
