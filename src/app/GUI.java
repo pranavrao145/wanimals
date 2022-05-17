@@ -697,6 +697,26 @@ public class GUI {
   }
 
   /**
+   * This method will enable or disable all the buttons on the player's battle
+   * screen, depending on the enabled flag given
+   *
+   * @param enabled - whether to enable or disable all the buttons on the battle
+   *     screen
+   */
+  public void setBattleButtonsEnabled(boolean enabled) {
+    // list of all buttons on the battle screen (to be used to dynamically
+    // enable or disable buttons depending on enabled flag given)
+    JButton[] battleButtons = {btn_battleAttack1,   btn_battleAttack2,
+                               btn_battleInventory, btn_battleSwitch,
+                               btn_battleCatch,     btn_battleFlee};
+
+    // set each button disabled or enabled based on the enabled flag given
+    for (JButton battleButton : battleButtons) {
+      battleButton.setEnabled(enabled);
+    }
+  }
+
+  /**
    * This method refreshes the GUI at the beginning of a battle turn. This
    * method will be called by the Engine during a battle.
    *
@@ -706,8 +726,9 @@ public class GUI {
     // set all the labels with their updated values
     lbl_battlePlayer.setText(battle.getPlayer().getName());
 
-    Wanimal playerWanimal = battle.getPlayerWanimal();
-    Wanimal enemy = battle.getEnemy();
+    Wanimal playerWanimal = battle.getPlayerWanimal(),
+            enemy = battle.getEnemy(); // get the player and enemy wanimals for
+                                       // later use
 
     // update player information
     lbl_battlePlayerName.setText(playerWanimal.getName() + " (Lvl " +
@@ -734,29 +755,17 @@ public class GUI {
     lbl_battleTurn.setText(battle.getCurrentTurn() == 1 ? "Player's Turn"
                                                         : "Enemy's Turn");
 
-    // list of all buttons on the battle screen (to be used to dynamically
-    // enable or disable buttons depending on turn)
-    JButton[] battleButtons = {btn_battleAttack1,   btn_battleAttack2,
-                               btn_battleInventory, btn_battleSwitch,
-                               btn_battleCatch,     btn_battleFlee};
-
     if (battle.getCurrentTurn() == 0) { // if it is the enemy's turn
-      // disable all buttons
-      for (JButton battleButton : battleButtons) {
-        battleButton.setEnabled(false);
-      }
+      setBattleButtonsEnabled(false);
     } else { // if it is the player's turn
-      // enable all buttons
-      for (JButton battleButton : battleButtons) {
-        battleButton.setEnabled(true);
-      }
+      setBattleButtonsEnabled(true);
+    }
 
-      // if the player's wanimal is less than level 5 (they haven't unlocked
-      // their second attack yet)
-      if (battle.getPlayerWanimal().getLevel() < 5) {
-        btn_battleAttack2.setEnabled(
-            false); // re-disable the second attack button
-      }
+    // if the player's wanimal is less than level 5 (they haven't unlocked
+    // their second attack yet)
+    if (battle.getPlayerWanimal().getLevel() < 5) {
+      btn_battleAttack2.setEnabled(
+          false); // re-disable the second attack button
     }
 
     // show the battle panel
