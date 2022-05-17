@@ -256,6 +256,7 @@ public class GUI {
 
     textArea_battleLog = new JTextArea();
     textArea_battleLog.setBounds(246, 149, 182, 105);
+    textArea_battleLog.setEditable(false);
     panel_battle.add(textArea_battleLog);
 
     lbl_battleTurn = new JLabel("Player's Turn");
@@ -709,7 +710,7 @@ public class GUI {
     Wanimal enemy = battle.getEnemy();
 
     // update player information
-    lbl_battlePlayerName.setText(playerWanimal.getName() + "(Lvl " +
+    lbl_battlePlayerName.setText(playerWanimal.getName() + " (Lvl " +
                                  String.valueOf(playerWanimal.getLevel()) +
                                  ")");
     lbl_battlePlayerArmor.setText(
@@ -720,7 +721,7 @@ public class GUI {
         String.valueOf(playerWanimal.getMaxHitpoints()));
 
     // update enemy information
-    lbl_battleEnemyName.setText(enemy.getName() + "(Lvl " +
+    lbl_battleEnemyName.setText(enemy.getName() + " (Lvl " +
                                 String.valueOf(enemy.getLevel()) + ")");
     lbl_battleEnemyArmor.setText(
         "Armor: " + String.valueOf(enemy.getCurrentArmor()) + "/" +
@@ -732,6 +733,31 @@ public class GUI {
     // set the turn label with the correct turn
     lbl_battleTurn.setText(battle.getCurrentTurn() == 1 ? "Player's Turn"
                                                         : "Enemy's Turn");
+
+    // list of all buttons on the battle screen (to be used to dynamically
+    // enable or disable buttons depending on turn)
+    JButton[] battleButtons = {btn_battleAttack1,   btn_battleAttack2,
+                               btn_battleInventory, btn_battleSwitch,
+                               btn_battleCatch,     btn_battleFlee};
+
+    if (battle.getCurrentTurn() == 0) { // if it is the enemy's turn
+      // disable all buttons
+      for (JButton battleButton : battleButtons) {
+        battleButton.setEnabled(false);
+      }
+    } else { // if it is the player's turn
+      // enable all buttons
+      for (JButton battleButton : battleButtons) {
+        battleButton.setEnabled(true);
+      }
+
+      // if the player's wanimal is less than level 5 (they haven't unlocked
+      // their second attack yet)
+      if (battle.getPlayerWanimal().getLevel() < 5) {
+        btn_battleAttack2.setEnabled(
+            false); // re-disable the second attack button
+      }
+    }
 
     // show the battle panel
     masterLayout.show(contentPane, "panel_battle");
