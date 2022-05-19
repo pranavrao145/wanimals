@@ -5,7 +5,7 @@ import models.player.Player;
 import models.wanimals.Wanimal;
 
 public class Boss extends Wanimal {
-  protected int experienceOffered, requiredLevel;
+  protected static int experienceOffered = 300, requiredLevel = 5;
 
   /**
    * Constructor method: this overload of this method takes an argument for
@@ -35,13 +35,10 @@ public class Boss extends Wanimal {
   public Boss(String name, String type, int level, int maxHitpoints,
               int currentHitpoints, int baseAttack, int maxArmor,
               int currentArmor, Player owner, int maxXP, int currentXP,
-              Attack firstAttack, Attack secondAttack, int experienceOffered,
-              int requiredLevel) {
+              Attack firstAttack, Attack secondAttack) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
           maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
           secondAttack); // call superconstructor
-    this.experienceOffered = experienceOffered;
-    this.requiredLevel = requiredLevel;
   }
 
   /**
@@ -58,8 +55,6 @@ public class Boss extends Wanimal {
     this.maxArmor = 60;
     this.currentArmor = 60;
     this.owner = null; // bosses have no owner
-    this.experienceOffered = 300;
-    this.requiredLevel = 5;
     this.maxXP = 200;
     this.currentXP = 0;
     this.firstAttack = null;
@@ -68,15 +63,15 @@ public class Boss extends Wanimal {
 
   // getters and setters
 
-  public int getExperienceOffered() { return experienceOffered; }
+  public static int getExperienceOffered() { return experienceOffered; }
 
-  public void setExperienceOffered(int experienceOffered) {
-    this.experienceOffered = experienceOffered;
+  public static void setExperienceOffered(int experienceOffered) {
+    Boss.experienceOffered = experienceOffered;
   }
 
-  public int getRequiredLevel() { return requiredLevel; }
+  public static int getRequiredLevel() { return requiredLevel; }
 
-  public void setRequiredLevel(int requiredLevel) {
-    this.requiredLevel = requiredLevel;
+  public static void setRequiredLevel(int requiredLevel) {
+    Boss.requiredLevel = requiredLevel;
   }
 }
