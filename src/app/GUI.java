@@ -117,7 +117,7 @@ public class GUI {
   private JLabel lbl_battleInformEnemyWanimalLevel;
   private JLabel lbl_battleInformEnemyWanimalHP;
   private JLabel lbl_battleInformEnemyWanimalArmor;
-  private JLabel lbl_battleInformEnemyBaseAttack;
+  private JLabel lbl_battleInformEnemyWanimalBaseAttack;
   private JLabel lbl_battleInformVersus;
   private JLabel lbl_battleInform;
   private JLabel lbl_battleInformPlayerWanimal;
@@ -480,9 +480,9 @@ public class GUI {
     lbl_battleInformEnemyWanimalArmor.setBounds(285, 199, 110, 17);
     panel_battleInform.add(lbl_battleInformEnemyWanimalArmor);
 
-    lbl_battleInformEnemyBaseAttack = new JLabel("Base Attack:");
-    lbl_battleInformEnemyBaseAttack.setBounds(285, 218, 110, 17);
-    panel_battleInform.add(lbl_battleInformEnemyBaseAttack);
+    lbl_battleInformEnemyWanimalBaseAttack = new JLabel("Base Attack:");
+    lbl_battleInformEnemyWanimalBaseAttack.setBounds(285, 218, 110, 17);
+    panel_battleInform.add(lbl_battleInformEnemyWanimalBaseAttack);
 
     lbl_battleInformVersus = new JLabel("VS.");
     lbl_battleInformVersus.setBounds(200, 122, 31, 17);
@@ -656,13 +656,15 @@ public class GUI {
         Utils.runMaybe(40, new Runnable() {
           @Override
           public void run() {
-            // show the panel informing the user of the battle
-            masterLayout.show(contentPane, "panel_battleInform");
-
             BattleUtils.createBattle(GameUtils.generateRandomWanimal(
                 Engine.getPlayer()
                     .getRealm())); // create a new battle between the player
                                    // and a random wanimal in this realm
+
+            setBattleInformGUI(); // set up the battle information screen
+
+            // show the panel informing the user of the battle
+            masterLayout.show(contentPane, "panel_battleInform");
 
             // wait for 4 seconds, then prepare and switch to the actual
             // battle panel
@@ -706,9 +708,6 @@ public class GUI {
     // by the refreshMoveSelectGUI method (see below))
     btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        // show the panel informing the user of the battle
-        masterLayout.show(contentPane, "panel_battleInform");
-
         Class<? extends Boss> currentBossClass =
             bossList.get(Engine.getPlayer().getRealm() - 1);
 
@@ -722,6 +721,11 @@ public class GUI {
           e1.printStackTrace();
         } // create a new battle between the player
           // and a random wanimal in this realm
+
+        setBattleInformGUI(); // set up the battle information screen
+
+        // show the panel informing the user of the battle
+        masterLayout.show(contentPane, "panel_battleInform");
 
         // wait for 4 seconds, then prepare and switch to the actual
         // battle panel
@@ -974,6 +978,44 @@ public class GUI {
       btn_moveSelectBattleBoss.setEnabled(
           false); // disable the boss battle button
     }
+  }
+
+  /**
+   * This method will update the battle inform panel with with the information
+   * from the current battle. To be used when a battle is create and set in the
+   * engine.
+   */
+  public void setBattleInformGUI() {
+    Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal(),
+            enemyWanimal = Engine.getCurrentBattle()
+                               .getEnemy(); // get the player and enemy wanimals
+                                            // ready for later usage
+
+    // set player information
+    lbl_battleInformPlayerWanimal.setText(playerWanimal.getName());
+    lbl_battleInformPlayerWanimalLevel.setText(
+        String.valueOf("Level: " + playerWanimal.getLevel()));
+    lbl_battleInformPlayerWanimalHP.setText(
+        "HP: " + String.valueOf(playerWanimal.getCurrentHitpoints()) + "/" +
+        String.valueOf(playerWanimal.getMaxHitpoints()));
+    lbl_battleInformPlayerWanimalArmor.setText(
+        "Armor: " + String.valueOf(playerWanimal.getCurrentArmor()) + "/" +
+        String.valueOf(playerWanimal.getMaxArmor()));
+    lbl_battleInformPlayerWanimalBaseAttack.setText(
+        String.valueOf("Base Attack: " + playerWanimal.getBaseAttack()));
+
+    // set enemy information
+    lbl_battleInformEnemyWanimal.setText(enemyWanimal.getName());
+    lbl_battleInformEnemyWanimalLevel.setText(
+        String.valueOf("Level: " + enemyWanimal.getLevel()));
+    lbl_battleInformEnemyWanimalHP.setText(
+        "HP: " + String.valueOf(enemyWanimal.getCurrentHitpoints()) + "/" +
+        String.valueOf(enemyWanimal.getMaxHitpoints()));
+    lbl_battleInformEnemyWanimalArmor.setText(
+        "Armor: " + String.valueOf(enemyWanimal.getCurrentArmor()) + "/" +
+        String.valueOf(enemyWanimal.getMaxArmor()));
+    lbl_battleInformEnemyWanimalBaseAttack.setText(
+        String.valueOf("Base Attack: " + enemyWanimal.getBaseAttack()));
   }
 
   // getters and setters
