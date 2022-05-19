@@ -132,6 +132,7 @@ public class GUI {
   private JComboBox<String> comboBox_characterCreateStarterWanimal;
   private JLabel lbl_characterCreateStarterWanimal;
   private JButton btn_characterCreateAdvance;
+  private ArrayList<Class<? extends Boss>> bossList;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -154,6 +155,11 @@ public class GUI {
 
     starterWanimalOptions = new DefaultComboBoxModel<String>(
         new String[] {"Wumbo", "Plant", "Ash", "Aqua"});
+
+    // this list contains classes for all the bosses in this game (used in the
+    // boss logic)
+    bossList = new ArrayList<Class<? extends Boss>>(
+        Arrays.asList(WumboPrime.class, HydronPrime.class, MrJone.class));
   }
 
   /**
@@ -696,10 +702,37 @@ public class GUI {
       }
     });
 
-    // listener for the battle boss button (only available if the player's
-    // level is the more than the required for the next realm)
+    // listener for the battle boss button (only works if this button is enabled
+    // by the refreshMoveSelectGUI method (see below))
     btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {}
+      public void actionPerformed(ActionEvent e) {
+        // show the panel informing the user of the battle
+        masterLayout.show(contentPane, "panel_battleInform");
+
+        Class<? extends Boss> currentBossClass =
+            bossList.get(Engine.getPlayer().getRealm() - 1);
+
+        // attempt to create a new boss and create a new battle with it
+        try {
+          BattleUtils.createBattle(
+              currentBossClass.getDeclaredConstructor().newInstance());
+        } catch (InstantiationException | IllegalAccessException |
+                 IllegalArgumentException | InvocationTargetException |
+                 NoSuchMethodException | SecurityException e1) {
+          e1.printStackTrace();
+        } // create a new battle between the player
+          // and a random wanimal in this realm
+
+        // wait for 4 seconds, then prepare and switch to the actual
+        // battle panel
+        Utils.delayRun(4000, new Runnable() {
+          @Override
+          public void run() {
+            Engine.getGui().refreshBattleGUI(
+                Engine.getCurrentBattle()); // refresh the battle GUI
+          }
+        });
+      }
     });
 
     /************************************************************************
@@ -913,11 +946,6 @@ public class GUI {
     lbl_moveSelectXP.setText(
         "XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) +
         " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
-
-    // create a list of boss classes
-    ArrayList<Class<? extends Boss>> bossList =
-        new ArrayList<Class<? extends Boss>>(
-            Arrays.asList(WumboPrime.class, HydronPrime.class, MrJone.class));
 
     // get the boss for the current realm
     Class<? extends Boss> currentBossClass =
