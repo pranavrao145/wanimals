@@ -7,6 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import models.battles.attacks.Attack;
 import models.battles.battles.Battle;
+import models.player.Player;
 import models.wanimals.Wanimal;
 
 public class BattleUtils {
@@ -16,11 +17,12 @@ public class BattleUtils {
    * @param enemy - the enemy with which to start the new battle
    */
   public static void createBattle(Wanimal enemy) {
-    // TODO: change playerWanimal to actual player Wanimal
+    Player player = Engine.getPlayer(); // get the player of the current game
+
     Engine.setCurrentBattle(
-        new Battle(Engine.getPlayer(), GameUtils.generateRandomWanimal(1),
+        new Battle(player, player.getWanimals().get(0),
                    enemy)); // set the current battle to a battle between the
-    // player's first wanimal and the enemy given
+                            // player's first wanimal and the enemy given
 
     Timer timer = new Timer(); // create a new timer object. This will be used
     // to check any condition that must be repeatedly

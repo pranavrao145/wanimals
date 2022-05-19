@@ -9,6 +9,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,11 +21,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import models.battles.battles.Battle;
 import models.player.Player;
 import models.wanimals.Wanimal;
-import models.wanimals.wanimals.normal.Norman;
+import models.wanimals.wanimals.fire.Ash;
+import models.wanimals.wanimals.grass.Plant;
+import models.wanimals.wanimals.normal.Wumbo;
+import models.wanimals.wanimals.water.Aqua;
 import utils.BattleUtils;
 import utils.GameUtils;
 import utils.Utils;
@@ -81,7 +88,8 @@ public class GUI {
   private JLabel lbl_battleSwitchPrompt;
   private JComboBox<String> comboBox_battleSwitch;
   private JButton btn_battleSwitchAdvance;
-  private DefaultComboBoxModel<String> defaultWanimalOptions;
+  private DefaultComboBoxModel<String> defaultWanimalOptions,
+      starterWanimalOptions;
   private JPanel panel_moveSelect;
   private JLabel lbl_moveSelect;
   private JButton btn_moveSelectAdvance;
@@ -113,6 +121,13 @@ public class GUI {
   private JLabel lbl_battleInformPlayerWanimalHP;
   private JLabel lbl_moveSelectInventoryTitle;
   private JButton btn_moveSelectInventoryBack;
+  private JPanel panel_characterCreate;
+  private JLabel lbl_characterCreate;
+  private JLabel lbl_characterCreateName;
+  private JTextField textField_characterCreateName;
+  private JComboBox<String> comboBox_characterCreateStarterWanimal;
+  private JLabel lbl_characterCreateStarterWanimal;
+  private JButton btn_characterCreateAdvance;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -132,6 +147,9 @@ public class GUI {
   private void initializeValues() {
     defaultWanimalOptions = new DefaultComboBoxModel<String>(
         new String[] {"Wanimal 1", "Wanimal 2", "Wanimal 3", "Wanimal 4"});
+
+    starterWanimalOptions = new DefaultComboBoxModel<String>(
+        new String[] {"Wumbo", "Plant", "Ash", "Aqua"});
   }
 
   /**
@@ -262,7 +280,7 @@ public class GUI {
     panel_battle.add(textArea_battleLog);
 
     lbl_battleTurn = new JLabel("Player's Turn");
-    lbl_battleTurn.setBounds(170, 12, 112, 27);
+    lbl_battleTurn.setBounds(157, 12, 129, 27);
     lbl_battleTurn.setFont(new Font("Dialog", Font.BOLD, 16));
     panel_battle.add(lbl_battleTurn);
 
@@ -459,6 +477,37 @@ public class GUI {
     lbl_battleInformVersus = new JLabel("VS.");
     lbl_battleInformVersus.setBounds(200, 122, 31, 17);
     panel_battleInform.add(lbl_battleInformVersus);
+
+    panel_characterCreate = new JPanel();
+    frame.getContentPane().add(panel_characterCreate, "panel_characterCreate");
+    panel_characterCreate.setLayout(null);
+
+    lbl_characterCreate = new JLabel("Create Character");
+    lbl_characterCreate.setFont(new Font("Dialog", Font.BOLD, 16));
+    lbl_characterCreate.setBounds(147, 12, 149, 27);
+    panel_characterCreate.add(lbl_characterCreate);
+
+    lbl_characterCreateName = new JLabel("Name:");
+    lbl_characterCreateName.setBounds(116, 88, 63, 17);
+    panel_characterCreate.add(lbl_characterCreateName);
+
+    textField_characterCreateName = new JTextField();
+    textField_characterCreateName.setBounds(191, 86, 114, 21);
+    panel_characterCreate.add(textField_characterCreateName);
+    textField_characterCreateName.setColumns(10);
+
+    comboBox_characterCreateStarterWanimal =
+        new JComboBox<String>(starterWanimalOptions);
+    comboBox_characterCreateStarterWanimal.setBounds(191, 130, 114, 26);
+    panel_characterCreate.add(comboBox_characterCreateStarterWanimal);
+
+    lbl_characterCreateStarterWanimal = new JLabel("Starter Wanimal:");
+    lbl_characterCreateStarterWanimal.setBounds(65, 135, 114, 17);
+    panel_characterCreate.add(lbl_characterCreateStarterWanimal);
+
+    btn_characterCreateAdvance = new JButton("Advance");
+    btn_characterCreateAdvance.setBounds(12, 217, 416, 27);
+    panel_characterCreate.add(btn_characterCreateAdvance);
   }
 
   /**
@@ -486,23 +535,7 @@ public class GUI {
     btn_titleNewGame.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
-        // TODO: add logic for new character creation instead of hardcoding
-        // player
-        Player player = new Player(); // create new player
-        player.setName(
-            "Player 1"); // set the name of the player to the name provided
-        player.getWanimals().add(
-            new Norman()); // give the player a default wanimal
-        Engine.setPlayer(
-            player); // set the player of the current game to the new player
-
-        lbl_moveSelectName.setText("Name: " + player.getName());
-        lbl_moveSelectRealm.setText("Realm: " + player.getRealm());
-        lbl_moveSelectLevel.setText("Level: " + player.getLevel());
-        lbl_moveSelectXP.setText("XP: " + player.getCurrentXP() + "/" +
-                                 player.getmaxXP());
-
-        masterLayout.show(contentPane, "panel_moveSelect");
+        masterLayout.show(contentPane, "panel_characterCreate");
       }
     });
 
@@ -523,13 +556,72 @@ public class GUI {
     });
 
     /************************************************************************
+     * CHARACTER CREATION SCREEN LISTENERS
+     *************************************************************************/
+
+    btn_characterCreateAdvance.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        ArrayList<Class<? extends Wanimal>> wanimalList =
+            new ArrayList<Class<? extends Wanimal>>(
+                Arrays.asList(Wumbo.class, Plant.class, Ash.class, Aqua.class));
+
+        String name = textField_characterCreateName
+                          .getText(); // get the text from the text field
+
+        int starterWanimalIndex =
+            comboBox_characterCreateStarterWanimal
+                .getSelectedIndex(); // get the text from the text field
+
+        if (name.equals("")) { // if the name is empty
+          btn_characterCreateAdvance.setText(
+              "Please enter a valid name."); // change the text on the advance
+                                             // button to inform the user of the
+                                             // invalid entry for name
+
+          // wait 1000 seconds
+          Utils.delayRun(1000, new Runnable() {
+            @Override
+            public void run() {
+              btn_characterCreateAdvance.setText(
+                  "Advance"); // change the text on the advance button back to
+                              // the default text
+            }
+          });
+        } else { // if the text in the text field is NOT empty
+          Player player = new Player();
+
+          player.setName(name); // set the name of the player to the name given
+
+          try { // attempt to add the wanimal that the user has selected to
+                // their wanimals
+            player.getWanimals().add(wanimalList.get(starterWanimalIndex)
+                                         .getDeclaredConstructor()
+                                         .newInstance());
+          } catch (InstantiationException | IllegalAccessException |
+                   IllegalArgumentException | InvocationTargetException |
+                   NoSuchMethodException |
+                   SecurityException e1) { // handle error
+            e1.printStackTrace();          // print error
+          }
+
+          Engine.setPlayer(player);
+
+          // after all character creation logic is done, proceed to the move
+          // select screen
+          masterLayout.show(contentPane, "panel_moveSelect");
+        }
+      }
+    });
+
+    /************************************************************************
      * MOVE SELECT SCREEN LISTENERS
      *************************************************************************/
 
     // listener to update the move select GUI every time it appears
     panel_moveSelect.addComponentListener(new ComponentListener() {
-      // the three methods below do not need an implementation as we do not want
-      // to do anything when those events are fired
+      // the three methods below do not need an implementation as we do not
+      // want to do anything when those events are fired
       @Override
       public void componentHidden(ComponentEvent e) {}
 
@@ -546,8 +638,8 @@ public class GUI {
       }
     });
 
-    // listener to potentially run a battle (40% chance) every time the advance
-    // button is clicked
+    // listener to potentially run a battle (40% chance) every time the
+    // advance button is clicked
     btn_moveSelectAdvance.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -559,11 +651,11 @@ public class GUI {
 
             BattleUtils.createBattle(GameUtils.generateRandomWanimal(
                 Engine.getPlayer()
-                    .getRealm())); // create a new battle between the player and
-                                   // a random wanimal in this realm
+                    .getRealm())); // create a new battle between the player
+                                   // and a random wanimal in this realm
 
-            // wait for 4 seconds, then prepare and switch to the actual battle
-            // panel
+            // wait for 4 seconds, then prepare and switch to the actual
+            // battle panel
             Utils.delayRun(4000, new Runnable() {
               @Override
               public void run() {
@@ -576,8 +668,8 @@ public class GUI {
       }
     });
 
-    // listener to go back to the title screen when the save and quit button is
-    // clicked
+    // listener to go back to the title screen when the save and quit button
+    // is clicked
     btn_moveSelectSaveAndQuit.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -585,8 +677,8 @@ public class GUI {
       }
     });
 
-    // listener to go display the user's inventory when the inventory button is
-    // clicked
+    // listener to go display the user's inventory when the inventory button
+    // is clicked
     btn_moveSelectInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -600,8 +692,8 @@ public class GUI {
       }
     });
 
-    // listener for the battle boss button (only available if the player's level
-    // is the more than the required for the next realm)
+    // listener for the battle boss button (only available if the player's
+    // level is the more than the required for the next realm)
     btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {}
     });
@@ -746,8 +838,8 @@ public class GUI {
    */
   public void refreshBattleGUI(Battle battle) {
     if (!Engine.getCurrentBattle()
-             .isRunning()) { // if the battle is not running, no need to update
-                             // the GUI
+             .isRunning()) { // if the battle is not running, no need to
+                             // update the GUI
       return;                // return immediately
     }
 
@@ -755,8 +847,8 @@ public class GUI {
     lbl_battlePlayer.setText(battle.getPlayer().getName());
 
     Wanimal playerWanimal = battle.getPlayerWanimal(),
-            enemy = battle.getEnemy(); // get the player and enemy wanimals for
-                                       // later use
+            enemy = battle.getEnemy(); // get the player and enemy wanimals
+                                       // for later use
 
     // update player information
     lbl_battlePlayerName.setText(playerWanimal.getName() + " (Lvl " +
