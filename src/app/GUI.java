@@ -24,6 +24,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import models.battles.battles.Battle;
+import models.bosses.Boss;
+import models.bosses.bosses.HydronPrime;
+import models.bosses.bosses.MrJone;
+import models.bosses.bosses.WumboPrime;
 import models.player.Player;
 import models.wanimals.Wanimal;
 import models.wanimals.wanimals.fire.Ash;
@@ -909,6 +913,39 @@ public class GUI {
     lbl_moveSelectXP.setText(
         "XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) +
         " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
+
+    // create a list of boss classes
+    ArrayList<Class<? extends Boss>> bossList =
+        new ArrayList<Class<? extends Boss>>(
+            Arrays.asList(WumboPrime.class, HydronPrime.class, MrJone.class));
+
+    // get the boss for the current realm
+    Class<? extends Boss> currentBossClass =
+        bossList.get(Engine.getPlayer().getRealm() - 1);
+
+    // this variable will store the required level for the current boss
+    int currentRequiredLevel = 0;
+
+    // attempt to get the required level for this boss and store it in the above
+    // variable
+    try {
+      currentRequiredLevel =
+          (int)currentBossClass.getMethod("getRequiredLevel").invoke(null);
+    } catch (IllegalAccessException | InvocationTargetException |
+             NoSuchMethodException |
+             SecurityException e) { // if the operation fails
+      e.printStackTrace();          // print the error
+    }
+
+    // if the player has met the minimum required level to fight the boss for
+    // this realm
+    if (Engine.getPlayer().getLevel() >= currentRequiredLevel) {
+      btn_moveSelectBattleBoss.setEnabled(
+          true); // enable the boss battle button
+    } else {
+      btn_moveSelectBattleBoss.setEnabled(
+          false); // disable the boss battle button
+    }
   }
 
   // getters and setters
