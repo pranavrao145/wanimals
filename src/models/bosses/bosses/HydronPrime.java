@@ -5,6 +5,8 @@ import models.bosses.Boss;
 import models.player.Player;
 
 public class HydronPrime extends Boss {
+  protected static int experienceOffered = 400, requiredLevel = 10;
+
   /**
    * Constructor method: this overload of this method takes an argument for
    * every possible attribute and uses them to create a new boss
@@ -33,12 +35,10 @@ public class HydronPrime extends Boss {
   public HydronPrime(String name, String type, int level, int maxHitpoints,
                      int currentHitpoints, int baseAttack, int maxArmor,
                      int currentArmor, Player owner, int maxXP, int currentXP,
-                     Attack firstAttack, Attack secondAttack,
-                     int experienceOffered, int requiredLevel) {
+                     Attack firstAttack, Attack secondAttack) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
           maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
-          secondAttack, experienceOffered,
-          requiredLevel); // call superconstructor
+          secondAttack); // call superconstructor
   }
 
   /**
@@ -55,8 +55,6 @@ public class HydronPrime extends Boss {
     this.maxArmor = 120;
     this.currentArmor = 120;
     this.owner = null; // bosses have no owner
-    this.experienceOffered = 400;
-    this.requiredLevel = 10;
     this.maxXP = 400;
     this.currentXP = 0;
     this.firstAttack = new Attack("Enhanced Drown", 1);

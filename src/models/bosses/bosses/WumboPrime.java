@@ -5,6 +5,8 @@ import models.bosses.Boss;
 import models.player.Player;
 
 public class WumboPrime extends Boss {
+  protected static int experienceOffered = 300, requiredLevel = 5;
+
   /**
    * Constructor method: this overload of this method takes an argument for
    * every possible attribute and uses them to create a new boss
@@ -37,8 +39,7 @@ public class WumboPrime extends Boss {
                     int experienceOffered, int requiredLevel) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
           maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
-          secondAttack, experienceOffered,
-          requiredLevel); // call superconstructor
+          secondAttack); // call superconstructor
   }
 
   /**
@@ -55,8 +56,6 @@ public class WumboPrime extends Boss {
     this.maxArmor = 60;
     this.currentArmor = 60;
     this.owner = null; // bosses have no owner
-    this.experienceOffered = 300;
-    this.requiredLevel = 5;
     this.maxXP = 200;
     this.currentXP = 0;
     this.firstAttack = new Attack("Armed Assault", 1);
