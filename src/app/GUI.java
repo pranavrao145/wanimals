@@ -651,11 +651,19 @@ public class GUI {
     // listener to potentially run a battle (40% chance) every time the
     // advance button is clicked
     btn_moveSelectAdvance.addActionListener(new ActionListener() {
+      private boolean actionRun; // this boolean will hold if the action for
+                                 // this listener has been run or not
+
       @Override
       public void actionPerformed(ActionEvent e) {
+
+        actionRun = false;
+
         Utils.runMaybe(40, new Runnable() {
           @Override
           public void run() {
+            actionRun = true; // mark the action as run using the actionRun flag
+
             BattleUtils.createBattle(GameUtils.generateRandomWanimal(
                 Engine.getPlayer()
                     .getRealm())); // create a new battle between the player
@@ -677,6 +685,19 @@ public class GUI {
             });
           }
         });
+
+        if (!actionRun) { // if the action was not run
+          btn_moveSelectAdvance.setText("Nothing happened.");
+
+          // wait for 1 second and then change the button text back to the
+          // default
+          Utils.delayRun(1000, new Runnable() {
+            @Override
+            public void run() {
+              btn_moveSelectAdvance.setText("Advance");
+            }
+          });
+        }
       }
     });
 
