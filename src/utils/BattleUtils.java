@@ -38,12 +38,10 @@ public class BattleUtils {
         GUI gui = Engine.getGui(); // get the current GUI
 
         if (!(currentBattle != null &&
-              currentBattle
-                  .isRunning())) { // if there isn't a battle or if it's not
-          gui.setBattleButtonsEnabled(
-              false); // immediately disable all battle buttons
-          // running
+              currentBattle.isRunning())) { // if there isn't a battle or if
+                                            // it's not running
           timer.cancel(); // cancel the current timer immediately
+          BattleUtils.endCurrentBattle(); // end the current battle
         }
 
         if (currentBattle.getCurrentTurn() ==
@@ -130,10 +128,29 @@ public class BattleUtils {
   }
 
   /**
-   * This method ends the battle currently in progress
+   * This method ends the battle currently in progress. It will deal with
+   * resetting the Engine, with what to do with the player's wanimals, and with
+   * XP assignment
    */
   public static void endCurrentBattle() {
+    Engine.getGui().setBattleButtonsEnabled(
+        false); // disable all battle buttons
+
+    Battle currentBattle = Engine.getCurrentBattle();
+
+    // if the player has directly won or lost teh battle (either them or the
+    // enemy have 0 health)
+    if (currentBattle.getEnemy().getCurrentHitpoints() == 0 ||
+        currentBattle.getPlayerWanimal().getCurrentHitpoints() == 0) {
+      // set the HP of each wanimal back to full
+      for (Wanimal wanimal : Engine.getPlayer().getWanimals()) {
+        wanimal.setCurrentHitpoints(wanimal.getMaxHitpoints());
+      }
+    }
+
+    // TODO: deal XP
+
     Engine.setCurrentBattle(null); // set the current battle to null (discarding
-    // of the info about the current battle
+                                   // of the info about the current battle
   }
 }
