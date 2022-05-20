@@ -90,7 +90,7 @@ public class Player {
 
   public void setCurrentXP(int currentXP) { this.currentXP = currentXP; }
 
-  public int getmaxXP() { return maxXP; }
+  public int getMaxXP() { return maxXP; }
 
-  public void setmaxXP(int maxXP) { this.maxXP = maxXP; }
+  public void setMaxXP(int maxXP) { this.maxXP = maxXP; }
 }

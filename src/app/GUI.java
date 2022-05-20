@@ -970,7 +970,7 @@ public class GUI {
     // Displays the users current XP out of the total XP needed to level up
     lbl_moveSelectXP.setText(
         "XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) +
-        " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
+        " out of " + String.valueOf(Engine.getPlayer().getMaxXP()));
 
     // get the boss for the current realm
     Class<? extends Boss> currentBossClass =
