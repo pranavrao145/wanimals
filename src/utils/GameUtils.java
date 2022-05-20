@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
+import models.player.Player;
 import models.wanimals.Wanimal;
 import models.wanimals.wanimals.fire.Ash;
 import models.wanimals.wanimals.fire.Ember;
@@ -87,5 +88,43 @@ public class GameUtils {
 
     return randomWanimal; // return the newly created random wanimal back to the
                           // caller
+  }
+
+  /**
+   * This method takes a wanimal object and levels it up by one, adjusting its
+   * attributes accordingly
+   *
+   * @param wanimal - the wanimal to level up
+   */
+  public static void levelUpWanimal(Wanimal wanimal) {
+    wanimal.setLevel(wanimal.getLevel() +
+                     1); // add one to the level of the wanimal
+
+    wanimal.setCurrentXP(0); // set the current XP back to 0
+    wanimal.setMaxXP((wanimal.getLevel() + 1) *
+                     100); // increase the max XP required for this wanimal
+
+    wanimal.setMaxHitpoints((int)Math.round(
+        (1.20 * wanimal.getMaxHitpoints()))); // increase hitpoints by 20%
+    wanimal.setCurrentHitpoints(
+        wanimal.getMaxHitpoints()); // restore full health
+
+    wanimal.setMaxArmor((int)Math.round(
+        (1.20 * wanimal.getMaxArmor())));           // increase armor by 20%
+    wanimal.setCurrentArmor(wanimal.getMaxArmor()); // restore full armor
+
+    wanimal.setBaseAttack((int)Math.round(
+        (1.10 * wanimal.getBaseAttack()))); // increase base attack by 10%
+    wanimal.setBaseAttack(wanimal.getBaseAttack()); // restore full base attack
+  }
+
+  /**
+   * This method takes a player object and levels it up by one
+   *
+   * @param player - the player to level up
+   */
+  public static void levelUpPlayer(Player player) {
+    player.setLevel(player.getLevel() +
+                    1); // add one to the level of the player
   }
 }

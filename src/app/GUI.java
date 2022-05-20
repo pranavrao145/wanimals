@@ -516,7 +516,7 @@ public class GUI {
     panel_characterCreate.add(lbl_characterCreateStarterWanimal);
 
     btn_characterCreateAdvance = new JButton("Advance");
-    btn_characterCreateAdvance.setBounds(12, 217, 416, 27);
+    btn_characterCreateAdvance.setBounds(12, 231, 416, 27);
     panel_characterCreate.add(btn_characterCreateAdvance);
   }
 
@@ -969,8 +969,8 @@ public class GUI {
 
     // Displays the users current XP out of the total XP needed to level up
     lbl_moveSelectXP.setText(
-        "XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) +
-        " out of " + String.valueOf(Engine.getPlayer().getmaxXP()));
+        "XP: " + String.valueOf(Engine.getPlayer().getCurrentXP()) + "/" +
+        String.valueOf(Engine.getPlayer().getMaxXP()));
 
     // get the boss for the current realm
     Class<? extends Boss> currentBossClass =

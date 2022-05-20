@@ -27,10 +27,6 @@ public class HydronPrime extends Boss {
    * @param maxXP - the maxXP with which to create the new boss
    * @param firstAttack - the firstAttack with which to create the new boss
    * @param secondAttack - the secondAttack with which to create the new boss
-   * @param experienceOffered - the experienceOffered with which to create the
-   *     new boss
-   * @param requiredLevel - the requiredLevel with which to create the new
-   *     boss
    */
   public HydronPrime(String name, String type, int level, int maxHitpoints,
                      int currentHitpoints, int baseAttack, int maxArmor,
