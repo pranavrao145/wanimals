@@ -656,8 +656,7 @@ public class GUI {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-
-        actionRun = false;
+        actionRun = false; // start with this flag false (the task has not run)
 
         Utils.runMaybe(40, new Runnable() {
           @Override
@@ -807,6 +806,39 @@ public class GUI {
 
         // show the battle switch panel
         masterLayout.show(contentPane, "panel_battleSwitch");
+      }
+    });
+
+    // listener to show the battle flee screen when the flee button is
+    // pressed on the battle screen
+    btn_battleFlee.addActionListener(new ActionListener() {
+      private boolean actionRun; // this boolean will hold if the action for
+                                 // this listener has been run or not
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        actionRun = false; // start with this flag false (the task has not run)
+
+        int calculatedChance = (int)Math.round(
+            (1 - (Engine.getCurrentBattle().getEnemy().getLevel() / 15.0)) *
+            100); // get a percentage calculated chance for the flee to be
+                  // sucessful
+
+        // with a percentage success of the above calculated number, attempt to
+        // flee the battle by setting the battle running to false
+        Utils.runMaybe(calculatedChance, new Runnable() {
+          @Override
+          public void run() {
+            actionRun = true; // mark that the action has been run
+
+            Engine.getCurrentBattle().setIsRunning(false);
+          }
+        });
+
+        if (!actionRun) {
+          Engine.getCurrentBattle().setCurrentTurn(
+              0); // set the current turn to the enemy's turn, as a flee attempt
+                  // takes up a turn
+        }
       }
     });
 
