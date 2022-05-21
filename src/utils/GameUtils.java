@@ -1,8 +1,12 @@
 package utils;
 
+import static java.util.Map.entry;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import models.player.Player;
 import models.wanimals.Wanimal;
@@ -16,6 +20,14 @@ import models.wanimals.wanimals.water.Aqua;
 import models.wanimals.wanimals.water.Hydron;
 
 public class GameUtils {
+  // this HashMap contains String keys, which represent the four types in this
+  // game. Each key has String values. The value of a key is the wanimal type
+  // against which a wanimal of the current type (the key) is strong.
+  private static HashMap<String, String> vulnerabilities =
+      new HashMap<String, String>(
+          Map.ofEntries(entry("normal", null), entry("water", "fire"),
+                        entry("grass", "water"), entry("fire", "grass")));
+
   // this is a list of all of the wanimal classes available. It will be used to
   // randomly generate a wanimal
   private static ArrayList<Class<? extends Wanimal>> wanimalList =
@@ -126,5 +138,16 @@ public class GameUtils {
   public static void levelUpPlayer(Player player) {
     player.setLevel(player.getLevel() +
                     1); // add one to the level of the player
+  }
+
+  // getters and setters
+
+  public static HashMap<String, String> getVulnerabilities() {
+    return vulnerabilities;
+  }
+
+  public static void
+  setVulnerabilities(HashMap<String, String> vulnerabilities) {
+    GameUtils.vulnerabilities = vulnerabilities;
   }
 }
