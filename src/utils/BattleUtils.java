@@ -37,7 +37,6 @@ public class BattleUtils {
       @Override
       public void run() {
         Battle currentBattle = Engine.getCurrentBattle();
-        GUI gui = Engine.getGui(); // get the current GUI
 
         if (!(currentBattle != null &&
               currentBattle.isRunning())) { // if there isn't a battle or if
@@ -70,20 +69,6 @@ public class BattleUtils {
                      // the enemy) is depleted
           Engine.getCurrentBattle().setIsRunning(
               false); // end the battle immediately
-
-          gui.setBattleButtonsEnabled(
-              false); // set all buttons on the battle screen to disabled if
-                      // they are not already disabled
-
-          // wait two seconds
-          Utils.delayRun(2000, new Runnable() {
-            @Override
-            public void run() {
-              // go back to the move select screen
-              gui.getMasterLayout().show(gui.getContentPane(),
-                                         "panel_moveSelect");
-            }
-          });
         }
       }
     }, new Date(), 1000);
@@ -241,8 +226,11 @@ public class BattleUtils {
    * XP assignment
    */
   public static void endCurrentBattle() {
-    Engine.getGui().setBattleButtonsEnabled(
-        false); // disable all battle buttons
+    GUI gui = Engine.getGui(); // get the current GUI
+
+    gui.setBattleButtonsEnabled(
+        false); // set all buttons on the battle screen to disabled if
+                // they are not already disabled
 
     Battle currentBattle = Engine.getCurrentBattle();
 
@@ -263,6 +251,15 @@ public class BattleUtils {
       // set the HP of each wanimal back to full, but don't give XP
       BattleUtils.restoreHPAndArmor(currentBattle);
     }
+
+    // wait two seconds
+    Utils.delayRun(2000, new Runnable() {
+      @Override
+      public void run() {
+        // go back to the move select screen
+        gui.getMasterLayout().show(gui.getContentPane(), "panel_moveSelect");
+      }
+    });
 
     Engine.setCurrentBattle(null); // set the current battle to null (discarding
                                    // of the info about the current battle
