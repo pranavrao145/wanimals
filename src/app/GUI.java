@@ -809,8 +809,8 @@ public class GUI {
       }
     });
 
-    // listener to show the battle flee screen when the flee button is
-    // pressed on the battle screen
+    // listener to attempt to flee from the enemy wanimal when the flee button
+    // is clicked on the battle screen
     btn_battleFlee.addActionListener(new ActionListener() {
       private boolean actionRun; // this boolean will hold if the action for
                                  // this listener has been run or not
@@ -834,10 +834,64 @@ public class GUI {
           }
         });
 
-        if (!actionRun) {
+        if (!actionRun) { // if the action was not run
+          // TODO: update battle log
           Engine.getCurrentBattle().setCurrentTurn(
               0); // set the current turn to the enemy's turn, as a flee attempt
                   // takes up a turn
+        }
+      }
+    });
+
+    // listener to attempt to catch the enemy wanimal when the catch button is
+    // clicked on the battle screen
+    btn_battleCatch.addActionListener(new ActionListener() {
+      private boolean actionRun; // this boolean will hold if the action for
+                                 // this listener has been run or not
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        actionRun = false; // start with this flag false (the task has not run)
+
+        int calculatedChance = (int)Math.round(
+            (1 - (Engine.getCurrentBattle().getEnemy().getLevel() / 15.0)) *
+            100); // get a percentage calculated chance for the flee to be
+                  // sucessful
+
+        // if the player has less than 4 wanimals in their inventory
+        if (Engine.getCurrentBattle().getPlayer().getWanimals().size() < 4) {
+          // with a percentage success of the above calculated number, attempt
+          // to flee the battle by setting the battle running to false
+          Utils.runMaybe(calculatedChance, new Runnable() {
+            @Override
+            public void run() {
+              actionRun = true; // mark that the action has been run
+
+              Engine.getCurrentBattle().getPlayer().getWanimals().add(
+                  Engine.getCurrentBattle()
+                      .getEnemy()); // add the enemy to the player's inventory
+
+              Engine.getCurrentBattle().setIsRunning(false); // stop the battle
+            }
+          });
+
+          if (!actionRun) { // if the action was not run
+            // TODO: update battle log
+            Engine.getCurrentBattle().setCurrentTurn(
+                0); // set the current turn to the enemy's turn, as a flee
+                    // attempt takes up a turn
+          }
+        } else { // if the player's wanimal slots are full
+          btn_battleCatch.setText(
+              "Wanimal slots full!"); // change the text of the catch button to
+                                      // inform them their wanimals are full.
+
+          // wait for one second then reset the catch button
+          Utils.delayRun(1000, new Runnable() {
+            @Override
+            public void run() {
+              btn_battleCatch.setText("Catch");
+            }
+          });
         }
       }
     });
