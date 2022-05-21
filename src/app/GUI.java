@@ -1067,6 +1067,13 @@ public class GUI {
     if (battle.getPlayerWanimal().getLevel() < 5) {
       btn_battleAttack2.setEnabled(
           false); // re-disable the second attack button
+
+      // if the enemy wanimal is a boss, do not allow the player to catch or
+      // escape the boss
+      if (battle.getEnemy().getClass() == Boss.class) {
+        btn_battleCatch.setEnabled(false); // set the catch button to disabled
+        btn_battleFlee.setEnabled(false);  // set the flee button to disabled
+      }
     }
 
     // show the battle panel
