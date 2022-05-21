@@ -1,7 +1,8 @@
 package models.battles.attacks;
 
-import models.bosses.Boss;
+import java.util.concurrent.ThreadLocalRandom;
 import models.wanimals.Wanimal;
+import utils.GameUtils;
 
 public class Attack {
   protected String name; // the name of the attack
@@ -43,6 +44,19 @@ public class Attack {
         (int)(this.type == 1 ? currentWanimal.getBaseAttack()
                              : currentWanimal.getBaseAttack() * 1.10);
 
+    // if the enemy wanimal is vulnerable to the current wanimal
+    if (GameUtils.getVulnerabilities().get(currentWanimal.getType()) ==
+        enemyWanimal.getType()) {
+      // get a random number from 10 to 20 (inclusive) and store it in a
+      // variable to calculate how much more damage must be done to the
+      // vulnerable wanimal
+      int addedDamage = ThreadLocalRandom.current().nextInt(10, 21);
+
+      // update the damage to do with the new damage added
+      damageToDo *= (1.0 + addedDamage / 100.0);
+      // TODO: update battle log
+    }
+
     if (damageToDo >=
         enemyWanimal
             .getCurrentArmor()) { // if the damage to do is greater than or
@@ -70,49 +84,6 @@ public class Attack {
     enemyWanimal.setCurrentHitpoints(enemyWanimal.getCurrentHitpoints() < 0
                                          ? 0
                                          : enemyWanimal.getCurrentHitpoints());
-  }
-
-  /**
-   * This method executes the attack, applying the appropriate damage to the
-   * enemy boss based on the current wanimal's base attack stat. This is an
-   * overload of the above method, with deals with wanimal vs. wanimal.
-   *
-   * @param currentWanimal - the wanimal whose turn it currently is
-   * @param enemyBoss - the enemy boss on to which to execute the attack
-   */
-  public void execute(Wanimal currentWanimal, Boss enemyBoss) {
-    // calculate the amount of damage to do to the enemy boss, depeding on if
-    // the attacks is type 1 or 2
-    int damageToDo =
-        (int)(this.type == 1 ? currentWanimal.getBaseAttack()
-                             : currentWanimal.getBaseAttack() * 1.10);
-
-    if (damageToDo >=
-        enemyBoss.getCurrentArmor()) { // if the damage to do is greater than or
-                                       // equal to the enemy boss' armor
-      int remainingDamage =
-          damageToDo -
-          enemyBoss.getCurrentArmor(); // calculate the amount of damage that
-                                       // would remain after the enemy is
-                                       // stripped of their armor
-
-      enemyBoss.setCurrentArmor(0); // set the enemy boss' armor to 0
-      enemyBoss.setCurrentHitpoints(
-          enemyBoss.getCurrentHitpoints() -
-          remainingDamage); // take the remaning damage off of the enemy's HP
-    } else { // else, if the amount of damage to do is less than the enemy
-             // boss' armor
-      enemyBoss.setCurrentArmor(
-          enemyBoss.getCurrentArmor() -
-          damageToDo); // take all the damage off the enemy boss' armor,
-                       // leaving their health alone
-    }
-
-    // finally, if the enemy boss' health is lower than 0, set their health
-    // back to 0
-    enemyBoss.setCurrentHitpoints(enemyBoss.getCurrentHitpoints() < 0
-                                      ? 0
-                                      : enemyBoss.getCurrentHitpoints());
   }
 
   // getters and setters
