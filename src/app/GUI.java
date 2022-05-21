@@ -791,6 +791,21 @@ public class GUI {
     btn_battleSwitch.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        DefaultComboBoxModel<String> comboBoxModel =
+            (DefaultComboBoxModel<String>)comboBox_battleSwitch
+                .getModel(); // get the model for the battle switch combo box so
+                             // it can be easily manipulated
+
+        comboBoxModel.removeAllElements();
+
+        // for each wanimal in the player's inventory
+        for (Wanimal wanimal : Engine.getPlayer().getWanimals()) {
+          comboBoxModel.addElement(
+              wanimal.getName() + " (Lvl " + wanimal.getLevel() +
+              ")"); // add the wanimal's name plus level to the comboBox
+        }
+
+        // show the battle switch panel
         masterLayout.show(contentPane, "panel_battleSwitch");
       }
     });
@@ -804,7 +819,25 @@ public class GUI {
     btn_battleSwitchAdvance.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        masterLayout.show(contentPane, "panel_moveSelect");
+        Battle currentBattle =
+            Engine.getCurrentBattle(); // get the current battle object
+
+        Wanimal wanimalToSwitchTo = currentBattle.getPlayer().getWanimals().get(
+            comboBox_battleSwitch
+                .getSelectedIndex()); // get the selected wanimal from the
+                                      // battle switch combo box
+
+        currentBattle.setPlayerWanimal(
+            wanimalToSwitchTo); // set the player's current wanimal as the
+                                // wanimal to switch to
+
+        currentBattle.setCurrentTurn(
+            0); // make it the enemy's turn (a switch takes up a turn)
+
+        refreshBattleGUI(currentBattle);
+
+        // go back to the move select panel
+        masterLayout.show(contentPane, "panel_battle");
       }
     });
 
