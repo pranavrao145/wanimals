@@ -1,6 +1,8 @@
 package models.battles.attacks;
 
+import java.util.concurrent.ThreadLocalRandom;
 import models.wanimals.Wanimal;
+import utils.GameUtils;
 
 public class Attack {
   protected String name; // the name of the attack
@@ -41,6 +43,19 @@ public class Attack {
     int damageToDo =
         (int)(this.type == 1 ? currentWanimal.getBaseAttack()
                              : currentWanimal.getBaseAttack() * 1.10);
+
+    // if the enemy wanimal is vulnerable to the current wanimal
+    if (GameUtils.getVulnerabilities().get(currentWanimal.getType()) ==
+        enemyWanimal.getType()) {
+      // get a random number from 10 to 20 (inclusive) and store it in a
+      // variable to calculate how much more damage must be done to the
+      // vulnerable wanimal
+      int addedDamage = ThreadLocalRandom.current().nextInt(10, 21);
+
+      // update the damage to do with the new damage added
+      damageToDo *= (1.0 + addedDamage / 100.0);
+      // TODO: update battle log
+    }
 
     if (damageToDo >=
         enemyWanimal

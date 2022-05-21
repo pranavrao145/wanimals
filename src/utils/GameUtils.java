@@ -25,7 +25,7 @@ public class GameUtils {
   // against which a wanimal of the current type (the key) is strong.
   private static HashMap<String, String> vulnerabilities =
       new HashMap<String, String>(
-          Map.ofEntries(entry("normal", null), entry("water", "fire"),
+          Map.ofEntries(entry("normal", "none"), entry("water", "fire"),
                         entry("grass", "water"), entry("fire", "grass")));
 
   // this is a list of all of the wanimal classes available. It will be used to
