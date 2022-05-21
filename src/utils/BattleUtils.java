@@ -162,8 +162,9 @@ public class BattleUtils {
                          // granted based on the calculations below
 
     Player player = battle.getPlayer();
-    if (battle.getEnemy() instanceof Boss) { // if the enemy wanimal is a boss
-                                             // the player's inventory
+    if (battle.getEnemy().getClass() ==
+        Boss.class) { // if the enemy wanimal is a boss
+                      // the player's inventory
       // attempt to get the experience that this boss offers and store it in
       // the xpToFulfill variable
       try {
