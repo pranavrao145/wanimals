@@ -998,6 +998,29 @@ public class GUI {
         masterLayout.show(contentPane, "panel_battle");
       }
     });
+
+    /************************************************************************
+     * BATTLE INVENTORY SCREEN LISTENERS
+     *************************************************************************/
+
+    panel_battleInventory.addComponentListener(new ComponentListener() {
+      // the three methods below do not need an implementation as we do not
+      // want to do anything when those events are fired
+      @Override
+      public void componentHidden(ComponentEvent e) {}
+
+      @Override
+      public void componentMoved(ComponentEvent e) {}
+
+      @Override
+      public void componentResized(ComponentEvent e) {}
+
+      @Override
+      public void componentShown(
+          ComponentEvent e) {        // when the battle inventory panel is shown
+        refreshBattleInventoryGUI(); // refresh the battle inventory panel
+      }
+    });
   }
 
   /**
@@ -1192,7 +1215,40 @@ public class GUI {
   }
 
   /**
-   * THis method takes in some text and adds it to the battle log
+   * This method refreshes the battle inventory GUI according to the information
+   * in the current battle object.
+   */
+  private void refreshBattleInventoryGUI() {
+    Battle currentBattle = Engine.getCurrentBattle(); // get the current battle
+
+    lbl_battleInventoryWanimalHP.setText(
+        "Current wanimal's HP: " +
+        currentBattle.getPlayerWanimal().getCurrentHitpoints());
+    lbl_battleInventoryWanimalArmor.setText(
+        "Current wanimal's armor: " +
+        currentBattle.getPlayerWanimal().getCurrentArmor());
+    lbl_battleInventoryPotionsRemaining.setText(
+        "Potions remaining: " +
+        String.valueOf(currentBattle.getPlayer().getNumPotions()));
+    lbl_battleInventoryArmorPlatesRemaining.setText(
+        "Armor Plates remaining: " +
+        String.valueOf(currentBattle.getPlayer().getNumArmorPlates()));
+
+    // if the player has no more potions left
+    if (Engine.getPlayer().getNumPotions() == 0) {
+      btn_battleInventoryUsePotion.setEnabled(
+          false); // disable the option to use a potion
+    }
+
+    // if the player has no more armor plates left
+    if (Engine.getPlayer().getNumArmorPlates() == 0) {
+      btn_battleInventoryUseArmorPlate.setEnabled(
+          false); // disable the option to use an armor plate
+    }
+  }
+
+  /**
+   * This method takes in some text and adds it to the battle log
    *
    * @param text - the text to add to the battle log
    */
