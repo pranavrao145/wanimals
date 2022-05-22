@@ -1024,7 +1024,7 @@ public class GUI {
     });
 
     // listener to apply a potion to the user's wanimal every time the use
-    // potion buttons is clicked on the battle inventory screen
+    // potion button is clicked on the battle inventory screen
     btn_battleInventoryUsePotion.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -1044,6 +1044,30 @@ public class GUI {
 
         // restore the player's wanimal's health to full
         playerWanimal.setCurrentHitpoints(playerWanimal.getMaxHitpoints());
+      }
+    });
+
+    // listener to apply a armor plate to the user's wanimal every time the use
+    // armor plate button is clicked on the battle inventory screen
+    btn_battleInventoryUseArmorPlate.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Player player =
+            Engine.getCurrentBattle().getPlayer(); // get the current player
+        Wanimal playerWanimal =
+            Engine.getCurrentBattle()
+                .getPlayerWanimal(); // get the player's current wanimal
+
+        Engine.getGui().addToBattleLog(
+            "Player used an armor plate on " + playerWanimal.getName() +
+            ". The wanimal was restored to full armor.");
+
+        player.setNumArmorPlates(
+            Engine.getPlayer().getNumArmorPlates() -
+            1); // deduct one armor plate from the player's inventory
+
+        // restore the player's wanimal's armor to full
+        playerWanimal.setCurrentArmor(playerWanimal.getMaxArmor());
       }
     });
   }
