@@ -26,6 +26,8 @@ public class BattleUtils {
                    enemy)); // set the current battle to a battle between the
                             // player's first wanimal and the enemy given
 
+    Engine.getGui().addToBattleLog("Battle has started.");
+
     Timer timer = new Timer(); // create a new timer object. This will be used
                                // to check any condition that must be repeatedly
                                // check during the battle
@@ -41,6 +43,8 @@ public class BattleUtils {
         if (!(currentBattle != null &&
               currentBattle.isRunning())) { // if there isn't a battle or if
                                             // it's not running
+          Engine.getGui().addToBattleLog("Battle is ending.");
+
           timer.cancel(); // cancel the current timer immediately
           BattleUtils.endCurrentBattle(); // end the current battle
         }
@@ -63,10 +67,18 @@ public class BattleUtils {
           });
         }
 
-        if (currentBattle.getPlayerWanimal().getCurrentHitpoints() == 0 ||
-            currentBattle.getEnemy().getCurrentHitpoints() ==
-                0) { // if at any point the health of the player's wanimal (or
-                     // the enemy) is depleted
+        if (currentBattle.getPlayerWanimal().getCurrentHitpoints() ==
+            0) { // if at any point the health of the player's wanimal  is
+                 // depleted
+          Engine.getGui().addToBattleLog(
+              currentBattle.getPlayerWanimal().getName() + " fainted!");
+          Engine.getCurrentBattle().setIsRunning(
+              false); // end the battle immediately
+        }
+
+        if (currentBattle.getEnemy().getCurrentHitpoints() ==
+            0) { // if at any point the health of the the enemy is depleted
+          Engine.getGui().addToBattleLog("The enemy has been defeated!");
           Engine.getCurrentBattle().setIsRunning(
               false); // end the battle immediately
         }
@@ -108,6 +120,9 @@ public class BattleUtils {
       }
     }
 
+    Engine.getGui().addToBattleLog("The enemy used " +
+                                   attackToExecute.getName() + ".");
+
     attackToExecute.execute(
         enemy,
         Engine.getCurrentBattle()
@@ -122,6 +137,8 @@ public class BattleUtils {
    * @param wanimal - the wanimal to which the XP must be applied
    */
   private static void applyXPtoWanimal(int xp, Wanimal wanimal) {
+    Engine.getGui().addToBattleLog(wanimal.getName() + " gained " + xp +
+                                   " xp.");
     for (int i = 0; i < xp; i++) { // for the number of XP there are
       wanimal.setCurrentXP(wanimal.getCurrentXP() + 1); // add one to the XP
 
@@ -141,6 +158,8 @@ public class BattleUtils {
    * @param player - the player to which the XP must be applied
    */
   private static void applyXPtoPlayer(int xp, Player player) {
+    Engine.getGui().addToBattleLog(player.getName() + " gained " + xp + " xp.");
+
     for (int i = 0; i < xp; i++) { // for the number of XP there are
       player.setCurrentXP(player.getCurrentXP() + 1); // add one to the XP
 
@@ -219,6 +238,9 @@ public class BattleUtils {
       wanimal.setCurrentHitpoints(wanimal.getMaxHitpoints());
       wanimal.setCurrentArmor(wanimal.getMaxArmor());
     }
+
+    Engine.getGui().addToBattleLog(
+        "Player's wanimals were restored to full health and armor.");
   }
 
   /**
@@ -254,7 +276,7 @@ public class BattleUtils {
     }
 
     // wait two seconds
-    Utils.delayRun(2000, new Runnable() {
+    Utils.delayRun(4000, new Runnable() {
       @Override
       public void run() {
         // go back to the move select screen

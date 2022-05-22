@@ -1,5 +1,6 @@
 package models.battles.attacks;
 
+import app.Engine;
 import java.util.concurrent.ThreadLocalRandom;
 import models.wanimals.Wanimal;
 import utils.GameUtils;
@@ -54,7 +55,8 @@ public class Attack {
 
       // update the damage to do with the new damage added
       damageToDo *= (1.0 + addedDamage / 100.0);
-      // TODO: update battle log
+
+      Engine.getGui().addToBattleLog("The attack was very effective.");
     }
 
     if (damageToDo >=
