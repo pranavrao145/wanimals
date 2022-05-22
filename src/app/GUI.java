@@ -784,6 +784,58 @@ public class GUI {
      * BATTLE SCREEN LISTENERS
      *************************************************************************/
 
+    // listener to run the current wanimal's attack 1 when the attack 1 button
+    // is clicked
+    btn_battleAttack1.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // get the player's wanimal
+        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+
+        Attack attackToExecute = playerWanimal.getFirstAttack();
+
+        // execute the player's first attack on the enemy
+        attackToExecute.execute(playerWanimal,
+                                Engine.getCurrentBattle().getEnemy());
+
+        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
+                                       attackToExecute.getName() + ".");
+
+        Engine.getCurrentBattle().setCurrentTurn(
+            0); // set the turn to the enemy turn
+
+        refreshBattleGUI(
+            Engine.getCurrentBattle()); // update the GUI with the new
+                                        // information about the battle
+      }
+    });
+
+    // listener to run the current wanimal's attack 1 when the attack 1 button
+    // is clicked
+    btn_battleAttack2.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // get the player's wanimal
+        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+
+        Attack attackToExecute = playerWanimal.getSecondAttack();
+
+        // execute the player's first attack on the enemy
+        attackToExecute.execute(playerWanimal,
+                                Engine.getCurrentBattle().getEnemy());
+
+        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
+                                       attackToExecute.getName() + ".");
+
+        Engine.getCurrentBattle().setCurrentTurn(
+            0); // set the turn to the enemy turn
+
+        refreshBattleGUI(
+            Engine.getCurrentBattle()); // update the GUI with the new
+                                        // information about the battle
+      }
+    });
+
     // listener to show the battle inventory screen when the inventory
     // button is pressed on the battle screen
     btn_battleInventory.addActionListener(new ActionListener() {
@@ -948,58 +1000,74 @@ public class GUI {
     });
 
     /************************************************************************
-     * BATTLE SCREEN LISTENERS
+     * BATTLE INVENTORY SCREEN LISTENERS
      *************************************************************************/
 
-    // listener to run the current wanimal's attack 1 when the attack 1 button
-    // is clicked
-    btn_battleAttack1.addActionListener(new ActionListener() {
+    // listener to update the battle inventory GUI every time it appears
+    panel_battleInventory.addComponentListener(new ComponentListener() {
+      // the three methods below do not need an implementation as we do not
+      // want to do anything when those events are fired
       @Override
-      public void actionPerformed(ActionEvent e) {
-        // get the player's wanimal
-        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+      public void componentHidden(ComponentEvent e) {}
 
-        Attack attackToExecute = playerWanimal.getFirstAttack();
+      @Override
+      public void componentMoved(ComponentEvent e) {}
 
-        // execute the player's first attack on the enemy
-        attackToExecute.execute(playerWanimal,
-                                Engine.getCurrentBattle().getEnemy());
+      @Override
+      public void componentResized(ComponentEvent e) {}
 
-        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
-                                       attackToExecute.getName() + ".");
-
-        Engine.getCurrentBattle().setCurrentTurn(
-            0); // set the turn to the enemy turn
-
-        refreshBattleGUI(
-            Engine.getCurrentBattle()); // update the GUI with the new
-                                        // information about the battle
+      @Override
+      public void componentShown(
+          ComponentEvent e) {        // when the battle inventory panel is shown
+        refreshBattleInventoryGUI(); // refresh the battle inventory panel
       }
     });
 
-    // listener to run the current wanimal's attack 1 when the attack 1 button
-    // is clicked
-    btn_battleAttack2.addActionListener(new ActionListener() {
+    // listener to apply a potion to the user's wanimal every time the use
+    // potion button is clicked on the battle inventory screen
+    btn_battleInventoryUsePotion.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        // get the player's wanimal
-        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+        Player player =
+            Engine.getCurrentBattle().getPlayer(); // get the current player
+        Wanimal playerWanimal =
+            Engine.getCurrentBattle()
+                .getPlayerWanimal(); // get the player's current wanimal
 
-        Attack attackToExecute = playerWanimal.getSecondAttack();
+        Engine.getGui().addToBattleLog(
+            "Player used a potion on " + playerWanimal.getName() +
+            ". The wanimal was restored to full health.");
 
-        // execute the player's first attack on the enemy
-        attackToExecute.execute(playerWanimal,
-                                Engine.getCurrentBattle().getEnemy());
+        player.setNumPotions(
+            Engine.getPlayer().getNumPotions() -
+            1); // deduct one potion from the player's inventory
 
-        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
-                                       attackToExecute.getName() + ".");
+        // restore the player's wanimal's health to full
+        playerWanimal.setCurrentHitpoints(playerWanimal.getMaxHitpoints());
+      }
+    });
 
-        Engine.getCurrentBattle().setCurrentTurn(
-            0); // set the turn to the enemy turn
+    // listener to apply a armor plate to the user's wanimal every time the use
+    // armor plate button is clicked on the battle inventory screen
+    btn_battleInventoryUseArmorPlate.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Player player =
+            Engine.getCurrentBattle().getPlayer(); // get the current player
+        Wanimal playerWanimal =
+            Engine.getCurrentBattle()
+                .getPlayerWanimal(); // get the player's current wanimal
 
-        refreshBattleGUI(
-            Engine.getCurrentBattle()); // update the GUI with the new
-                                        // information about the battle
+        Engine.getGui().addToBattleLog(
+            "Player used an armor plate on " + playerWanimal.getName() +
+            ". The wanimal was restored to full armor.");
+
+        player.setNumArmorPlates(
+            Engine.getPlayer().getNumArmorPlates() -
+            1); // deduct one armor plate from the player's inventory
+
+        // restore the player's wanimal's armor to full
+        playerWanimal.setCurrentArmor(playerWanimal.getMaxArmor());
       }
     });
   }
@@ -1196,7 +1264,40 @@ public class GUI {
   }
 
   /**
-   * THis method takes in some text and adds it to the battle log
+   * This method refreshes the battle inventory GUI according to the information
+   * in the current battle object.
+   */
+  private void refreshBattleInventoryGUI() {
+    Battle currentBattle = Engine.getCurrentBattle(); // get the current battle
+
+    lbl_battleInventoryWanimalHP.setText(
+        "Current wanimal's HP: " +
+        currentBattle.getPlayerWanimal().getCurrentHitpoints());
+    lbl_battleInventoryWanimalArmor.setText(
+        "Current wanimal's armor: " +
+        currentBattle.getPlayerWanimal().getCurrentArmor());
+    lbl_battleInventoryPotionsRemaining.setText(
+        "Potions remaining: " +
+        String.valueOf(currentBattle.getPlayer().getNumPotions()));
+    lbl_battleInventoryArmorPlatesRemaining.setText(
+        "Armor Plates remaining: " +
+        String.valueOf(currentBattle.getPlayer().getNumArmorPlates()));
+
+    // if the player has no more potions left
+    if (Engine.getPlayer().getNumPotions() == 0) {
+      btn_battleInventoryUsePotion.setEnabled(
+          false); // disable the option to use a potion
+    }
+
+    // if the player has no more armor plates left
+    if (Engine.getPlayer().getNumArmorPlates() == 0) {
+      btn_battleInventoryUseArmorPlate.setEnabled(
+          false); // disable the option to use an armor plate
+    }
+  }
+
+  /**
+   * This method takes in some text and adds it to the battle log
    *
    * @param text - the text to add to the battle log
    */
