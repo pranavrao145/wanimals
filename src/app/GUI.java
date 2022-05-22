@@ -1169,7 +1169,21 @@ public class GUI {
         String.valueOf("Base Attack: " + enemyWanimal.getBaseAttack()));
   }
 
-  public void addToBattleLog(String text) {}
+  /**
+   * THis method takes in some text and adds it to the battle log
+   *
+   * @param text - the text to add to the battle log
+   */
+  public void addToBattleLog(String text) {
+    // if there is already text in the battle log
+    if (!textArea_battleLog.getText().equals(""))
+      textArea_battleLog.setText(
+          textArea_battleLog.getText() + "\n" +
+          text); // add a new line then add the given text
+    else         // if the battle log is empty
+      textArea_battleLog.setText(
+          text); // set the full text of the battle log as the text given
+  }
 
   // getters and setters
 

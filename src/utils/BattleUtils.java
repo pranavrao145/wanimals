@@ -27,8 +27,8 @@ public class BattleUtils {
                             // player's first wanimal and the enemy given
 
     Timer timer = new Timer(); // create a new timer object. This will be used
-    // to check any condition that must be repeatedly
-    // check during the battle
+                               // to check any condition that must be repeatedly
+                               // check during the battle
 
     // every two seconds, execute the run method defined below. This is where
     // any condition that needs to repeatedly be checked for the duration of the
