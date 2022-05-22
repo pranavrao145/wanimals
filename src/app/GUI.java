@@ -111,7 +111,6 @@ public class GUI {
   private JTable table_moveSelectInventory;
   private JLabel lbl_moveSelectInventoryPotions;
   private JLabel lbl_moveSelectInventoryArmorPlates;
-  private JScrollPane scrollPane_moveSelectInventoryTable;
   private JPanel panel_battleInform;
   private JLabel lbl_battleInformPlayerWanimalArmor;
   private JLabel lbl_battleInformPlayerWanimalBaseAttack;
@@ -404,32 +403,24 @@ public class GUI {
                                "panel_moveInventory");
     panel_moveSelectInventory.setLayout(null);
 
-    scrollPane_moveSelectInventoryTable = new JScrollPane();
-    scrollPane_moveSelectInventoryTable.setBounds(52, 69, 348, 91);
-    panel_moveSelectInventory.add(scrollPane_moveSelectInventoryTable);
-
-    table_moveSelectInventory = new JTable();
-    table_moveSelectInventory.setModel(new DefaultTableModel(
-        new Object[][] {
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-        },
-        new String[] {"Name", "Level", "XP"}));
+    DefaultTableModel moveSelectInventoryModel =
+        new DefaultTableModel(new Object[] {"Name", "Level", "Type", "XP"}, 0);
+    table_moveSelectInventory = new JTable(moveSelectInventoryModel);
+    table_moveSelectInventory.setBounds(29, 69, 388, 109);
+    moveSelectInventoryModel.addRow(
+        new Object[] {"Name", "Level", "Type", "XP"});
     table_moveSelectInventory.setFont(new Font("Dialog", Font.BOLD, 12));
-    scrollPane_moveSelectInventoryTable.setViewportView(
-        table_moveSelectInventory);
+    panel_moveSelectInventory.add(table_moveSelectInventory);
 
     lbl_moveSelectInventoryPotions = new JLabel("Number of Potions: ");
     lbl_moveSelectInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 14));
-    lbl_moveSelectInventoryPotions.setBounds(52, 172, 213, 33);
+    lbl_moveSelectInventoryPotions.setBounds(52, 190, 213, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryPotions);
 
-    lbl_moveSelectInventoryArmorPlates = new JLabel("Number of Armour Plates:");
+    lbl_moveSelectInventoryArmorPlates = new JLabel("Number of Armor Plates:");
     lbl_moveSelectInventoryArmorPlates.setFont(
         new Font("Dialog", Font.BOLD, 14));
-    lbl_moveSelectInventoryArmorPlates.setBounds(52, 207, 262, 33);
+    lbl_moveSelectInventoryArmorPlates.setBounds(52, 225, 262, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryArmorPlates);
 
     lbl_moveSelectInventoryTitle = new JLabel("Inventory");
