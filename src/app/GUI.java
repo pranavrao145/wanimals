@@ -1003,6 +1003,7 @@ public class GUI {
      * BATTLE INVENTORY SCREEN LISTENERS
      *************************************************************************/
 
+    // listener to update the battle inventory GUI every time it appears
     panel_battleInventory.addComponentListener(new ComponentListener() {
       // the three methods below do not need an implementation as we do not
       // want to do anything when those events are fired
@@ -1019,6 +1020,30 @@ public class GUI {
       public void componentShown(
           ComponentEvent e) {        // when the battle inventory panel is shown
         refreshBattleInventoryGUI(); // refresh the battle inventory panel
+      }
+    });
+
+    // listener to apply a potion to the user's wanimal every time the use
+    // potion buttons is clicked on the battle inventory screen
+    btn_battleInventoryUsePotion.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Player player =
+            Engine.getCurrentBattle().getPlayer(); // get the current player
+        Wanimal playerWanimal =
+            Engine.getCurrentBattle()
+                .getPlayerWanimal(); // get the player's current wanimal
+
+        Engine.getGui().addToBattleLog(
+            "Player used a potion on " + playerWanimal.getName() +
+            ". The wanimal was restored to full health.");
+
+        player.setNumPotions(
+            Engine.getPlayer().getNumPotions() -
+            1); // deduct one potion from the player's inventory
+
+        // restore the player's wanimal's health to full
+        playerWanimal.setCurrentHitpoints(playerWanimal.getMaxHitpoints());
       }
     });
   }
