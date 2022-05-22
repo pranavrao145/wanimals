@@ -784,6 +784,58 @@ public class GUI {
      * BATTLE SCREEN LISTENERS
      *************************************************************************/
 
+    // listener to run the current wanimal's attack 1 when the attack 1 button
+    // is clicked
+    btn_battleAttack1.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // get the player's wanimal
+        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+
+        Attack attackToExecute = playerWanimal.getFirstAttack();
+
+        // execute the player's first attack on the enemy
+        attackToExecute.execute(playerWanimal,
+                                Engine.getCurrentBattle().getEnemy());
+
+        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
+                                       attackToExecute.getName() + ".");
+
+        Engine.getCurrentBattle().setCurrentTurn(
+            0); // set the turn to the enemy turn
+
+        refreshBattleGUI(
+            Engine.getCurrentBattle()); // update the GUI with the new
+                                        // information about the battle
+      }
+    });
+
+    // listener to run the current wanimal's attack 1 when the attack 1 button
+    // is clicked
+    btn_battleAttack2.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // get the player's wanimal
+        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+
+        Attack attackToExecute = playerWanimal.getSecondAttack();
+
+        // execute the player's first attack on the enemy
+        attackToExecute.execute(playerWanimal,
+                                Engine.getCurrentBattle().getEnemy());
+
+        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
+                                       attackToExecute.getName() + ".");
+
+        Engine.getCurrentBattle().setCurrentTurn(
+            0); // set the turn to the enemy turn
+
+        refreshBattleGUI(
+            Engine.getCurrentBattle()); // update the GUI with the new
+                                        // information about the battle
+      }
+    });
+
     // listener to show the battle inventory screen when the inventory
     // button is pressed on the battle screen
     btn_battleInventory.addActionListener(new ActionListener() {
@@ -944,62 +996,6 @@ public class GUI {
 
         // go back to the move select panel
         masterLayout.show(contentPane, "panel_battle");
-      }
-    });
-
-    /************************************************************************
-     * BATTLE SCREEN LISTENERS
-     *************************************************************************/
-
-    // listener to run the current wanimal's attack 1 when the attack 1 button
-    // is clicked
-    btn_battleAttack1.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        // get the player's wanimal
-        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
-
-        Attack attackToExecute = playerWanimal.getFirstAttack();
-
-        // execute the player's first attack on the enemy
-        attackToExecute.execute(playerWanimal,
-                                Engine.getCurrentBattle().getEnemy());
-
-        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
-                                       attackToExecute.getName() + ".");
-
-        Engine.getCurrentBattle().setCurrentTurn(
-            0); // set the turn to the enemy turn
-
-        refreshBattleGUI(
-            Engine.getCurrentBattle()); // update the GUI with the new
-                                        // information about the battle
-      }
-    });
-
-    // listener to run the current wanimal's attack 1 when the attack 1 button
-    // is clicked
-    btn_battleAttack2.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        // get the player's wanimal
-        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
-
-        Attack attackToExecute = playerWanimal.getSecondAttack();
-
-        // execute the player's first attack on the enemy
-        attackToExecute.execute(playerWanimal,
-                                Engine.getCurrentBattle().getEnemy());
-
-        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
-                                       attackToExecute.getName() + ".");
-
-        Engine.getCurrentBattle().setCurrentTurn(
-            0); // set the turn to the enemy turn
-
-        refreshBattleGUI(
-            Engine.getCurrentBattle()); // update the GUI with the new
-                                        // information about the battle
       }
     });
   }
