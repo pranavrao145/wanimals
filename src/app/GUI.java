@@ -832,7 +832,11 @@ public class GUI {
     btn_battleInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        masterLayout.show(contentPane, "panel_battleInventory");
+        refreshBattleInventoryGUI(); // refresh the inventory GUI with the
+                                     // latest information
+        masterLayout.show(
+            contentPane,
+            "panel_battleInventory"); // switch to the battle inventory panel
       }
     });
 
@@ -993,26 +997,6 @@ public class GUI {
     /************************************************************************
      * BATTLE INVENTORY SCREEN LISTENERS
      *************************************************************************/
-
-    // listener to update the battle inventory GUI every time it appears
-    panel_battleInventory.addComponentListener(new ComponentListener() {
-      // the three methods below do not need an implementation as we do not
-      // want to do anything when those events are fired
-      @Override
-      public void componentHidden(ComponentEvent e) {}
-
-      @Override
-      public void componentMoved(ComponentEvent e) {}
-
-      @Override
-      public void componentResized(ComponentEvent e) {}
-
-      @Override
-      public void componentShown(
-          ComponentEvent e) {        // when the battle inventory panel is shown
-        refreshBattleInventoryGUI(); // refresh the battle inventory panel
-      }
-    });
 
     // listener to apply a potion to the user's wanimal every time the use
     // potion button is clicked on the battle inventory screen
