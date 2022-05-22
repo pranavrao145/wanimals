@@ -23,6 +23,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import models.battles.attacks.Attack;
 import models.battles.battles.Battle;
 import models.bosses.Boss;
 import models.bosses.bosses.HydronPrime;
@@ -69,6 +70,7 @@ public class GUI {
   private JLabel lbl_battleEnemyHealth;
   private JLabel lbl_battleEnemyArmor;
   private JTextArea textArea_battleLog;
+  private JScrollPane scrollPane_battleLog;
   private JLabel lbl_battleTurn;
   private JLabel lbl_battlePlayerName;
   private JLabel lbl_battlePlayer;
@@ -285,9 +287,12 @@ public class GUI {
     panel_battle.add(btn_battleCatch);
 
     textArea_battleLog = new JTextArea();
-    textArea_battleLog.setBounds(246, 149, 182, 105);
     textArea_battleLog.setEditable(false);
-    panel_battle.add(textArea_battleLog);
+
+    scrollPane_battleLog = new JScrollPane(textArea_battleLog);
+    scrollPane_battleLog.setSize(182, 105);
+    scrollPane_battleLog.setLocation(246, 149);
+    panel_battle.add(scrollPane_battleLog);
 
     lbl_battleTurn = new JLabel("Player's Turn");
     lbl_battleTurn.setBounds(157, 12, 129, 27);
@@ -663,6 +668,9 @@ public class GUI {
           public void run() {
             actionRun = true; // mark the action as run using the actionRun flag
 
+            textArea_battleLog.setText(
+                ""); // clear the battle logs from previous battle
+
             BattleUtils.createBattle(GameUtils.generateRandomWanimal(
                 Engine.getPlayer()
                     .getRealm())); // create a new battle between the player
@@ -821,7 +829,7 @@ public class GUI {
         int calculatedChance = (int)Math.round(
             (1 - (Engine.getCurrentBattle().getEnemy().getLevel() / 15.0)) *
             100); // get a percentage calculated chance for the flee to be
-                  // sucessful
+                  // successful
 
         // with a percentage success of the above calculated number, attempt to
         // flee the battle by setting the battle running to false
@@ -830,12 +838,16 @@ public class GUI {
           public void run() {
             actionRun = true; // mark that the action has been run
 
+            Engine.getGui().addToBattleLog(
+                "Player successfully fled from the enemy wanimal.");
+
             Engine.getCurrentBattle().setIsRunning(false);
           }
         });
 
         if (!actionRun) { // if the action was not run
-          // TODO: update battle log
+          Engine.getGui().addToBattleLog(
+              "Player failed to flee from the enemy wanimal.");
           Engine.getCurrentBattle().setCurrentTurn(
               0); // set the current turn to the enemy's turn, as a flee attempt
                   // takes up a turn
@@ -855,7 +867,7 @@ public class GUI {
         int calculatedChance = (int)Math.round(
             (1 - (Engine.getCurrentBattle().getEnemy().getLevel() / 15.0)) *
             100); // get a percentage calculated chance for the flee to be
-                  // sucessful
+                  // successful
 
         // if the player has less than 4 wanimals in their inventory
         if (Engine.getCurrentBattle().getPlayer().getWanimals().size() < 4) {
@@ -870,12 +882,16 @@ public class GUI {
                   Engine.getCurrentBattle()
                       .getEnemy()); // add the enemy to the player's inventory
 
+              Engine.getGui().addToBattleLog(
+                  "Player successfully caught the enemy wanimal.");
+
               Engine.getCurrentBattle().setIsRunning(false); // stop the battle
             }
           });
 
           if (!actionRun) { // if the action was not run
-            // TODO: update battle log
+            Engine.getGui().addToBattleLog(
+                "Player failed to catch the enemy wanimal.");
             Engine.getCurrentBattle().setCurrentTurn(
                 0); // set the current turn to the enemy's turn, as a flee
                     // attempt takes up a turn
@@ -917,6 +933,10 @@ public class GUI {
             wanimalToSwitchTo); // set the player's current wanimal as the
                                 // wanimal to switch to
 
+        Engine.getGui().addToBattleLog(
+            "Player switched to " + currentBattle.getPlayerWanimal().getName() +
+            ".");
+
         currentBattle.setCurrentTurn(
             0); // make it the enemy's turn (a switch takes up a turn)
 
@@ -939,9 +959,14 @@ public class GUI {
         // get the player's wanimal
         Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
 
+        Attack attackToExecute = playerWanimal.getFirstAttack();
+
         // execute the player's first attack on the enemy
-        playerWanimal.getFirstAttack().execute(
-            playerWanimal, Engine.getCurrentBattle().getEnemy());
+        attackToExecute.execute(playerWanimal,
+                                Engine.getCurrentBattle().getEnemy());
+
+        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
+                                       attackToExecute.getName() + ".");
 
         Engine.getCurrentBattle().setCurrentTurn(
             0); // set the turn to the enemy turn
@@ -960,9 +985,14 @@ public class GUI {
         // get the player's wanimal
         Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
 
+        Attack attackToExecute = playerWanimal.getSecondAttack();
+
         // execute the player's first attack on the enemy
-        playerWanimal.getSecondAttack().execute(
-            playerWanimal, Engine.getCurrentBattle().getEnemy());
+        attackToExecute.execute(playerWanimal,
+                                Engine.getCurrentBattle().getEnemy());
+
+        Engine.getGui().addToBattleLog(playerWanimal.getName() + " used " +
+                                       attackToExecute.getName() + ".");
 
         Engine.getCurrentBattle().setCurrentTurn(
             0); // set the turn to the enemy turn
@@ -1163,6 +1193,22 @@ public class GUI {
         String.valueOf(enemyWanimal.getMaxArmor()));
     lbl_battleInformEnemyWanimalBaseAttack.setText(
         String.valueOf("Base Attack: " + enemyWanimal.getBaseAttack()));
+  }
+
+  /**
+   * THis method takes in some text and adds it to the battle log
+   *
+   * @param text - the text to add to the battle log
+   */
+  public void addToBattleLog(String text) {
+    // if there is already text in the battle log
+    if (!textArea_battleLog.getText().equals(""))
+      textArea_battleLog.setText(
+          textArea_battleLog.getText() + "\n" +
+          text); // add a new line then add the given text
+    else         // if the battle log is empty
+      textArea_battleLog.setText(
+          text); // set the full text of the battle log as the text given
   }
 
   // getters and setters

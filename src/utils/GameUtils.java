@@ -2,6 +2,7 @@ package utils;
 
 import static java.util.Map.entry;
 
+import app.Engine;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,6 +110,8 @@ public class GameUtils {
    * @param wanimal - the wanimal to level up
    */
   public static void levelUpWanimal(Wanimal wanimal) {
+    Engine.getGui().addToBattleLog(wanimal.getName() + " leveled up!");
+
     wanimal.setLevel(wanimal.getLevel() +
                      1); // add one to the level of the wanimal
 
@@ -136,6 +139,8 @@ public class GameUtils {
    * @param player - the player to level up
    */
   public static void levelUpPlayer(Player player) {
+    Engine.getGui().addToBattleLog(player.getName() + " leveled up!");
+
     player.setLevel(player.getLevel() +
                     1); // add one to the level of the player
   }
