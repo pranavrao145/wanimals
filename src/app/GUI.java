@@ -69,6 +69,7 @@ public class GUI {
   private JLabel lbl_battleEnemyHealth;
   private JLabel lbl_battleEnemyArmor;
   private JTextArea textArea_battleLog;
+  private JScrollPane scrollPane_battleLog;
   private JLabel lbl_battleTurn;
   private JLabel lbl_battlePlayerName;
   private JLabel lbl_battlePlayer;
@@ -285,9 +286,12 @@ public class GUI {
     panel_battle.add(btn_battleCatch);
 
     textArea_battleLog = new JTextArea();
-    textArea_battleLog.setBounds(246, 149, 182, 105);
     textArea_battleLog.setEditable(false);
-    panel_battle.add(textArea_battleLog);
+
+    scrollPane_battleLog = new JScrollPane(textArea_battleLog);
+    scrollPane_battleLog.setSize(182, 105);
+    scrollPane_battleLog.setLocation(246, 149);
+    panel_battle.add(scrollPane_battleLog);
 
     lbl_battleTurn = new JLabel("Player's Turn");
     lbl_battleTurn.setBounds(157, 12, 129, 27);
@@ -1164,6 +1168,8 @@ public class GUI {
     lbl_battleInformEnemyWanimalBaseAttack.setText(
         String.valueOf("Base Attack: " + enemyWanimal.getBaseAttack()));
   }
+
+  public void addToBattleLog(String text) {}
 
   // getters and setters
 
