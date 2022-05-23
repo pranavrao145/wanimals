@@ -412,15 +412,17 @@ public class GUI {
     table_moveSelectInventory.setFont(new Font("Dialog", Font.BOLD, 12));
     panel_moveSelectInventory.add(table_moveSelectInventory);
 
-    lbl_moveSelectInventoryPotions = new JLabel("Number of Potions: ");
+    lbl_moveSelectInventoryPotions =
+        new JLabel("Number of Potions Remaining: ");
     lbl_moveSelectInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 14));
-    lbl_moveSelectInventoryPotions.setBounds(52, 190, 213, 33);
+    lbl_moveSelectInventoryPotions.setBounds(52, 190, 365, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryPotions);
 
-    lbl_moveSelectInventoryArmorPlates = new JLabel("Number of Armor Plates:");
+    lbl_moveSelectInventoryArmorPlates =
+        new JLabel("Number of Armor Plates Remaining:");
     lbl_moveSelectInventoryArmorPlates.setFont(
         new Font("Dialog", Font.BOLD, 14));
-    lbl_moveSelectInventoryArmorPlates.setBounds(52, 225, 262, 33);
+    lbl_moveSelectInventoryArmorPlates.setBounds(52, 225, 365, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryArmorPlates);
 
     lbl_moveSelectInventoryTitle = new JLabel("Inventory");
@@ -710,16 +712,15 @@ public class GUI {
 
     // listener to go display the user's inventory when the inventory button
     // is clicked
+
     btn_moveSelectInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        // TODO: code the logic to display all the wanimals owned by the user
-        lbl_moveSelectInventoryPotions.setText(
-            "Number of Potions: " + Engine.getPlayer().getNumPotions());
-        lbl_moveSelectInventoryArmorPlates.setText(
-            "Number of Armour Plates: " +
-            Engine.getPlayer().getNumArmorPlates());
-        masterLayout.show(contentPane, "panel_moveInventory");
+        refreshMoveSelectInventoryGUI(); // refresh the move select inventory
+                                         // GUI
+        masterLayout.show(
+            contentPane,
+            "panel_moveInventory"); // switch to the move select inventory panel
       }
     });
 
@@ -1285,6 +1286,40 @@ public class GUI {
     else         // if the battle log is empty
       textArea_battleLog.setText(
           text); // set the full text of the battle log as the text given
+  }
+
+  /**
+   * This method refreshes the move select inventory GUI.
+   */
+  public void refreshMoveSelectInventoryGUI() {
+    Player currentPlayer = Engine.getPlayer(); // get the current player
+
+    // update potion and armor labels
+    lbl_moveSelectInventoryPotions.setText("Number of Potions Remaining: " +
+                                           currentPlayer.getNumPotions());
+    lbl_moveSelectInventoryArmorPlates.setText(
+        "Number of Armor Plates Remaining: " +
+        currentPlayer.getNumArmorPlates());
+
+    DefaultTableModel moveSelectInventoryModel =
+        (DefaultTableModel)table_moveSelectInventory
+            .getModel(); // get the table model for the table on the move select
+                         // inventory screen so the table data can be
+                         // manipulated
+
+    // for each wanimal in the player's inventory
+    for (Wanimal wanimal : currentPlayer.getWanimals()) {
+      String wanimalType =
+          wanimal.getType(); // get wanimal type and store in variable (as it is
+                             // used multiple times below)
+
+      // add a row containing this wanimal's information to the table on the
+      // move select inventory screen
+      moveSelectInventoryModel.addRow(new Object[] {
+          wanimal.getName(), wanimal.getLevel(),
+          wanimalType.toUpperCase().charAt(0) + wanimalType.substring(1),
+          wanimal.getCurrentXP()});
+    }
   }
 
   // getters and setters
