@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,6 +23,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import models.battles.attacks.Attack;
 import models.battles.battles.Battle;
@@ -404,7 +407,13 @@ public class GUI {
     panel_moveSelectInventory.setLayout(null);
 
     DefaultTableModel moveSelectInventoryModel =
-        new DefaultTableModel(new Object[] {"Name", "Level", "Type", "XP"}, 0);
+        new DefaultTableModel(new Object[] {"Name", "Level", "Type", "XP"}, 0) {
+          // set this table as uneditable
+          @Override
+          public boolean isCellEditable(int row, int column) {
+            return false;
+          }
+        };
     table_moveSelectInventory = new JTable(moveSelectInventoryModel);
     table_moveSelectInventory.setBounds(29, 69, 388, 109);
     moveSelectInventoryModel.addRow(
@@ -771,6 +780,34 @@ public class GUI {
         masterLayout.show(contentPane, "panel_moveSelect");
       }
     });
+
+    // this listener will wait until two table rows are selected on the wanimals
+    // table in the move select inventory screen. When this happens, the
+    // placements of two wanimals represented in the rows selected will be
+    // swapped in the player's inventory
+    table_moveSelectInventory.getSelectionModel().addListSelectionListener(
+        new ListSelectionListener() {
+          @Override
+          public void valueChanged(ListSelectionEvent arg0) {
+            int[] selectedRows =
+                table_moveSelectInventory
+                    .getSelectedRows(); // get the selected rows from the table
+
+            if (selectedRows.length == 2) { // if there are two selected rows
+              ArrayList<Wanimal> playerWanimals =
+                  Engine.getPlayer().getWanimals();
+
+              Collections.swap(
+                  playerWanimals, selectedRows[0],
+                  selectedRows[1]); // swap the first selected wanimal's
+                                    // placement with the second wanimal's
+                                    // placement in the player's inventory
+
+              refreshMoveSelectInventoryGUI(); // refresh the move select
+                                               // inventory GUI
+            }
+          }
+        });
 
     /************************************************************************
      * BATTLE SCREEN LISTENERS
@@ -1306,6 +1343,8 @@ public class GUI {
             .getModel(); // get the table model for the table on the move select
                          // inventory screen so the table data can be
                          // manipulated
+
+    moveSelectInventoryModel.setRowCount(0); // remove all rows from table
 
     // for each wanimal in the player's inventory
     for (Wanimal wanimal : currentPlayer.getWanimals()) {
