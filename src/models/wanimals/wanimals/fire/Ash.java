@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Ash Class (Wanimals)
+
+Description: This is the Ash class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.wanimals.wanimals.fire;
 
 import models.battles.attacks.Attack;

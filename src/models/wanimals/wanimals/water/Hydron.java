@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Hydron Class (Wanimals)
+
+Description: This is the Hydron class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.wanimals.wanimals.water;
 
 import models.battles.attacks.Attack;

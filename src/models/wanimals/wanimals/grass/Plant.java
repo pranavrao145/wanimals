@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Plant Class (Wanimals)
+
+Description: This is the Plant class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.wanimals.wanimals.grass;
 
 import models.battles.attacks.Attack;

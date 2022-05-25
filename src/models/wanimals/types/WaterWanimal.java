@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: WaterWanimal Class (Wanimals)
+
+Description: This is the WaterWanimal class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.wanimals.types;
 
 import models.battles.attacks.Attack;

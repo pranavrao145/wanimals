@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Tryone Class (Wanimals)
+
+Description: This is the Tryone class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.wanimals.wanimals.grass;
 
 import models.battles.attacks.Attack;

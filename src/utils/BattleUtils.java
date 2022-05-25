@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: BattleUtils Class (Wanimals)
+
+Description: This is the BattleUtils class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package utils;
 
 import app.Engine;

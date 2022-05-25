@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: WumboPrime Class (Wanimals)
+
+Description: This is the WumboPrime class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.bosses.bosses;
 
 import models.battles.attacks.Attack;

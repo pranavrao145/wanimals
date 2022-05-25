@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Battle Class (Wanimals)
+
+Description: This is the Battle class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.battles.battles;
 
 import models.player.Player;

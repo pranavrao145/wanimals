@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Engine Class (Wanimals)
+
+Description: This is the Engine class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package app;
 
 import java.io.BufferedReader;

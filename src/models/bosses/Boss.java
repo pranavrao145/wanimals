@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Boss Class (Wanimals)
+
+Description: This is the Boss class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.bosses;
 
 import models.battles.attacks.Attack;

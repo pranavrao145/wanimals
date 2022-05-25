@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: GameUtils Class (Wanimals)
+
+Description: This is the GameUtils class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package utils;
 
 import static java.util.Map.entry;
