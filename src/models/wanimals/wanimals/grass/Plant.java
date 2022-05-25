@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Plant Class (Wanimals)
 
-Description: This is the Plant class. 
+Description: This is the Plant class.
 
 Date: June 1, 2022
 *******************************************************************************/

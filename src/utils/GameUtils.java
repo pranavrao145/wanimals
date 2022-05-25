@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: GameUtils Class (Wanimals)
 
-Description: This is the GameUtils class. 
+Description: This is the GameUtils class.
 
 Date: June 1, 2022
 *******************************************************************************/

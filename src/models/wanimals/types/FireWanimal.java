@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: FireWanimal Class (Wanimals)
 
-Description: This is the FireWanimal class. 
+Description: This is the FireWanimal class.
 
 Date: June 1, 2022
 *******************************************************************************/

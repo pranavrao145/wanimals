@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Aqua Class (Wanimals)
 
-Description: This is the Aqua class. 
+Description: This is the Aqua class.
 
 Date: June 1, 2022
 *******************************************************************************/

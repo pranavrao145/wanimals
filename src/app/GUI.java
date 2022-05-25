@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: GUI Class (Wanimals)
 
-Description: This is the GUI class. 
+Description: This is the GUI class.
 
 Date: June 1, 2022
 *******************************************************************************/

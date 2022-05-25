@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Boss Class (Wanimals)
 
-Description: This is the Boss class. 
+Description: This is the Boss class.
 
 Date: June 1, 2022
 *******************************************************************************/

@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: WumboPrime Class (Wanimals)
 
-Description: This is the WumboPrime class. 
+Description: This is the WumboPrime class.
 
 Date: June 1, 2022
 *******************************************************************************/

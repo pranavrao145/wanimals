@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Player Class (Wanimals)
 
-Description: This is the Player class. 
+Description: This is the Player class.
 
 Date: June 1, 2022
 *******************************************************************************/

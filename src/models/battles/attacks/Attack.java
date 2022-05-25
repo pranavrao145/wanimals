@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Attack Class (Wanimals)
 
-Description: This is the Attack class. 
+Description: This is the Attack class.
 
 Date: June 1, 2022
 *******************************************************************************/

@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Ember Class (Wanimals)
 
-Description: This is the Ember class. 
+Description: This is the Ember class.
 
 Date: June 1, 2022
 *******************************************************************************/

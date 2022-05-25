@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Wumbo Class (Wanimals)
 
-Description: This is the Wumbo class. 
+Description: This is the Wumbo class.
 
 Date: June 1, 2022
 *******************************************************************************/

@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: MrJone Class (Wanimals)
 
-Description: This is the MrJone class. 
+Description: This is the MrJone class.
 
 Date: June 1, 2022
 *******************************************************************************/

@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: BattleUtils Class (Wanimals)
 
-Description: This is the BattleUtils class. 
+Description: This is the BattleUtils class.
 
 Date: June 1, 2022
 *******************************************************************************/
