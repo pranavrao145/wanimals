@@ -83,7 +83,7 @@ public class Engine {
         // current armor, max armor, base attack stat, first attack name,
         // first attack type, second attack name, second attack type
         String wanimalContent = String.format(
-            "%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%s;%d;%s;%d",
+            "%s;%s;%d;%d;%d;%d;%d;%d;%d;%d;%s;%d;%s;%d",
             currentWanimal.getName(), currentWanimal.getType(),
             currentWanimal.getLevel(), currentWanimal.getCurrentXP(),
             currentWanimal.getMaxXP(), currentWanimal.getCurrentHitpoints(),
