@@ -1,15 +1,16 @@
 package app;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
+
 import models.battles.attacks.Attack;
 import models.battles.battles.Battle;
 import models.player.Player;
 import models.wanimals.Wanimal;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Engine {
   private static GUI gui;
@@ -83,10 +84,10 @@ public class Engine {
         // current armor, max armor, base attack stat, first attack name,
         // first attack type, second attack name, second attack type
         String wanimalContent = String.format(
-            "%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%s;%d;%s;%d",
-            currentWanimal.getName(), currentWanimal.getType(),
-            currentWanimal.getLevel(), currentWanimal.getCurrentXP(),
-            currentWanimal.getMaxXP(), currentWanimal.getCurrentHitpoints(),
+            "%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%s;%d;%s;%d", currentWanimal.getName(),
+            currentWanimal.getType(), currentWanimal.getLevel(),
+            currentWanimal.getCurrentXP(), currentWanimal.getMaxXP(),
+            currentWanimal.getCurrentHitpoints(),
             currentWanimal.getMaxHitpoints(), currentWanimal.getCurrentArmor(),
             currentWanimal.getMaxArmor(), currentWanimal.getBaseAttack(),
             currentWanimal.getFirstAttack().getName(),
@@ -104,128 +105,194 @@ public class Engine {
       e.printStackTrace();        // print the error
     }
   }
-
+  
   /*
-   * This method takes the information from the saveData file and loads it into
-   * the game. This allows the user to continue the game from where they left
-   * off tht last time they ran the program.
+   * This method takes the information from the saveData file and loads it into the game.
+   * This allows the user to continue the game from where they left off the last time they
+   * ran the program.
    */
   public static void readFromSaveFile() {
-    BufferedReader objReader = null;
+  
+	  //Setting the reader to null
+	  BufferedReader objReader = null;
+	  
+	  //Try
+	  try {
+		  
+		  //Creates a string that will be the current line the reader is on
+		  String strCurrentLine;
 
-    try {
-      String strCurrentLine;
+		  //Creating a new reader
+		  objReader = new BufferedReader(new FileReader("saveData.txt"));
+	   	   
+		  //Predefining the line number which eventually dictates if the reader is reading user or wanimal info
+		  int line = 1;
+		  
+		  //Predefining the component value so the reader knows which part of the wanimal the data is defining
+		  int infoComponent = 1;
 
-      objReader = new BufferedReader(new FileReader("saveData.txt"));
+		  //Keeps reading the next line until it returns null
+		  while ((strCurrentLine = objReader.readLine()) != null) {
+		   		 
+			  //Finding the length of the line to know how many iterations of the for loop to run
+			  int length = strCurrentLine.length();
+			  
+			  //Predefining the component string as it is the data that will eventually make up the data of the 
+			  //character or their wanimals
+			  String componentStr = "";
+			  
+			  //Predefining the string that the curChar variable will add to, will only ever have one character
+			  //but is needed as char and string data types can't be compared
+			  String curStr = "";
+		   
+			  //If the line is 1 (character information)
+			  if (line == 1) {
+			   
+				  //For loop for the length of the line
+				  for (int x = 0; x < length; x++) {
+				   
+					  //Char curChar is the character at the character at the current iteration of the loop
+					  char curChar = strCurrentLine.charAt(x);
+					  
+					  //Adding it to the curStr variable
+					  curStr += curChar;
+				   				 
+					  //If the current String is a ; (separator of information about the character):
+					  if (curStr.equals(";")) {
+					   
+						  //Sets the character info to the corresponding setter depending on the component counter
+						  if (infoComponent == 1) { Engine.getPlayer().setName(componentStr); }
+					   
+						  else if (infoComponent == 2) { Engine.getPlayer().setRealm(Integer.parseInt(componentStr)); }
+					   
+						  else if (infoComponent == 3) { Engine.getPlayer().setNumPotions(Integer.parseInt(componentStr)); }
+						  
+						  else if (infoComponent == 3) { Engine.getPlayer().setNumArmorPlates(Integer.parseInt(componentStr)); }
+					   
+						  else if (infoComponent == 4) { Engine.getPlayer().setLevel(Integer.parseInt(componentStr)); }
+						  
+						  else if (infoComponent == 5) { Engine.getPlayer().setCurrentXP(Integer.parseInt(componentStr)); }
+					   
+						  else  { Engine.getPlayer().setMaxXP(Integer.parseInt(componentStr)); }
+					   
+						  //Resets the component string so new information can be formed
+						  componentStr = "";
+						  
+						  //Increases the info component counter by 1
+						  infoComponent++;
+					   
+					  } //End of If
+				   
+				   
+					  //Else add the character to the component string
+					  else { componentStr += curChar; }
+					  
+					  //Resets curStr
+					  curStr = "";
+					  
+				  } //End of For
+			   
+			  } //End of If
+		   
+			  //Else (line > 1, wanimal information):
+			  else {
+			   
+				  //Defining all the parameters used to create a new wanimal
+				  int level = 0, curXP = 0, maxXP = 0, curHP = 0, maxHP = 0, curArmor = 0, maxArmor = 0, firstAtkType = 0, secondAtkType, baseAtk = 0;
+				  String wanimalName = null, type = null, firstAtkName = null, secondAtkName = null;
+				  
+				  //For loops running for as many iterations as there are characters in the string
+				  for (int x = 0; x < length; x ++) {
+				   
+					  
+					  //Char curChar is the character at the character at the current iteration of the loop
+					  char curChar = strCurrentLine.charAt(x);
+					  
+					  //Adding it to the curStr variable
+					  curStr += curChar;
+				   
+					  //If the current String is a ; (separator of information about the character):
+					  if (curStr.equals(";")) {
+					   
+						  //Sets the character info to the corresponding setter depending on the component counter
+						  if (infoComponent == 1) { wanimalName = componentStr; }
+						  else if (infoComponent == 2) { type = componentStr; }
+					   
+						  else if (infoComponent == 3) { level = Integer.parseInt(componentStr);}
+						  else if (infoComponent == 4) { curXP = Integer.parseInt(componentStr); }
+						  else if (infoComponent == 5) { maxXP = Integer.parseInt(componentStr); }
+					   
+						  else if (infoComponent == 6) { curHP = Integer.parseInt(componentStr); }
+						  else if (infoComponent == 7) { maxHP = Integer.parseInt(componentStr); }
+					   
+						  else if (infoComponent == 8) { curArmor  = Integer.parseInt(componentStr); }
+						  else if (infoComponent == 9) { maxArmor  = Integer.parseInt(componentStr); }
+					   
+						  else if (infoComponent == 10) { baseAtk = Integer.parseInt(componentStr); }
+					   
+						  else if (infoComponent == 11) { firstAtkName = componentStr; }
+						  else if (infoComponent == 12) { firstAtkType  = Integer.parseInt(componentStr); }
+					   
+						  else if (infoComponent == 13) { secondAtkName = componentStr; }
+					   
+						  else { 
+						   						   
+							  //Creates the two attack needed as parameters
+							  Attack firstAtk = new Attack(firstAtkName, firstAtkType);
+							  Attack secondAtk = new Attack(secondAtkName, Integer.parseInt(componentStr));
+						   
+							  //Creates the wanimal from read information
+							  Wanimal readWanimal = new Wanimal (wanimalName, type, level, maxHP, curHP, baseAtk, maxArmor, curArmor, Engine.getPlayer(), maxXP, curXP, firstAtk, secondAtk);
+						   
+							  //Adds the wanimal to the party
+							  Engine.getPlayer().getWanimals().add(readWanimal);
+						   
+						  }
+					   
+						  //Reset the component string
+						  componentStr = "";
+						  
+						  //Increases info component by 1
+						  infoComponent++;
+   
+					  } //End of If
+				   
+					  
+					  //Else add the character to the component string
+					  else { componentStr += curChar; }
+					  
+					  //Resets curStr
+					  curStr = "";
+				  } //End of For
+			  } //End of Else
+		   
+			  //Increases line counter by 1
+			  line++;
+			  
+			  //Resets the info component
+			  infoComponent = 1;
+		  } //End of While
 
-      int line = 1;
-      int infoComponent = 1;
+		  //Catching the exception
+	  } catch (IOException e) {
 
-      while ((strCurrentLine = objReader.readLine()) != null) {
-        String masterStr = strCurrentLine;
-        int length = masterStr.length();
-        String componentStr = "";
-        String curStr = "";
+		  //Prints the error
+	   e.printStackTrace();
 
-        if (line == 1) {
-          for (int x = 0; x < length; x++) {
-            char curChar = masterStr.charAt(x);
-            curStr += curChar;
+	  } finally {
 
-            if (curStr.equals(";")) {
-              if (infoComponent == 1) {
-                Engine.getPlayer().setName(componentStr);
-              } else if (infoComponent == 2) {
-                Engine.getPlayer().setRealm(Integer.parseInt(componentStr));
-              } else if (infoComponent == 3) {
-                Engine.getPlayer().setNumPotions(
-                    Integer.parseInt(componentStr));
-              } else if (infoComponent == 3) {
-                Engine.getPlayer().setNumArmorPlates(
-                    Integer.parseInt(componentStr));
-              } else if (infoComponent == 4) {
-                Engine.getPlayer().setLevel(Integer.parseInt(componentStr));
-              } else if (infoComponent == 5) {
-                Engine.getPlayer().setCurrentXP(Integer.parseInt(componentStr));
-              } else {
-
-                Engine.getPlayer().setMaxXP(Integer.parseInt(componentStr));
-              }
-              componentStr = "";
-            } else {
-              componentStr += curChar;
-            }
-          }
-        } else {
-          int level = 0, curXP = 0, maxXP = 0, curHP = 0, maxHP = 0,
-              curArmor = 0, maxArmor = 0, firstAtkType = 0, secondAtkType,
-              baseAtk = 0;
-          String wanimalName = null, type = null, firstAtkName = null,
-                 secondAtkName = null;
-          for (int x = 0; x < length; x++) {
-            char curChar = masterStr.charAt(x);
-            curStr += curChar;
-
-            if (curStr.equals(";")) {
-              if (infoComponent == 1) {
-                wanimalName = componentStr;
-              } else if (infoComponent == 2) {
-                type = componentStr;
-              } else if (infoComponent == 3) {
-                level = Integer.parseInt(componentStr);
-              } else if (infoComponent == 4) {
-                curXP = Integer.parseInt(componentStr);
-              } else if (infoComponent == 5) {
-                maxXP = Integer.parseInt(componentStr);
-              } else if (infoComponent == 6) {
-                curHP = Integer.parseInt(componentStr);
-              } else if (infoComponent == 7) {
-                maxHP = Integer.parseInt(componentStr);
-              } else if (infoComponent == 8) {
-                curArmor = Integer.parseInt(componentStr);
-              } else if (infoComponent == 9) {
-                maxArmor = Integer.parseInt(componentStr);
-              } else if (infoComponent == 10) {
-                baseAtk = Integer.parseInt(componentStr);
-              } else if (infoComponent == 11) {
-                firstAtkName = componentStr;
-              } else if (infoComponent == 12) {
-                firstAtkType = Integer.parseInt(componentStr);
-              } else if (infoComponent == 13) {
-                secondAtkName = componentStr;
-              } else {
-                secondAtkType = Integer.parseInt(componentStr);
-
-                Attack firstAtk = new Attack(firstAtkName, firstAtkType);
-                Attack secondAtk = new Attack(secondAtkName, secondAtkType);
-
-                Wanimal readWanimal =
-                    new Wanimal(wanimalName, type, level, maxHP, curHP, baseAtk,
-                                maxArmor, curArmor, Engine.getPlayer(), maxXP,
-                                curXP, firstAtk, secondAtk);
-
-                Engine.getPlayer().getWanimals().add(readWanimal);
-              }
-              componentStr = "";
-            } else {
-              componentStr += curChar;
-            }
-          }
-        }
-
-        line++;
-        infoComponent = 1;
-      }
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        if (objReader != null)
-          objReader.close();
-      } catch (IOException ex) {
-        ex.printStackTrace();
-      }
-    }
-  }
+	   try {
+		   
+		   //If the reader reads nothing
+	    if (objReader != null)
+	    	
+	    	//Closes reader
+	     objReader.close();
+	    
+	    //Catching and printing exception
+	   } catch (IOException ex) {
+	    ex.printStackTrace();
+	   }
+	  }
+  } //End of readFromSaveFile method
 }
