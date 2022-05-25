@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: App Class (Wanimals)
+
+Description: This is the App class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package app;
 
 import java.awt.EventQueue;

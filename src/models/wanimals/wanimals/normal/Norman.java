@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Norman Class (Wanimals)
+
+Description: This is the Norman class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.wanimals.wanimals.normal;
 
 import models.battles.attacks.Attack;

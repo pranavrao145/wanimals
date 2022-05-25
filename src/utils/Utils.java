@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Utils Class (Wanimals)
+
+Description: This is the Utils class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package utils;
 
 import javax.swing.SwingWorker;

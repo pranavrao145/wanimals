@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Wumbo Class (Wanimals)
+
+Description: This is the Wumbo class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.wanimals.wanimals.normal;
 
 import models.battles.attacks.Attack;

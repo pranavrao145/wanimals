@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Wanimal Class (Wanimals)
+
+Description: This is the Wanimal class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.wanimals;
 
 import models.battles.attacks.Attack;

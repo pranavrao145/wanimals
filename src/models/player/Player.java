@@ -1,3 +1,11 @@
+/******************************************************************************
+Program: Player Class (Wanimals)
+
+Description: This is the Player class. 
+
+Date: June 1, 2022
+*******************************************************************************/
+
 package models.player;
 
 import java.util.ArrayList;
