@@ -121,6 +121,7 @@ public class Engine {
   public static void readFromSaveFile() {
 
     // Setting the reader to null
+    Engine.setPlayer(new Player());
     BufferedReader objReader = null;
 
     // Try
@@ -129,7 +130,7 @@ public class Engine {
       String strCurrentLine;
 
       // Creating a new reader
-      objReader = new BufferedReader(new FileReader("saveData.txt"));
+      objReader = new BufferedReader(new FileReader("data/saveData.txt"));
 
       // Predefining the line number which eventually dictates if the reader is
       // reading user or wanimal info
