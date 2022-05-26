@@ -718,18 +718,19 @@ public class GUI {
       }
     });
 
-    // listener to go back to the title screen when the save and quit button
-    // is clicked
+    // listener to save go back to the title screen when the save and quit
+    // button is clicked
     btn_moveSelectSaveAndQuit.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        masterLayout.show(contentPane, "panel_title");
+        Engine.saveWriteToFile(); // write the existing data to the file
+        masterLayout.show(contentPane,
+                          "panel_title"); // switch to the title panel
       }
     });
 
     // listener to go display the user's inventory when the inventory button
     // is clicked
-
     btn_moveSelectInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
