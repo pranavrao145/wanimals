@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: HydronPrime Class (Wanimals)
 
-Description: This is the HydronPrime class. 
+Description: This is the HydronPrime class.
 
 Date: June 1, 2022
 *******************************************************************************/

@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Engine Class (Wanimals)
 
-Description: This is the Engine class. 
+Description: This is the Engine class.
 
 Date: June 1, 2022
 *******************************************************************************/
@@ -50,7 +50,7 @@ public class Engine {
   public static void saveWriteToFile() {
     try {
       // Creating the file to write to
-      final File saveDataFile = new File("saveData.txt");
+      final File saveDataFile = new File("data/saveData.txt");
 
       // Deleting old file as it is being overwritten
       saveDataFile.delete();
@@ -121,16 +121,16 @@ public class Engine {
   public static void readFromSaveFile() {
 
     // Setting the reader to null
+    Engine.setPlayer(new Player());
     BufferedReader objReader = null;
 
     // Try
     try {
-
       // Creates a string that will be the current line the reader is on
       String strCurrentLine;
 
       // Creating a new reader
-      objReader = new BufferedReader(new FileReader("saveData.txt"));
+      objReader = new BufferedReader(new FileReader("data/saveData.txt"));
 
       // Predefining the line number which eventually dictates if the reader is
       // reading user or wanimal info
@@ -264,36 +264,23 @@ public class Engine {
                 curXP = Integer.parseInt(componentStr);
               } else if (infoComponent == 5) {
                 maxXP = Integer.parseInt(componentStr);
-              }
-
-              else if (infoComponent == 6) {
+              } else if (infoComponent == 6) {
                 curHP = Integer.parseInt(componentStr);
               } else if (infoComponent == 7) {
                 maxHP = Integer.parseInt(componentStr);
-              }
-
-              else if (infoComponent == 8) {
+              } else if (infoComponent == 8) {
                 curArmor = Integer.parseInt(componentStr);
               } else if (infoComponent == 9) {
                 maxArmor = Integer.parseInt(componentStr);
-              }
-
-              else if (infoComponent == 10) {
+              } else if (infoComponent == 10) {
                 baseAtk = Integer.parseInt(componentStr);
-              }
-
-              else if (infoComponent == 11) {
+              } else if (infoComponent == 11) {
                 firstAtkName = componentStr;
               } else if (infoComponent == 12) {
                 firstAtkType = Integer.parseInt(componentStr);
-              }
-
-              else if (infoComponent == 13) {
+              } else if (infoComponent == 13) {
                 secondAtkName = componentStr;
-              }
-
-              else {
-
+              } else {
                 // Creates the two attack needed as parameters
                 Attack firstAtk = new Attack(firstAtkName, firstAtkType);
                 Attack secondAtk =
@@ -308,20 +295,15 @@ public class Engine {
                 // Adds the wanimal to the party
                 Engine.getPlayer().getWanimals().add(readWanimal);
               }
-
               // Reset the component string
               componentStr = "";
-
               // Increases info component by 1
               infoComponent++;
-
             } // End of If
-
             // Else add the character to the component string
             else {
               componentStr += curChar;
             }
-
             // Resets curStr
             curStr = "";
           } // End of For

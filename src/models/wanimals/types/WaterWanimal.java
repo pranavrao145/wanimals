@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: WaterWanimal Class (Wanimals)
 
-Description: This is the WaterWanimal class. 
+Description: This is the WaterWanimal class.
 
 Date: June 1, 2022
 *******************************************************************************/

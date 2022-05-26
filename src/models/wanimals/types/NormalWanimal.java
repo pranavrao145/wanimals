@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: NormalWanimal Class (Wanimals)
 
-Description: This is the NormalWanimal class. 
+Description: This is the NormalWanimal class.
 
 Date: June 1, 2022
 *******************************************************************************/

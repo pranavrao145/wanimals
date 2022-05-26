@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: App Class (Wanimals)
 
-Description: This is the App class. 
+Description: This is the App class.
 
 Date: June 1, 2022
 *******************************************************************************/

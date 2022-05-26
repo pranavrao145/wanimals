@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Ash Class (Wanimals)
 
-Description: This is the Ash class. 
+Description: This is the Ash class.
 
 Date: June 1, 2022
 *******************************************************************************/

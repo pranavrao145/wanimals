@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Tryone Class (Wanimals)
 
-Description: This is the Tryone class. 
+Description: This is the Tryone class.
 
 Date: June 1, 2022
 *******************************************************************************/

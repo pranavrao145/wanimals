@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Utils Class (Wanimals)
 
-Description: This is the Utils class. 
+Description: This is the Utils class.
 
 Date: June 1, 2022
 *******************************************************************************/

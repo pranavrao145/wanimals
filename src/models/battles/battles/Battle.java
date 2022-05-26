@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: Battle Class (Wanimals)
 
-Description: This is the Battle class. 
+Description: This is the Battle class.
 
 Date: June 1, 2022
 *******************************************************************************/

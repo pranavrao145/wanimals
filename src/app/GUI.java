@@ -1,7 +1,7 @@
 /******************************************************************************
 Program: GUI Class (Wanimals)
 
-Description: This is the GUI class. 
+Description: This is the GUI class.
 
 Date: June 1, 2022
 *******************************************************************************/
@@ -17,6 +17,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -214,7 +215,7 @@ public class GUI {
     btn_titleQuit.setBounds(285, 217, 105, 27);
     panel_title.add(btn_titleQuit);
 
-    btn_titleLoadGame = new JButton("Load");
+    btn_titleLoadGame = new JButton("Load Game");
     btn_titleLoadGame.setBounds(171, 217, 105, 27);
     panel_title.add(btn_titleLoadGame);
 
@@ -568,6 +569,26 @@ public class GUI {
     btn_titleLoadGame.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
+        File saveFile =
+            new File("data/saveData.txt"); // create a new file object to
+                                           // represent the save file
+
+        if (saveFile.exists()) {     // if the save file exists
+          Engine.readFromSaveFile(); // read from the save file and set up the
+                                     // game
+        } else {
+          btn_titleLoadGame.setText(
+              "No saved games yet!"); // inform the user that there are no saved
+                                      // games yet
+
+          // wait 100 seconds, then change the button back to the original text
+          Utils.delayRun(1000, new Runnable() {
+            @Override
+            public void run() {
+              btn_titleLoadGame.setText("Load Game");
+            }
+          });
+        }
         masterLayout.show(contentPane, "panel_moveSelect");
       }
     });
@@ -718,18 +739,19 @@ public class GUI {
       }
     });
 
-    // listener to go back to the title screen when the save and quit button
-    // is clicked
+    // listener to save go back to the title screen when the save and quit
+    // button is clicked
     btn_moveSelectSaveAndQuit.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        masterLayout.show(contentPane, "panel_title");
+        Engine.saveWriteToFile(); // write the existing data to the file
+        masterLayout.show(contentPane,
+                          "panel_title"); // switch to the title panel
       }
     });
 
     // listener to go display the user's inventory when the inventory button
     // is clicked
-
     btn_moveSelectInventory.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
