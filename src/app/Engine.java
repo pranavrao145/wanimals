@@ -69,7 +69,7 @@ public class Engine {
       // following format Name, realm number, potion number, armor plate number,
       // level, current XP, max XP
       String studentContent = String.format(
-          "%s;%d;%d;%d;%d;%d;%d", Engine.getPlayer().getName(),
+          "%s;%d;%d;%d;%d;%d;%d;", Engine.getPlayer().getName(),
           Engine.getPlayer().getRealm(), Engine.getPlayer().getNumPotions(),
           Engine.getPlayer().getNumArmorPlates(), Engine.getPlayer().getLevel(),
           Engine.getPlayer().getCurrentXP(), Engine.getPlayer().getMaxXP());
@@ -91,7 +91,7 @@ public class Engine {
         // current armor, max armor, base attack stat, first attack name,
         // first attack type, second attack name, second attack type
         String wanimalContent = String.format(
-            "%s;%s;%d;%d;%d;%d;%d;%d;%d;%d;%s;%d;%s;%d",
+            "%s;%s;%d;%d;%d;%d;%d;%d;%d;%d;%s;%d;%s;%d;",
             currentWanimal.getName(), currentWanimal.getType(),
             currentWanimal.getLevel(), currentWanimal.getCurrentXP(),
             currentWanimal.getMaxXP(), currentWanimal.getCurrentHitpoints(),
@@ -188,16 +188,16 @@ public class Engine {
                     Integer.parseInt(componentStr));
               }
 
-              else if (infoComponent == 3) {
+              else if (infoComponent == 4) {
                 Engine.getPlayer().setNumArmorPlates(
                     Integer.parseInt(componentStr));
               }
 
-              else if (infoComponent == 4) {
+              else if (infoComponent == 5) {
                 Engine.getPlayer().setLevel(Integer.parseInt(componentStr));
               }
 
-              else if (infoComponent == 5) {
+              else if (infoComponent == 6) {
                 Engine.getPlayer().setCurrentXP(Integer.parseInt(componentStr));
               }
 
