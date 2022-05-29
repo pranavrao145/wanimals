@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Hydron Class (Wanimals)
 
-Description: This is the Hydron class.
+Description: This is the Hydron class. It inherits from the WaterWanimal class
+and represents the information associated with the Hydron wanimal in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

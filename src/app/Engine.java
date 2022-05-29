@@ -141,7 +141,6 @@ public class Engine {
 
       // Keeps reading the next line until it returns null
       while ((strCurrentLine = objReader.readLine()) != null) {
-
         // Finding the length of the line to know how many iterations of the for
         // loop to run
         int length = strCurrentLine.length();
@@ -190,7 +189,6 @@ public class Engine {
               }
               // Resets the component string so new information can be formed
               componentStr = "";
-
               // Increases the info component counter by 1
               infoComponent++;
 

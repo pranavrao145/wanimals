@@ -1,7 +1,9 @@
 /******************************************************************************
 Program: NormalWanimal Class (Wanimals)
 
-Description: This is the NormalWanimal class.
+Description: This is the NormalWanimal class. It inherits from the Wanimal class
+and contains the information associated with any wanimal of type normal in the
+game.
 
 Date: June 1, 2022
 *******************************************************************************/

@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Norman Class (Wanimals)
 
-Description: This is the Norman class.
+Description: This is the Norman class. It inherits from the NormalWanimal class
+and represents the information associated with the Norman wanimal in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

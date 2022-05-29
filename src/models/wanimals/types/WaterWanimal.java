@@ -1,7 +1,9 @@
 /******************************************************************************
 Program: WaterWanimal Class (Wanimals)
 
-Description: This is the WaterWanimal class.
+Description: This is the WaterWanimal class. It inherits from the Wanimal class
+and contains the information associated with any wanimal of type water in the
+game.
 
 Date: June 1, 2022
 *******************************************************************************/
