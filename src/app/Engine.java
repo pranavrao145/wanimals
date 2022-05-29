@@ -119,7 +119,6 @@ public class Engine {
    * off the last time they ran the program.
    */
   public static void readFromSaveFile() {
-
     // Setting the reader to null
     Engine.setPlayer(new Player());
     BufferedReader objReader = null;
@@ -142,7 +141,6 @@ public class Engine {
 
       // Keeps reading the next line until it returns null
       while ((strCurrentLine = objReader.readLine()) != null) {
-
         // Finding the length of the line to know how many iterations of the for
         // loop to run
         int length = strCurrentLine.length();
@@ -158,10 +156,8 @@ public class Engine {
 
         // If the line is 1 (character information)
         if (line == 1) {
-
           // For loop for the length of the line
           for (int x = 0; x < length; x++) {
-
             // Char curChar is the character at the character at the current
             // iteration of the loop
             char curChar = strCurrentLine.charAt(x);
@@ -181,38 +177,25 @@ public class Engine {
 
               else if (infoComponent == 2) {
                 Engine.getPlayer().setRealm(Integer.parseInt(componentStr));
-              }
-
-              else if (infoComponent == 3) {
+              } else if (infoComponent == 3) {
                 Engine.getPlayer().setNumPotions(
                     Integer.parseInt(componentStr));
-              }
-
-              else if (infoComponent == 4) {
+              } else if (infoComponent == 4) {
                 Engine.getPlayer().setNumArmorPlates(
                     Integer.parseInt(componentStr));
-              }
-
-              else if (infoComponent == 5) {
+              } else if (infoComponent == 5) {
                 Engine.getPlayer().setLevel(Integer.parseInt(componentStr));
-              }
-
-              else if (infoComponent == 6) {
+              } else if (infoComponent == 6) {
                 Engine.getPlayer().setCurrentXP(Integer.parseInt(componentStr));
-              }
-
-              else {
+              } else {
                 Engine.getPlayer().setMaxXP(Integer.parseInt(componentStr));
               }
 
               // Resets the component string so new information can be formed
               componentStr = "";
-
               // Increases the info component counter by 1
               infoComponent++;
-
             } // End of If
-
             // Else add the character to the component string
             else {
               componentStr += curChar;
@@ -220,25 +203,19 @@ public class Engine {
 
             // Resets curStr
             curStr = "";
-
           } // End of For
-
-        } // End of If
-
+        }   // End of If
         // Else (line > 1, wanimal information):
         else {
-
           // Defining all the parameters used to create a new wanimal
           int level = 0, curXP = 0, maxXP = 0, curHP = 0, maxHP = 0,
-              curArmor = 0, maxArmor = 0, firstAtkType = 0, secondAtkType,
-              baseAtk = 0;
+              curArmor = 0, maxArmor = 0, firstAtkType = 0, baseAtk = 0;
           String wanimalName = null, type = null, firstAtkName = null,
                  secondAtkName = null;
 
           // For loops running for as many iterations as there are characters in
           // the string
           for (int x = 0; x < length; x++) {
-
             // Char curChar is the character at the character at the current
             // iteration of the loop
             char curChar = strCurrentLine.charAt(x);
@@ -249,16 +226,13 @@ public class Engine {
             // If the current String is a ; (separator of information about the
             // character):
             if (curStr.equals(";")) {
-
               // Sets the character info to the corresponding setter depending
               // on the component counter
               if (infoComponent == 1) {
                 wanimalName = componentStr;
               } else if (infoComponent == 2) {
                 type = componentStr;
-              }
-
-              else if (infoComponent == 3) {
+              } else if (infoComponent == 3) {
                 level = Integer.parseInt(componentStr);
               } else if (infoComponent == 4) {
                 curXP = Integer.parseInt(componentStr);
@@ -318,20 +292,14 @@ public class Engine {
 
       // Catching the exception
     } catch (IOException e) {
-
       // Prints the error
       e.printStackTrace();
-
     } finally {
-
       try {
-
         // If the reader reads nothing
         if (objReader != null)
-
           // Closes reader
           objReader.close();
-
         // Catching and printing exception
       } catch (IOException ex) {
         ex.printStackTrace();

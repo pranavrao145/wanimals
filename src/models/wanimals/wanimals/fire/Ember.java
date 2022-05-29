@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Ember Class (Wanimals)
 
-Description: This is the Ember class.
+Description: This is the Ember class. It inherits from the FireWanimal class and
+represents the information associated with the Ember wanimal in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

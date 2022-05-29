@@ -1,7 +1,9 @@
 /******************************************************************************
 Program: Wanimal Class (Wanimals)
 
-Description: This is the Wanimal class.
+Description: This is the Wanimal class. It is the base class for every wanimal
+in this game and contains fields for attributes that every wanimal in the game,
+including player, wild, and boss wanimals, will have.
 
 Date: June 1, 2022
 *******************************************************************************/

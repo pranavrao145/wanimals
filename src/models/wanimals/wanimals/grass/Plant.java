@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Plant Class (Wanimals)
 
-Description: This is the Plant class.
+Description: This is the Plant class. It inherits from the GrassWanimal class
+and represents the information associated with the Plant wanimal in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

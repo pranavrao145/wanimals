@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Wumbo Class (Wanimals)
 
-Description: This is the Wumbo class.
+Description: This is the Wumbo class. It inherits from the NormalWanimal class
+and represents the information associated with the Wumbo wanimal in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

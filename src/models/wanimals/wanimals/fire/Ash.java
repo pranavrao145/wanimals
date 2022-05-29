@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Ash Class (Wanimals)
 
-Description: This is the Ash class.
+Description: This is the Ash class. It inherits from the FireWanimal class and
+represents the information associated with the Ash wanimal in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

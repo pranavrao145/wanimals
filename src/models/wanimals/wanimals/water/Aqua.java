@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Aqua Class (Wanimals)
 
-Description: This is the Aqua class.
+Description: This is the Aqua class. It inherits from the WaterWanimal class and
+represents the information associated with the Aqua wanimal in the game.
 
 Date: June 1, 2022
 *******************************************************************************/
