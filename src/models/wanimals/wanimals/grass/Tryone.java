@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Tryone Class (Wanimals)
 
-Description: This is the Tryone class.
+Description: This is the Tryone class. It inherits from the GrassWanimal class
+and represents the information associated with the Tryone wanimal in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

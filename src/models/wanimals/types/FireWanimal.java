@@ -1,7 +1,9 @@
 /******************************************************************************
 Program: FireWanimal Class (Wanimals)
 
-Description: This is the FireWanimal class.
+Description: This is the FireWanimal class. It inherits from the Wanimal class
+and contains the information associated with any wanimal of type fire in the
+game.
 
 Date: June 1, 2022
 *******************************************************************************/
