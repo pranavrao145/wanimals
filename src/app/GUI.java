@@ -146,6 +146,35 @@ public class GUI {
   private JLabel lbl_characterCreateStarterWanimal;
   private JButton btn_characterCreateAdvance;
   private ArrayList<Class<? extends Boss>> bossList;
+  private JPanel panel_moveSelectHelp;
+  private JLabel lbl_moveSelectHelpAdvance2;
+  private JLabel lbl_moveSelectHelpBattleBoss1;
+  private JLabel lbl_moveSelectHelpBattleBoss2;
+  private JLabel lbl_moveSelectHelpInventory;
+  private JLabel lbl_moveSelectHelpSaveAndQuit;
+  private JButton btn_moveSelectHelpBack;
+  private JLabel lbl_moveSelectHelp;
+  private JLabel lbl_moveSelectHelpDescription;
+  private JLabel lbl_moveSelectHelpAdvance1;
+  private JPanel panel_battleHelp;
+  private JLabel lbl_battleHelp;
+  private JLabel lbl_battleHelpDescription1;
+  private JLabel lbl_battleHelpAttack1;
+  private JLabel lbl_battleHelpAttack2;
+  private JLabel lbl_battleHelpSwitch;
+  private JLabel lbl_battleHelpInventory;
+  private JButton btn_battleHelpBack;
+  private JLabel lbl_battleHelpCatch;
+  private JLabel lbl_battleHelpFlee;
+  private JLabel lbl_battleHelpDescription2;
+  private JLabel lbl_battleInventoryRestoreFullHealth;
+  private JLabel lbl_battleInventoryRestoreFullArmor;
+  private JButton btn_battleInventoryBack;
+  private JLabel lbl_moveSelectInventoryHelp1;
+  private JLabel lbl_moveSelectInventoryHelp2;
+  private JButton btn_moveSelectHelp;
+  private JButton btn_battleHelp;
+  private JLabel lbl_battle;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -240,37 +269,37 @@ public class GUI {
     panel_battle.setLayout(null);
 
     lbl_battlePlayerName = new JLabel("Wanimal Name");
-    lbl_battlePlayerName.setBounds(38, 55, 93, 17);
+    lbl_battlePlayerName.setBounds(39, 73, 93, 17);
     panel_battle.add(lbl_battlePlayerName);
 
     lbl_battlePlayer = new JLabel("PLAYER");
-    lbl_battlePlayer.setBounds(57, 30, 60, 17);
+    lbl_battlePlayer.setBounds(58, 48, 60, 17);
     lbl_battlePlayer.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battle.add(lbl_battlePlayer);
 
     lbl_battlePlayerHealth = new JLabel("Wanimal Health");
-    lbl_battlePlayerHealth.setBounds(38, 73, 93, 17);
+    lbl_battlePlayerHealth.setBounds(39, 91, 93, 17);
     panel_battle.add(lbl_battlePlayerHealth);
 
     lbl_battlePlayerArmor = new JLabel("Wanimal Armor");
-    lbl_battlePlayerArmor.setBounds(38, 92, 93, 17);
+    lbl_battlePlayerArmor.setBounds(39, 110, 93, 17);
     panel_battle.add(lbl_battlePlayerArmor);
 
     lbl_battleEnemyName = new JLabel("Wanimal Name");
-    lbl_battleEnemyName.setBounds(301, 55, 93, 17);
+    lbl_battleEnemyName.setBounds(302, 73, 93, 17);
     panel_battle.add(lbl_battleEnemyName);
 
     lbl_battleEnemy = new JLabel("ENEMY");
-    lbl_battleEnemy.setBounds(320, 30, 60, 17);
+    lbl_battleEnemy.setBounds(321, 48, 60, 17);
     lbl_battleEnemy.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battle.add(lbl_battleEnemy);
 
     lbl_battleEnemyHealth = new JLabel("Wanimal Health");
-    lbl_battleEnemyHealth.setBounds(301, 73, 93, 17);
+    lbl_battleEnemyHealth.setBounds(302, 91, 93, 17);
     panel_battle.add(lbl_battleEnemyHealth);
 
     lbl_battleEnemyArmor = new JLabel("Wanimal Armor");
-    lbl_battleEnemyArmor.setBounds(301, 92, 93, 17);
+    lbl_battleEnemyArmor.setBounds(302, 110, 93, 17);
     panel_battle.add(lbl_battleEnemyArmor);
 
     btn_battleAttack1 = new JButton("Attack 1");
@@ -306,9 +335,18 @@ public class GUI {
     panel_battle.add(scrollPane_battleLog);
 
     lbl_battleTurn = new JLabel("Player's Turn");
-    lbl_battleTurn.setBounds(157, 12, 129, 27);
+    lbl_battleTurn.setBounds(161, 66, 129, 27);
     lbl_battleTurn.setFont(new Font("Dialog", Font.BOLD, 16));
     panel_battle.add(lbl_battleTurn);
+
+    btn_battleHelp = new JButton("Help");
+    btn_battleHelp.setBounds(12, 9, 89, 27);
+    panel_battle.add(btn_battleHelp);
+
+    lbl_battle = new JLabel("Battle");
+    lbl_battle.setFont(new Font("Dialog", Font.BOLD, 20));
+    lbl_battle.setBounds(181, 19, 65, 17);
+    panel_battle.add(lbl_battle);
 
     panel_battleInventory = new JPanel();
     frame.getContentPane().add(panel_battleInventory, "btn_battleInventory");
@@ -320,31 +358,45 @@ public class GUI {
     panel_battleInventory.add(lbl_battleInventory);
 
     btn_battleInventoryUsePotion = new JButton("Use Potion");
-    btn_battleInventoryUsePotion.setBounds(40, 145, 144, 62);
+    btn_battleInventoryUsePotion.setBounds(40, 136, 144, 62);
     panel_battleInventory.add(btn_battleInventoryUsePotion);
 
     btn_battleInventoryUseArmorPlate = new JButton("Use Armor Plate");
-    btn_battleInventoryUseArmorPlate.setBounds(252, 145, 144, 62);
+    btn_battleInventoryUseArmorPlate.setBounds(252, 136, 144, 62);
     panel_battleInventory.add(btn_battleInventoryUseArmorPlate);
 
     lbl_battleInventoryPotionsRemaining = new JLabel("Potions remaining: 5");
-    lbl_battleInventoryPotionsRemaining.setBounds(50, 219, 134, 17);
+    lbl_battleInventoryPotionsRemaining.setBounds(50, 210, 134, 17);
     panel_battleInventory.add(lbl_battleInventoryPotionsRemaining);
 
     lbl_battleInventoryArmorPlatesRemaining =
         new JLabel("Armor plates remaining: 5");
-    lbl_battleInventoryArmorPlatesRemaining.setBounds(244, 219, 166, 17);
+    lbl_battleInventoryArmorPlatesRemaining.setBounds(244, 210, 166, 17);
     panel_battleInventory.add(lbl_battleInventoryArmorPlatesRemaining);
 
     lbl_battleInventoryWanimalHP = new JLabel("Current wanimal's HP: 0");
-    lbl_battleInventoryWanimalHP.setBounds(136, 60, 181, 17);
+    lbl_battleInventoryWanimalHP.setBounds(136, 51, 181, 17);
     lbl_battleInventoryWanimalHP.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battleInventory.add(lbl_battleInventoryWanimalHP);
 
     lbl_battleInventoryWanimalArmor = new JLabel("Current wanimal's armor: 0");
-    lbl_battleInventoryWanimalArmor.setBounds(124, 89, 193, 17);
+    lbl_battleInventoryWanimalArmor.setBounds(124, 80, 193, 17);
     lbl_battleInventoryWanimalArmor.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battleInventory.add(lbl_battleInventoryWanimalArmor);
+
+    lbl_battleInventoryRestoreFullHealth =
+        new JLabel("Restore full health of wanimal:");
+    lbl_battleInventoryRestoreFullHealth.setBounds(12, 109, 202, 17);
+    panel_battleInventory.add(lbl_battleInventoryRestoreFullHealth);
+
+    lbl_battleInventoryRestoreFullArmor =
+        new JLabel("Restore full armor of wanimal:");
+    lbl_battleInventoryRestoreFullArmor.setBounds(226, 109, 202, 17);
+    panel_battleInventory.add(lbl_battleInventoryRestoreFullArmor);
+
+    btn_battleInventoryBack = new JButton("Back");
+    btn_battleInventoryBack.setBounds(12, 239, 416, 27);
+    panel_battleInventory.add(btn_battleInventoryBack);
 
     panel_battleSwitch = new JPanel();
     frame.getContentPane().add(panel_battleSwitch, "panel_battleSwitch");
@@ -382,11 +434,11 @@ public class GUI {
     panel_moveSelect.add(btn_moveSelectAdvance);
 
     btn_moveSelectInventory = new JButton("Inventory");
-    btn_moveSelectInventory.setBounds(25, 179, 189, 60);
+    btn_moveSelectInventory.setBounds(25, 161, 189, 60);
     panel_moveSelect.add(btn_moveSelectInventory);
 
     btn_moveSelectSaveAndQuit = new JButton("Save and Quit");
-    btn_moveSelectSaveAndQuit.setBounds(226, 179, 189, 60);
+    btn_moveSelectSaveAndQuit.setBounds(226, 161, 189, 60);
     panel_moveSelect.add(btn_moveSelectSaveAndQuit);
 
     btn_moveSelectBattleBoss = new JButton("Battle Boss");
@@ -410,6 +462,10 @@ public class GUI {
     lbl_moveSelectXP.setBounds(339, 50, 97, 17);
     panel_moveSelect.add(lbl_moveSelectXP);
 
+    btn_moveSelectHelp = new JButton("Help");
+    btn_moveSelectHelp.setBounds(339, 233, 89, 27);
+    panel_moveSelect.add(btn_moveSelectHelp);
+
     panel_moveSelectInventory = new JPanel();
     frame.getContentPane().add(panel_moveSelectInventory,
                                "panel_moveInventory");
@@ -417,6 +473,9 @@ public class GUI {
 
     DefaultTableModel moveSelectInventoryModel =
         new DefaultTableModel(new Object[] {"Name", "Level", "Type", "XP"}, 0) {
+          private static final long serialVersionUID =
+              1L; // good practice for security
+
           // set this table as uneditable
           @Override
           public boolean isCellEditable(int row, int column) {
@@ -432,15 +491,15 @@ public class GUI {
 
     lbl_moveSelectInventoryPotions =
         new JLabel("Number of Potions Remaining: ");
-    lbl_moveSelectInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 14));
-    lbl_moveSelectInventoryPotions.setBounds(52, 190, 365, 33);
+    lbl_moveSelectInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 12));
+    lbl_moveSelectInventoryPotions.setBounds(29, 214, 365, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryPotions);
 
     lbl_moveSelectInventoryArmorPlates =
         new JLabel("Number of Armor Plates Remaining:");
     lbl_moveSelectInventoryArmorPlates.setFont(
-        new Font("Dialog", Font.BOLD, 14));
-    lbl_moveSelectInventoryArmorPlates.setBounds(52, 225, 365, 33);
+        new Font("Dialog", Font.BOLD, 12));
+    lbl_moveSelectInventoryArmorPlates.setBounds(29, 237, 365, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryArmorPlates);
 
     lbl_moveSelectInventoryTitle = new JLabel("Inventory");
@@ -451,6 +510,15 @@ public class GUI {
     btn_moveSelectInventoryBack = new JButton("Back");
     btn_moveSelectInventoryBack.setBounds(12, 12, 107, 27);
     panel_moveSelectInventory.add(btn_moveSelectInventoryBack);
+
+    lbl_moveSelectInventoryHelp1 =
+        new JLabel("Tip: select any two wanimals in the table to switch their");
+    lbl_moveSelectInventoryHelp1.setBounds(29, 183, 388, 17);
+    panel_moveSelectInventory.add(lbl_moveSelectInventoryHelp1);
+
+    lbl_moveSelectInventoryHelp2 = new JLabel("battle order.");
+    lbl_moveSelectInventoryHelp2.setBounds(29, 197, 90, 17);
+    panel_moveSelectInventory.add(lbl_moveSelectInventoryHelp2);
 
     panel_battleInform = new JPanel();
     frame.getContentPane().add(panel_battleInform, "panel_battleInform");
@@ -534,6 +602,105 @@ public class GUI {
     btn_characterCreateAdvance = new JButton("Advance");
     btn_characterCreateAdvance.setBounds(12, 231, 416, 27);
     panel_characterCreate.add(btn_characterCreateAdvance);
+
+    panel_moveSelectHelp = new JPanel();
+    frame.getContentPane().add(panel_moveSelectHelp, "panel_moveSelectHelp");
+    panel_moveSelectHelp.setLayout(null);
+
+    lbl_moveSelectHelp = new JLabel("Move Select Help");
+    lbl_moveSelectHelp.setFont(new Font("Dialog", Font.BOLD, 20));
+    lbl_moveSelectHelp.setBounds(129, 12, 179, 28);
+    panel_moveSelectHelp.add(lbl_moveSelectHelp);
+
+    lbl_moveSelectHelpDescription = new JLabel(
+        "Below are the descriptions of each move you can make on a turn:");
+    lbl_moveSelectHelpDescription.setBounds(12, 48, 414, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpDescription);
+
+    lbl_moveSelectHelpAdvance1 = new JLabel(
+        "Advance: Advance forward in the game world, with a chance of");
+    lbl_moveSelectHelpAdvance1.setBounds(12, 77, 416, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpAdvance1);
+
+    lbl_moveSelectHelpAdvance2 =
+        new JLabel("running into a battle with a wild wanimal.");
+    lbl_moveSelectHelpAdvance2.setBounds(12, 95, 396, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpAdvance2);
+
+    lbl_moveSelectHelpBattleBoss1 = new JLabel(
+        "Battle Boss: Challenge and battle the boss of the current realm");
+    lbl_moveSelectHelpBattleBoss1.setBounds(12, 124, 416, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpBattleBoss1);
+
+    lbl_moveSelectHelpBattleBoss2 = new JLabel(" to move to the next realm.");
+    lbl_moveSelectHelpBattleBoss2.setBounds(12, 142, 396, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpBattleBoss2);
+
+    lbl_moveSelectHelpInventory =
+        new JLabel("Inventory: View your wanimals, potions, and armor plates.");
+    lbl_moveSelectHelpInventory.setBounds(12, 171, 414, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpInventory);
+
+    lbl_moveSelectHelpSaveAndQuit = new JLabel(
+        "Save and Quit: Save the game and return to the title screen.");
+    lbl_moveSelectHelpSaveAndQuit.setBounds(12, 200, 414, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpSaveAndQuit);
+
+    btn_moveSelectHelpBack = new JButton("Back");
+    btn_moveSelectHelpBack.setBounds(12, 231, 414, 27);
+    panel_moveSelectHelp.add(btn_moveSelectHelpBack);
+
+    panel_battleHelp = new JPanel();
+    panel_battleHelp.setLayout(null);
+    frame.getContentPane().add(panel_battleHelp, "panel_battleHelp");
+
+    lbl_battleHelp = new JLabel("Battle Help");
+    lbl_battleHelp.setFont(new Font("Dialog", Font.BOLD, 20));
+    lbl_battleHelp.setBounds(153, 12, 127, 28);
+    panel_battleHelp.add(lbl_battleHelp);
+
+    lbl_battleHelpDescription1 = new JLabel(
+        "Below are the descriptions of each move you can make on a battle turn:");
+    lbl_battleHelpDescription1.setBounds(12, 40, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpDescription1);
+
+    lbl_battleHelpAttack1 =
+        new JLabel("Attack 1: Use your first attack on the enemy.");
+    lbl_battleHelpAttack1.setBounds(12, 77, 416, 17);
+    panel_battleHelp.add(lbl_battleHelpAttack1);
+
+    lbl_battleHelpAttack2 =
+        new JLabel("Attack 2: Use your second attack on the enemy.");
+    lbl_battleHelpAttack2.setBounds(12, 98, 416, 17);
+    panel_battleHelp.add(lbl_battleHelpAttack2);
+
+    lbl_battleHelpSwitch =
+        new JLabel("Switch: switch your attacking wanimal. Takes a turn.");
+    lbl_battleHelpSwitch.setBounds(12, 122, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpSwitch);
+
+    lbl_battleHelpInventory = new JLabel(
+        "Inventory: view battle inventory to use potions/armor plates.");
+    lbl_battleHelpInventory.setBounds(12, 144, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpInventory);
+
+    btn_battleHelpBack = new JButton("Back");
+    btn_battleHelpBack.setBounds(12, 231, 414, 27);
+    panel_battleHelp.add(btn_battleHelpBack);
+
+    lbl_battleHelpDescription2 = new JLabel("turn:");
+    lbl_battleHelpDescription2.setBounds(12, 52, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpDescription2);
+
+    lbl_battleHelpCatch =
+        new JLabel("Catch: Attempt to catch the enemy wanimal. Takes a turn.");
+    lbl_battleHelpCatch.setBounds(12, 173, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpCatch);
+
+    lbl_battleHelpFlee = new JLabel(
+        "Flee: Attempt to flee from the enemy wanimal. Takes a turn.");
+    lbl_battleHelpFlee.setBounds(12, 199, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpFlee);
   }
 
   /**
@@ -798,6 +965,28 @@ public class GUI {
       }
     });
 
+    // listener to show the move select help screen when the help button is
+    // clicked on the move select screen
+    btn_moveSelectHelp.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelectHelp");
+      }
+    });
+
+    /************************************************************************
+     * MOVE SELECT HELP SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to show the move select screen when the back button is
+    // clicked on the move select help screen
+    btn_moveSelectHelpBack.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelect");
+      }
+    });
+
     /************************************************************************
      * MOVE SELECT INVENTORY SCREEN LISTENERS
      *************************************************************************/
@@ -1027,6 +1216,28 @@ public class GUI {
       }
     });
 
+    // listener to show the battle help screen when the help button is
+    // clicked on the battle screen
+    btn_battleHelp.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_battleHelp");
+      }
+    });
+
+    /************************************************************************
+     * BATTLE HELP SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to show the battle screen when the back button is
+    // clicked on the battle help screen
+    btn_battleHelpBack.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_battle");
+      }
+    });
+
     /************************************************************************
      * BATTLE SWITCH SCREEN LISTENERS
      *************************************************************************/
@@ -1111,6 +1322,15 @@ public class GUI {
 
         // restore the player's wanimal's armor to full
         playerWanimal.setCurrentArmor(playerWanimal.getMaxArmor());
+      }
+    });
+
+    // listener to go back to the battle screen when the back button is clicked
+    // on the battle inventory screen
+    btn_battleInventoryBack.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_battle");
       }
     });
   }
