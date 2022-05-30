@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: MrJone Class (Wanimals)
 
-Description: This is the MrJone class.
+Description: This is the MrJone class. It inherits from the Boss class
+and represents the information associated with the MrJone boss in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

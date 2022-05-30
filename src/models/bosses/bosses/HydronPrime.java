@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: HydronPrime Class (Wanimals)
 
-Description: This is the HydronPrime class.
+Description: This is the HydronPrime class. It inherits from the Boss class
+and represents the information associated with the HydronPrime boss in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

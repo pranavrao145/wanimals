@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Boss Class (Wanimals)
 
-Description: This is the Boss class.
+Description: This is the Boss class. It inherits from the Wanimal class
+and contains the information associated with any boss in the game.
 
 Date: June 1, 2022
 *******************************************************************************/

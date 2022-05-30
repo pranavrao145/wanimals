@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: WumboPrime Class (Wanimals)
 
-Description: This is the WumboPrime class.
+Description: This is the WumboPrime class. It inherits from the Boss class
+and represents the information associated with the WumboPrime boss in the game.
 
 Date: June 1, 2022
 *******************************************************************************/
