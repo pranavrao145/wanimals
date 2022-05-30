@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Player Class (Wanimals)
 
-Description: This is the Player class.
+Description: This is the Player class. It contains fields for all the attributes
+that the player will have in the game such as name, XP, etc..
 
 Date: June 1, 2022
 *******************************************************************************/
