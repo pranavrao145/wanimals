@@ -173,7 +173,7 @@ public class GUI {
   private JLabel lbl_moveSelectInventoryHelp1;
   private JLabel lbl_moveSelectInventoryHelp2;
   private JButton btn_moveSelectHelp;
-  private JButton lbl_battleHelp_1;
+  private JButton btn_battleHelp;
   private JLabel lbl_battle;
 
   /**
@@ -339,9 +339,9 @@ public class GUI {
     lbl_battleTurn.setFont(new Font("Dialog", Font.BOLD, 16));
     panel_battle.add(lbl_battleTurn);
 
-    lbl_battleHelp_1 = new JButton("Help");
-    lbl_battleHelp_1.setBounds(12, 9, 89, 27);
-    panel_battle.add(lbl_battleHelp_1);
+    btn_battleHelp = new JButton("Help");
+    btn_battleHelp.setBounds(12, 9, 89, 27);
+    panel_battle.add(btn_battleHelp);
 
     lbl_battle = new JLabel("Battle");
     lbl_battle.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -473,7 +473,8 @@ public class GUI {
 
     DefaultTableModel moveSelectInventoryModel =
         new DefaultTableModel(new Object[] {"Name", "Level", "Type", "XP"}, 0) {
-          private static final long serialVersionUID = 1L;
+          private static final long serialVersionUID =
+              1L; // good practice for security
 
           // set this table as uneditable
           @Override
@@ -603,7 +604,7 @@ public class GUI {
     panel_characterCreate.add(btn_characterCreateAdvance);
 
     panel_moveSelectHelp = new JPanel();
-    frame.getContentPane().add(panel_moveSelectHelp, "panel_help");
+    frame.getContentPane().add(panel_moveSelectHelp, "panel_moveSelectHelp");
     panel_moveSelectHelp.setLayout(null);
 
     lbl_moveSelectHelp = new JLabel("Move Select Help");
@@ -964,6 +965,28 @@ public class GUI {
       }
     });
 
+    // listener to show the move select help screen when the help button is
+    // clicked on the move select screen
+    btn_moveSelectHelp.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelectHelp");
+      }
+    });
+
+    /************************************************************************
+     * MOVE SELECT HELP SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to show the move select screen when the back button is
+    // clicked on the move select help screen
+    btn_moveSelectHelpBack.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_moveSelect");
+      }
+    });
+
     /************************************************************************
      * MOVE SELECT INVENTORY SCREEN LISTENERS
      *************************************************************************/
@@ -1190,6 +1213,28 @@ public class GUI {
             }
           });
         }
+      }
+    });
+
+    // listener to show the battle help screen when the help button is
+    // clicked on the battle screen
+    btn_battleHelp.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_battleHelp");
+      }
+    });
+
+    /************************************************************************
+     * BATTLE HELP SCREEN LISTENERS
+     *************************************************************************/
+
+    // listener to show the battle screen when the back button is
+    // clicked on the battle help screen
+    btn_battleHelpBack.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_battle");
       }
     });
 
