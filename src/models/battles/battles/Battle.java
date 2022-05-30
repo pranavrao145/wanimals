@@ -1,7 +1,9 @@
 /******************************************************************************
 Program: Battle Class (Wanimals)
 
-Description: This is the Battle class.
+Description: This is the Battle class. It contains fields for all the attributes
+needed to keep track of the state of a battle, including player wanimal, enemy
+wanimal, the current turn, etc.
 
 Date: June 1, 2022
 *******************************************************************************/
@@ -16,7 +18,9 @@ public class Battle {
   protected Wanimal
       playerWanimal;     // to keep track of which wanimal the player is using
   private Wanimal enemy; // to keep track of the the enemy wanimal
-  protected volatile int currentTurn; // 1 for player turn, 0 for enemy turn
+  protected volatile int
+      currentTurn; // 1 for player turn, 0 for enemy turn. Needs to be volatile
+                   // because other classes are constantly changing it.
   protected boolean
       running; // to keep track of if the battle is currently running
 

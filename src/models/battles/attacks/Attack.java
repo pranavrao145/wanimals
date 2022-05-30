@@ -1,7 +1,9 @@
 /******************************************************************************
 Program: Attack Class (Wanimals)
 
-Description: This is the Attack class.
+Description: This is the Attack class. It contains fields for all the attributes
+of a wanimal's attack in the game. It also notably contains an execute method,
+which can be used to execute the given attack on an enemy wanimal.
 
 Date: June 1, 2022
 *******************************************************************************/
