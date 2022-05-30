@@ -8,8 +8,9 @@ Date: June 1, 2022
 
 package models.battles.attacks;
 
-import app.Engine;
 import java.util.concurrent.ThreadLocalRandom;
+
+import app.Engine;
 import models.wanimals.Wanimal;
 import utils.GameUtils;
 

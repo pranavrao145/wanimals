@@ -8,12 +8,13 @@ Date: June 1, 2022
 
 package utils;
 
-import app.Engine;
-import app.GUI;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import app.Engine;
+import app.GUI;
 import models.battles.attacks.Attack;
 import models.battles.battles.Battle;
 import models.bosses.Boss;

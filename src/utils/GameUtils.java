@@ -10,13 +10,14 @@ package utils;
 
 import static java.util.Map.entry;
 
-import app.Engine;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+
+import app.Engine;
 import models.player.Player;
 import models.wanimals.Wanimal;
 import models.wanimals.wanimals.fire.Ash;
