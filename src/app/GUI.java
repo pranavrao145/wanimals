@@ -156,6 +156,17 @@ public class GUI {
   private JLabel lbl_moveSelectHelp;
   private JLabel lbl_moveSelectHelpDescription;
   private JLabel lbl_moveSelectHelpAdvance1;
+  private JPanel panel_battleHelp;
+  private JLabel lbl_battleHelp;
+  private JLabel lbl_battleHelpDescription1;
+  private JLabel lbl_battleHelpAttack1;
+  private JLabel lbl_battleHelpAttack2;
+  private JLabel lbl_battleHelpSwitch;
+  private JLabel lbl_battleHelpInventory;
+  private JButton btn_battleHelpBack;
+  private JLabel lbl_battleHelpCatch;
+  private JLabel lbl_battleHelpFlee;
+  private JLabel lbl_battleHelpDescription2;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -593,6 +604,56 @@ public class GUI {
     btn_moveSelectHelpBack = new JButton("Back");
     btn_moveSelectHelpBack.setBounds(12, 231, 414, 27);
     panel_moveSelectHelp.add(btn_moveSelectHelpBack);
+
+    panel_battleHelp = new JPanel();
+    panel_battleHelp.setLayout(null);
+    frame.getContentPane().add(panel_battleHelp, "panel_battleHelp");
+
+    lbl_battleHelp = new JLabel("Battle Help");
+    lbl_battleHelp.setFont(new Font("Dialog", Font.BOLD, 20));
+    lbl_battleHelp.setBounds(153, 12, 127, 28);
+    panel_battleHelp.add(lbl_battleHelp);
+
+    lbl_battleHelpDescription1 = new JLabel(
+        "Below are the descriptions of each move you can make on a battle turn:");
+    lbl_battleHelpDescription1.setBounds(12, 40, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpDescription1);
+
+    lbl_battleHelpAttack1 = new JLabel(
+        "Attack 1: Use your first attack on the enemy.");
+    lbl_battleHelpAttack1.setBounds(12, 77, 416, 17);
+    panel_battleHelp.add(lbl_battleHelpAttack1);
+
+    lbl_battleHelpAttack2 = new JLabel(
+        "Attack 2: Use your second attack on the enemy.");
+    lbl_battleHelpAttack2.setBounds(12, 98, 416, 17);
+    panel_battleHelp.add(lbl_battleHelpAttack2);
+
+    lbl_battleHelpSwitch =
+        new JLabel("Switch: switch your attacking wanimal. Takes a turn.");
+    lbl_battleHelpSwitch.setBounds(12, 122, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpSwitch);
+
+    lbl_battleHelpInventory = new JLabel(
+        "Inventory: view battle inventory to use potions/armor plates.");
+    lbl_battleHelpInventory.setBounds(12, 144, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpInventory);
+
+    btn_battleHelpBack = new JButton("Back");
+    btn_battleHelpBack.setBounds(12, 231, 414, 27);
+    panel_battleHelp.add(btn_battleHelpBack);
+    
+    lbl_battleHelpDescription2 = new JLabel("turn:");
+    lbl_battleHelpDescription2.setBounds(12, 52, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpDescription2);
+    
+    lbl_battleHelpCatch = new JLabel("Catch: Attempt to catch the enemy wanimal. Takes a turn.");
+    lbl_battleHelpCatch.setBounds(12, 173, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpCatch);
+    
+    lbl_battleHelpFlee = new JLabel("Flee: Attempt to flee from the enemy wanimal. Takes a turn.");
+    lbl_battleHelpFlee.setBounds(12, 199, 414, 17);
+    panel_battleHelp.add(lbl_battleHelpFlee);
   }
 
   /**
