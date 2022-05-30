@@ -146,6 +146,16 @@ public class GUI {
   private JLabel lbl_characterCreateStarterWanimal;
   private JButton btn_characterCreateAdvance;
   private ArrayList<Class<? extends Boss>> bossList;
+  private JPanel panel_moveSelectHelp;
+  private JLabel lbl_moveSelectHelpAdvance2;
+  private JLabel lbl_moveSelectHelpBattleBoss1;
+  private JLabel lbl_moveSelectHelpBattleBoss2;
+  private JLabel lbl_moveSelectHelpInventory;
+  private JLabel lbl_moveSelectHelpSaveAndQuit;
+  private JButton btn_moveSelectHelpBack;
+  private JLabel lbl_moveSelectHelp;
+  private JLabel lbl_moveSelectHelpDescription;
+  private JLabel lbl_moveSelectHelpAdvance1;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -417,6 +427,8 @@ public class GUI {
 
     DefaultTableModel moveSelectInventoryModel =
         new DefaultTableModel(new Object[] {"Name", "Level", "Type", "XP"}, 0) {
+          private static final long serialVersionUID = 1L;
+
           // set this table as uneditable
           @Override
           public boolean isCellEditable(int row, int column) {
@@ -534,6 +546,53 @@ public class GUI {
     btn_characterCreateAdvance = new JButton("Advance");
     btn_characterCreateAdvance.setBounds(12, 231, 416, 27);
     panel_characterCreate.add(btn_characterCreateAdvance);
+
+    panel_moveSelectHelp = new JPanel();
+    frame.getContentPane().add(panel_moveSelectHelp, "panel_help");
+    panel_moveSelectHelp.setLayout(null);
+
+    lbl_moveSelectHelp = new JLabel("Move Select Help");
+    lbl_moveSelectHelp.setFont(new Font("Dialog", Font.BOLD, 20));
+    lbl_moveSelectHelp.setBounds(129, 12, 179, 28);
+    panel_moveSelectHelp.add(lbl_moveSelectHelp);
+
+    lbl_moveSelectHelpDescription = new JLabel(
+        "Below are the descriptions of each move you can make on a turn:");
+    lbl_moveSelectHelpDescription.setBounds(12, 48, 414, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpDescription);
+
+    lbl_moveSelectHelpAdvance1 = new JLabel(
+        "Advance: Advance forward in the game world, with a chance of");
+    lbl_moveSelectHelpAdvance1.setBounds(12, 77, 416, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpAdvance1);
+
+    lbl_moveSelectHelpAdvance2 =
+        new JLabel("running into a battle with a wild wanimal.");
+    lbl_moveSelectHelpAdvance2.setBounds(12, 95, 396, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpAdvance2);
+
+    lbl_moveSelectHelpBattleBoss1 = new JLabel(
+        "Battle Boss: Challenge and battle the boss of the current realm");
+    lbl_moveSelectHelpBattleBoss1.setBounds(12, 124, 416, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpBattleBoss1);
+
+    lbl_moveSelectHelpBattleBoss2 = new JLabel(" to move to the next realm.");
+    lbl_moveSelectHelpBattleBoss2.setBounds(12, 142, 396, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpBattleBoss2);
+
+    lbl_moveSelectHelpInventory =
+        new JLabel("Inventory: View your wanimals, potions, and armor plates.");
+    lbl_moveSelectHelpInventory.setBounds(12, 171, 414, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpInventory);
+
+    lbl_moveSelectHelpSaveAndQuit = new JLabel(
+        "Save and Quit: Save the game and return to the title screen.");
+    lbl_moveSelectHelpSaveAndQuit.setBounds(12, 200, 414, 17);
+    panel_moveSelectHelp.add(lbl_moveSelectHelpSaveAndQuit);
+
+    btn_moveSelectHelpBack = new JButton("Back");
+    btn_moveSelectHelpBack.setBounds(12, 231, 414, 27);
+    panel_moveSelectHelp.add(btn_moveSelectHelpBack);
   }
 
   /**

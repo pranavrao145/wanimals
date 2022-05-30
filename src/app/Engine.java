@@ -230,8 +230,7 @@ public class Engine {
 
           // Defining all the parameters used to create a new wanimal
           int level = 0, curXP = 0, maxXP = 0, curHP = 0, maxHP = 0,
-              curArmor = 0, maxArmor = 0, firstAtkType = 0, secondAtkType,
-              baseAtk = 0;
+              curArmor = 0, maxArmor = 0, firstAtkType = 0, baseAtk = 0;
           String wanimalName = null, type = null, firstAtkName = null,
                  secondAtkName = null;
 
