@@ -170,6 +170,8 @@ public class GUI {
   private JLabel lbl_battleInventoryRestoreFullHealth;
   private JLabel lbl_battleInventoryRestoreFullArmor;
   private JButton btn_battleInventoryBack;
+  private JLabel lbl_moveSelectInventoryHelp1;
+  private JLabel lbl_moveSelectInventoryHelp2;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -472,15 +474,14 @@ public class GUI {
 
     lbl_moveSelectInventoryPotions =
         new JLabel("Number of Potions Remaining: ");
-    lbl_moveSelectInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 14));
-    lbl_moveSelectInventoryPotions.setBounds(52, 190, 365, 33);
+    lbl_moveSelectInventoryPotions.setFont(new Font("Dialog", Font.BOLD, 12));
+    lbl_moveSelectInventoryPotions.setBounds(29, 214, 365, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryPotions);
 
     lbl_moveSelectInventoryArmorPlates =
         new JLabel("Number of Armor Plates Remaining:");
-    lbl_moveSelectInventoryArmorPlates.setFont(
-        new Font("Dialog", Font.BOLD, 14));
-    lbl_moveSelectInventoryArmorPlates.setBounds(52, 225, 365, 33);
+    lbl_moveSelectInventoryArmorPlates.setFont( new Font("Dialog", Font.BOLD, 12));
+    lbl_moveSelectInventoryArmorPlates.setBounds(29, 237, 365, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryArmorPlates);
 
     lbl_moveSelectInventoryTitle = new JLabel("Inventory");
@@ -491,6 +492,14 @@ public class GUI {
     btn_moveSelectInventoryBack = new JButton("Back");
     btn_moveSelectInventoryBack.setBounds(12, 12, 107, 27);
     panel_moveSelectInventory.add(btn_moveSelectInventoryBack);
+    
+    lbl_moveSelectInventoryHelp1 = new JLabel("Tip: select any two wanimals in the table to switch their");
+    lbl_moveSelectInventoryHelp1.setBounds(29, 183, 388, 17);
+    panel_moveSelectInventory.add(lbl_moveSelectInventoryHelp1);
+    
+    lbl_moveSelectInventoryHelp2 = new JLabel("battle order.");
+    lbl_moveSelectInventoryHelp2.setBounds(29, 197, 90, 17);
+    panel_moveSelectInventory.add(lbl_moveSelectInventoryHelp2);
 
     panel_battleInform = new JPanel();
     frame.getContentPane().add(panel_battleInform, "panel_battleInform");
