@@ -28,7 +28,8 @@ public class BattleUtils {
    * @param enemy - the enemy with which to start the new battle
    */
   public static void createBattle(final Wanimal enemy) {
-    final Player player = Engine.getPlayer(); // get the player of the current game
+    final Player player =
+        Engine.getPlayer(); // get the player of the current game
 
     Engine.setCurrentBattle(
         new Battle(player, player.getWanimals().get(0),
@@ -37,9 +38,9 @@ public class BattleUtils {
 
     Engine.getGui().addToBattleLog("Battle has started.");
 
-    final Timer timer = new Timer(); // create a new timer object. This will be used
-                               // to check any condition that must be repeatedly
-                               // check during the battle
+    final Timer timer = new Timer(); // create a new timer object. This will be
+                                     // used to check any condition that must be
+                                     // repeatedly check during the battle
 
     // every two seconds, execute the run method defined below. This is where
     // any condition that needs to repeatedly be checked for the duration of the
@@ -102,7 +103,8 @@ public class BattleUtils {
    * @param battle - the battle information to use to execute the attack
    */
   public static void enemyAttack(final Battle battle) {
-    final Wanimal enemy = battle.getEnemy(); // get and store the enemy in a variable
+    final Wanimal enemy =
+        battle.getEnemy(); // get and store the enemy in a variable
     // for easier access
     Attack attackToExecute =
         enemy.getFirstAttack(); // this variable stores the attack to execute.
@@ -116,7 +118,8 @@ public class BattleUtils {
       // they have both attacks avaialable to them. Note that this part
       // part will never execute for enemy under level 5 because they do
       // not have their seocnd attack available
-      final double randomNum = Math.random(); // get a random number from 0.0 to 1.0
+      final double randomNum =
+          Math.random(); // get a random number from 0.0 to 1.0
 
       if (randomNum <
           percentageChancesForSecondAttack[battle.getPlayer().getRealm() - 1] /

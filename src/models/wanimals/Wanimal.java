@@ -41,10 +41,12 @@ public class Wanimal {
    * @param firstAttack - the firstAttack with which to create the new wanimal
    * @param secondAttack - the secondAttack with which to create the new wanimal
    */
-  public Wanimal(final String name, final String type, final int level, final int maxHitpoints,
-                 final int currentHitpoints, final int baseAttack, final int maxArmor,
-                 final int currentArmor, final Player owner, final int maxXP, final int currentXP,
-                 final Attack firstAttack, final Attack secondAttack) {
+  public Wanimal(final String name, final String type, final int level,
+                 final int maxHitpoints, final int currentHitpoints,
+                 final int baseAttack, final int maxArmor,
+                 final int currentArmor, final Player owner, final int maxXP,
+                 final int currentXP, final Attack firstAttack,
+                 final Attack secondAttack) {
     this.name = name;   // set the name of this wanimal to the name given
     this.type = type;   // set the type of this wanimal to the type given
     this.level = level; // set the level of this wanimal to the level given
@@ -119,7 +121,9 @@ public class Wanimal {
 
   public int getBaseAttack() { return baseAttack; }
 
-  public void setBaseAttack(final int baseAttack) { this.baseAttack = baseAttack; }
+  public void setBaseAttack(final int baseAttack) {
+    this.baseAttack = baseAttack;
+  }
 
   public int getMaxArmor() { return maxArmor; }
 

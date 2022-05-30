@@ -60,8 +60,10 @@ public class Utils {
    * @param callback - the method to execute if the percentage chance is
    *     triggered
    */
-  public static void runMaybe(final int percentageChance, final Runnable callback) {
-    final double randomNum = Math.random(); // get a random number from 0.0 to 1.0
+  public static void runMaybe(final int percentageChance,
+                              final Runnable callback) {
+    final double randomNum =
+        Math.random(); // get a random number from 0.0 to 1.0
     if (randomNum <
         percentageChance /
             100.0) {  // if the random number is less than the number given

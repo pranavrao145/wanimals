@@ -35,9 +35,10 @@ public class Plant extends GrassWanimal {
    * @param firstAttack - the firstAttack with which to create the new wanimal
    * @param secondAttack - the secondAttack with which to create the new wanimal
    */
-  public Plant(final String name, final String type, final int level, final int maxHitpoints,
-               final int currentHitpoints, final int baseAttack, final int maxArmor,
-               final int currentArmor, final Player owner, final int maxXP, final int currentXP,
+  public Plant(final String name, final String type, final int level,
+               final int maxHitpoints, final int currentHitpoints,
+               final int baseAttack, final int maxArmor, final int currentArmor,
+               final Player owner, final int maxXP, final int currentXP,
                final Attack firstAttack, final Attack secondAttack) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
           maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,

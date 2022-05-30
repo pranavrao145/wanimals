@@ -32,7 +32,8 @@ public class Battle {
    * @param playerWanimal - the wanimal that the player is currently using
    * @param enemy - the enemy with which to create the battle
    */
-  public Battle(final Player player, final Wanimal playerWanimal, final Wanimal enemy) {
+  public Battle(final Player player, final Wanimal playerWanimal,
+                final Wanimal enemy) {
     this.player = player; // set the player of the battle to the player given
     this.playerWanimal = playerWanimal; // set the player's wanimal of the
                                         // battle to the player's wanimal given

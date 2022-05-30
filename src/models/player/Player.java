@@ -33,8 +33,9 @@ public class Player {
    * @param maxXP - the maxXP with which to create the new player
    * @param currentXP - the currentXP with which to create the new player
    */
-  public Player(final String name, final int level, final int realm, final int numPotions,
-                final int numArmorPlates, final ArrayList<Wanimal> wanimals, final int currentXP,
+  public Player(final String name, final int level, final int realm,
+                final int numPotions, final int numArmorPlates,
+                final ArrayList<Wanimal> wanimals, final int currentXP,
                 final int maxXP) {
     this.name = name;   // set the name of this player to the name given
     this.level = level; // set the level of this player to the level given
@@ -82,7 +83,9 @@ public class Player {
 
   public int getNumPotions() { return numPotions; }
 
-  public void setNumPotions(final int numPotions) { this.numPotions = numPotions; }
+  public void setNumPotions(final int numPotions) {
+    this.numPotions = numPotions;
+  }
 
   public int getNumArmorPlates() { return numArmorPlates; }
 

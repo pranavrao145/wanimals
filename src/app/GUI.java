@@ -782,7 +782,7 @@ public class GUI {
                 Arrays.asList(Wumbo.class, Plant.class, Ash.class, Aqua.class));
 
         final String name = textField_characterCreateName
-                          .getText(); // get the text from the text field
+                                .getText(); // get the text from the text field
 
         final int starterWanimalIndex =
             comboBox_characterCreateStarterWanimal
@@ -848,8 +848,8 @@ public class GUI {
 
       @Override
       public void componentShown(
-          final ComponentEvent e) {   // when the move select panel is shown
-        refreshMoveSelectGUI(); // refresh the move select panel
+          final ComponentEvent e) { // when the move select panel is shown
+        refreshMoveSelectGUI();     // refresh the move select panel
       }
     });
 
@@ -1040,7 +1040,8 @@ public class GUI {
       @Override
       public void actionPerformed(final ActionEvent e) {
         // get the player's wanimal
-        final Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+        final Wanimal playerWanimal =
+            Engine.getCurrentBattle().getPlayerWanimal();
 
         final Attack attackToExecute = playerWanimal.getFirstAttack();
 
@@ -1066,7 +1067,8 @@ public class GUI {
       @Override
       public void actionPerformed(final ActionEvent e) {
         // get the player's wanimal
-        final Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+        final Wanimal playerWanimal =
+            Engine.getCurrentBattle().getPlayerWanimal();
 
         final Attack attackToExecute = playerWanimal.getSecondAttack();
 
@@ -1252,10 +1254,11 @@ public class GUI {
         final Battle currentBattle =
             Engine.getCurrentBattle(); // get the current battle object
 
-        final Wanimal wanimalToSwitchTo = currentBattle.getPlayer().getWanimals().get(
-            comboBox_battleSwitch
-                .getSelectedIndex()); // get the selected wanimal from the
-                                      // battle switch combo box
+        final Wanimal wanimalToSwitchTo =
+            currentBattle.getPlayer().getWanimals().get(
+                comboBox_battleSwitch
+                    .getSelectedIndex()); // get the selected wanimal from the
+                                          // battle switch combo box
 
         currentBattle.setPlayerWanimal(
             wanimalToSwitchTo); // set the player's current wanimal as the
@@ -1365,8 +1368,8 @@ public class GUI {
     // list of all buttons on the battle screen (to be used to dynamically
     // enable or disable buttons depending on enabled flag given)
     final JButton[] battleButtons = {btn_battleAttack1,   btn_battleAttack2,
-                               btn_battleInventory, btn_battleSwitch,
-                               btn_battleCatch,     btn_battleFlee};
+                                     btn_battleInventory, btn_battleSwitch,
+                                     btn_battleCatch,     btn_battleFlee};
 
     // set each button disabled or enabled based on the enabled flag given
     for (final JButton battleButton : battleButtons) {
@@ -1391,8 +1394,8 @@ public class GUI {
     lbl_battlePlayer.setText(battle.getPlayer().getName());
 
     final Wanimal playerWanimal = battle.getPlayerWanimal(),
-            enemy = battle.getEnemy(); // get the player and enemy wanimals
-                                       // for later use
+                  enemy = battle.getEnemy(); // get the player and enemy
+                                             // wanimals for later use
 
     // update player information
     lbl_battlePlayerName.setText(playerWanimal.getName() + " (Lvl " +
@@ -1497,9 +1500,10 @@ public class GUI {
    */
   public void setBattleInformGUI() {
     final Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal(),
-            enemyWanimal = Engine.getCurrentBattle()
-                               .getEnemy(); // get the player and enemy wanimals
-                                            // ready for later usage
+                  enemyWanimal =
+                      Engine.getCurrentBattle()
+                          .getEnemy(); // get the player and enemy wanimals
+                                       // ready for later usage
 
     // set player information
     lbl_battleInformPlayerWanimal.setText(playerWanimal.getName());
@@ -1533,7 +1537,8 @@ public class GUI {
    * in the current battle object.
    */
   private void refreshBattleInventoryGUI() {
-    final Battle currentBattle = Engine.getCurrentBattle(); // get the current battle
+    final Battle currentBattle =
+        Engine.getCurrentBattle(); // get the current battle
 
     lbl_battleInventoryWanimalHP.setText(
         "Current wanimal's HP: " +

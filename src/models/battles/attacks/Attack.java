@@ -49,7 +49,8 @@ public class Attack {
    * @param currentWanimal - the wanimal whose turn it currently is
    * @param enemyWanimal - the enemy wanimal on to which to execute the attack
    */
-  public void execute(final Wanimal currentWanimal, final Wanimal enemyWanimal) {
+  public void execute(final Wanimal currentWanimal,
+                      final Wanimal enemyWanimal) {
     // calculate the amount of damage to do to the enemy wanimal, depeding on if
     // the attacks is type 1 or 2
     int damageToDo =
