@@ -172,6 +172,9 @@ public class GUI {
   private JButton btn_battleInventoryBack;
   private JLabel lbl_moveSelectInventoryHelp1;
   private JLabel lbl_moveSelectInventoryHelp2;
+  private JButton btn_moveSelectHelp;
+  private JButton lbl_battleHelp_1;
+  private JLabel lbl_battle;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -266,37 +269,37 @@ public class GUI {
     panel_battle.setLayout(null);
 
     lbl_battlePlayerName = new JLabel("Wanimal Name");
-    lbl_battlePlayerName.setBounds(38, 55, 93, 17);
+    lbl_battlePlayerName.setBounds(39, 73, 93, 17);
     panel_battle.add(lbl_battlePlayerName);
 
     lbl_battlePlayer = new JLabel("PLAYER");
-    lbl_battlePlayer.setBounds(57, 30, 60, 17);
+    lbl_battlePlayer.setBounds(58, 48, 60, 17);
     lbl_battlePlayer.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battle.add(lbl_battlePlayer);
 
     lbl_battlePlayerHealth = new JLabel("Wanimal Health");
-    lbl_battlePlayerHealth.setBounds(38, 73, 93, 17);
+    lbl_battlePlayerHealth.setBounds(39, 91, 93, 17);
     panel_battle.add(lbl_battlePlayerHealth);
 
     lbl_battlePlayerArmor = new JLabel("Wanimal Armor");
-    lbl_battlePlayerArmor.setBounds(38, 92, 93, 17);
+    lbl_battlePlayerArmor.setBounds(39, 110, 93, 17);
     panel_battle.add(lbl_battlePlayerArmor);
 
     lbl_battleEnemyName = new JLabel("Wanimal Name");
-    lbl_battleEnemyName.setBounds(301, 55, 93, 17);
+    lbl_battleEnemyName.setBounds(302, 73, 93, 17);
     panel_battle.add(lbl_battleEnemyName);
 
     lbl_battleEnemy = new JLabel("ENEMY");
-    lbl_battleEnemy.setBounds(320, 30, 60, 17);
+    lbl_battleEnemy.setBounds(321, 48, 60, 17);
     lbl_battleEnemy.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battle.add(lbl_battleEnemy);
 
     lbl_battleEnemyHealth = new JLabel("Wanimal Health");
-    lbl_battleEnemyHealth.setBounds(301, 73, 93, 17);
+    lbl_battleEnemyHealth.setBounds(302, 91, 93, 17);
     panel_battle.add(lbl_battleEnemyHealth);
 
     lbl_battleEnemyArmor = new JLabel("Wanimal Armor");
-    lbl_battleEnemyArmor.setBounds(301, 92, 93, 17);
+    lbl_battleEnemyArmor.setBounds(302, 110, 93, 17);
     panel_battle.add(lbl_battleEnemyArmor);
 
     btn_battleAttack1 = new JButton("Attack 1");
@@ -332,9 +335,18 @@ public class GUI {
     panel_battle.add(scrollPane_battleLog);
 
     lbl_battleTurn = new JLabel("Player's Turn");
-    lbl_battleTurn.setBounds(157, 12, 129, 27);
+    lbl_battleTurn.setBounds(161, 66, 129, 27);
     lbl_battleTurn.setFont(new Font("Dialog", Font.BOLD, 16));
     panel_battle.add(lbl_battleTurn);
+
+    lbl_battleHelp_1 = new JButton("Help");
+    lbl_battleHelp_1.setBounds(12, 9, 89, 27);
+    panel_battle.add(lbl_battleHelp_1);
+
+    lbl_battle = new JLabel("Battle");
+    lbl_battle.setFont(new Font("Dialog", Font.BOLD, 20));
+    lbl_battle.setBounds(181, 19, 65, 17);
+    panel_battle.add(lbl_battle);
 
     panel_battleInventory = new JPanel();
     frame.getContentPane().add(panel_battleInventory, "btn_battleInventory");
@@ -422,11 +434,11 @@ public class GUI {
     panel_moveSelect.add(btn_moveSelectAdvance);
 
     btn_moveSelectInventory = new JButton("Inventory");
-    btn_moveSelectInventory.setBounds(25, 179, 189, 60);
+    btn_moveSelectInventory.setBounds(25, 161, 189, 60);
     panel_moveSelect.add(btn_moveSelectInventory);
 
     btn_moveSelectSaveAndQuit = new JButton("Save and Quit");
-    btn_moveSelectSaveAndQuit.setBounds(226, 179, 189, 60);
+    btn_moveSelectSaveAndQuit.setBounds(226, 161, 189, 60);
     panel_moveSelect.add(btn_moveSelectSaveAndQuit);
 
     btn_moveSelectBattleBoss = new JButton("Battle Boss");
@@ -449,6 +461,10 @@ public class GUI {
     lbl_moveSelectXP = new JLabel("XP");
     lbl_moveSelectXP.setBounds(339, 50, 97, 17);
     panel_moveSelect.add(lbl_moveSelectXP);
+
+    btn_moveSelectHelp = new JButton("Help");
+    btn_moveSelectHelp.setBounds(339, 233, 89, 27);
+    panel_moveSelect.add(btn_moveSelectHelp);
 
     panel_moveSelectInventory = new JPanel();
     frame.getContentPane().add(panel_moveSelectInventory,
@@ -480,7 +496,8 @@ public class GUI {
 
     lbl_moveSelectInventoryArmorPlates =
         new JLabel("Number of Armor Plates Remaining:");
-    lbl_moveSelectInventoryArmorPlates.setFont( new Font("Dialog", Font.BOLD, 12));
+    lbl_moveSelectInventoryArmorPlates.setFont(
+        new Font("Dialog", Font.BOLD, 12));
     lbl_moveSelectInventoryArmorPlates.setBounds(29, 237, 365, 33);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryArmorPlates);
 
@@ -492,11 +509,12 @@ public class GUI {
     btn_moveSelectInventoryBack = new JButton("Back");
     btn_moveSelectInventoryBack.setBounds(12, 12, 107, 27);
     panel_moveSelectInventory.add(btn_moveSelectInventoryBack);
-    
-    lbl_moveSelectInventoryHelp1 = new JLabel("Tip: select any two wanimals in the table to switch their");
+
+    lbl_moveSelectInventoryHelp1 =
+        new JLabel("Tip: select any two wanimals in the table to switch their");
     lbl_moveSelectInventoryHelp1.setBounds(29, 183, 388, 17);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryHelp1);
-    
+
     lbl_moveSelectInventoryHelp2 = new JLabel("battle order.");
     lbl_moveSelectInventoryHelp2.setBounds(29, 197, 90, 17);
     panel_moveSelectInventory.add(lbl_moveSelectInventoryHelp2);
