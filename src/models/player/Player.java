@@ -9,6 +9,7 @@ Date: June 1, 2022
 package models.player;
 
 import java.util.ArrayList;
+
 import models.wanimals.Wanimal;
 
 public class Player {
@@ -31,9 +32,9 @@ public class Player {
    * @param maxXP - the maxXP with which to create the new player
    * @param currentXP - the currentXP with which to create the new player
    */
-  public Player(String name, int level, int realm, int numPotions,
-                int numArmorPlates, ArrayList<Wanimal> wanimals, int currentXP,
-                int maxXP) {
+  public Player(final String name, final int level, final int realm, final int numPotions,
+                final int numArmorPlates, final ArrayList<Wanimal> wanimals, final int currentXP,
+                final int maxXP) {
     this.name = name;   // set the name of this player to the name given
     this.level = level; // set the level of this player to the level given
     this.realm = realm; // set the realm of this player to the realm given
@@ -68,37 +69,37 @@ public class Player {
 
   public String getName() { return name; }
 
-  public void setName(String name) { this.name = name; }
+  public void setName(final String name) { this.name = name; }
 
   public int getLevel() { return level; }
 
-  public void setLevel(int level) { this.level = level; }
+  public void setLevel(final int level) { this.level = level; }
 
   public int getRealm() { return realm; }
 
-  public void setRealm(int realm) { this.realm = realm; }
+  public void setRealm(final int realm) { this.realm = realm; }
 
   public int getNumPotions() { return numPotions; }
 
-  public void setNumPotions(int numPotions) { this.numPotions = numPotions; }
+  public void setNumPotions(final int numPotions) { this.numPotions = numPotions; }
 
   public int getNumArmorPlates() { return numArmorPlates; }
 
-  public void setNumArmorPlates(int numArmorPlates) {
+  public void setNumArmorPlates(final int numArmorPlates) {
     this.numArmorPlates = numArmorPlates;
   }
 
   public ArrayList<Wanimal> getWanimals() { return wanimals; }
 
-  public void setWanimals(ArrayList<Wanimal> wanimals) {
+  public void setWanimals(final ArrayList<Wanimal> wanimals) {
     this.wanimals = wanimals;
   }
 
   public int getCurrentXP() { return currentXP; }
 
-  public void setCurrentXP(int currentXP) { this.currentXP = currentXP; }
+  public void setCurrentXP(final int currentXP) { this.currentXP = currentXP; }
 
   public int getMaxXP() { return maxXP; }
 
-  public void setMaxXP(int maxXP) { this.maxXP = maxXP; }
+  public void setMaxXP(final int maxXP) { this.maxXP = maxXP; }
 }

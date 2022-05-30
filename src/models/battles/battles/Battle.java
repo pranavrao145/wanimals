@@ -28,7 +28,7 @@ public class Battle {
    * @param playerWanimal - the wanimal that the player is currently using
    * @param enemy - the enemy with which to create the battle
    */
-  public Battle(Player player, Wanimal playerWanimal, Wanimal enemy) {
+  public Battle(final Player player, final Wanimal playerWanimal, final Wanimal enemy) {
     this.player = player; // set the player of the battle to the player given
     this.playerWanimal = playerWanimal; // set the player's wanimal of the
                                         // battle to the player's wanimal given
@@ -45,7 +45,7 @@ public class Battle {
    * @param player - the player with which to create the battle
    * @param playerWanimal - the wanimal that the player is currently using
    */
-  public Battle(Player player, Wanimal playerWanimal) {
+  public Battle(final Player player, final Wanimal playerWanimal) {
     this.player = player; // set the player of the battle to the player given
     this.playerWanimal = playerWanimal; // set the player's wanimal of the
                                         // battle to the player's wanimal given
@@ -55,27 +55,27 @@ public class Battle {
 
   public Player getPlayer() { return player; }
 
-  public void setPlayer(Player player) { this.player = player; }
+  public void setPlayer(final Player player) { this.player = player; }
 
   public Wanimal getPlayerWanimal() { return playerWanimal; }
 
-  public void setPlayerWanimal(Wanimal playerWanimal) {
+  public void setPlayerWanimal(final Wanimal playerWanimal) {
     this.playerWanimal = playerWanimal;
   }
 
   public Wanimal getEnemy() { return enemy; }
 
-  public void setEnemy(Wanimal enemy) { this.enemy = enemy; }
+  public void setEnemy(final Wanimal enemy) { this.enemy = enemy; }
 
   public int getCurrentTurn() { return currentTurn; }
 
-  public void setCurrentTurn(int currentTurn) {
+  public void setCurrentTurn(final int currentTurn) {
     this.currentTurn = currentTurn;
   }
 
   public boolean isRunning() { return running; }
 
-  public void setIsRunning(boolean battleRunning) {
+  public void setIsRunning(final boolean battleRunning) {
     this.running = battleRunning;
   }
 }
