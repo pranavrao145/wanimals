@@ -167,6 +167,9 @@ public class GUI {
   private JLabel lbl_battleHelpCatch;
   private JLabel lbl_battleHelpFlee;
   private JLabel lbl_battleHelpDescription2;
+  private JLabel lbl_battleInventoryRestoreFullHealth;
+  private JLabel lbl_battleInventoryRestoreFullArmor;
+  private JButton btn_battleInventoryBack;
 
   /**
    * This is a constructor for the GUI. When the GUI is made in the App class,
@@ -341,31 +344,45 @@ public class GUI {
     panel_battleInventory.add(lbl_battleInventory);
 
     btn_battleInventoryUsePotion = new JButton("Use Potion");
-    btn_battleInventoryUsePotion.setBounds(40, 145, 144, 62);
+    btn_battleInventoryUsePotion.setBounds(40, 136, 144, 62);
     panel_battleInventory.add(btn_battleInventoryUsePotion);
 
     btn_battleInventoryUseArmorPlate = new JButton("Use Armor Plate");
-    btn_battleInventoryUseArmorPlate.setBounds(252, 145, 144, 62);
+    btn_battleInventoryUseArmorPlate.setBounds(252, 136, 144, 62);
     panel_battleInventory.add(btn_battleInventoryUseArmorPlate);
 
     lbl_battleInventoryPotionsRemaining = new JLabel("Potions remaining: 5");
-    lbl_battleInventoryPotionsRemaining.setBounds(50, 219, 134, 17);
+    lbl_battleInventoryPotionsRemaining.setBounds(50, 210, 134, 17);
     panel_battleInventory.add(lbl_battleInventoryPotionsRemaining);
 
     lbl_battleInventoryArmorPlatesRemaining =
         new JLabel("Armor plates remaining: 5");
-    lbl_battleInventoryArmorPlatesRemaining.setBounds(244, 219, 166, 17);
+    lbl_battleInventoryArmorPlatesRemaining.setBounds(244, 210, 166, 17);
     panel_battleInventory.add(lbl_battleInventoryArmorPlatesRemaining);
 
     lbl_battleInventoryWanimalHP = new JLabel("Current wanimal's HP: 0");
-    lbl_battleInventoryWanimalHP.setBounds(136, 60, 181, 17);
+    lbl_battleInventoryWanimalHP.setBounds(136, 51, 181, 17);
     lbl_battleInventoryWanimalHP.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battleInventory.add(lbl_battleInventoryWanimalHP);
 
     lbl_battleInventoryWanimalArmor = new JLabel("Current wanimal's armor: 0");
-    lbl_battleInventoryWanimalArmor.setBounds(124, 89, 193, 17);
+    lbl_battleInventoryWanimalArmor.setBounds(124, 80, 193, 17);
     lbl_battleInventoryWanimalArmor.setFont(new Font("Dialog", Font.BOLD, 14));
     panel_battleInventory.add(lbl_battleInventoryWanimalArmor);
+
+    lbl_battleInventoryRestoreFullHealth =
+        new JLabel("Restore full health of wanimal:");
+    lbl_battleInventoryRestoreFullHealth.setBounds(12, 109, 202, 17);
+    panel_battleInventory.add(lbl_battleInventoryRestoreFullHealth);
+
+    lbl_battleInventoryRestoreFullArmor =
+        new JLabel("Restore full armor of wanimal:");
+    lbl_battleInventoryRestoreFullArmor.setBounds(226, 109, 202, 17);
+    panel_battleInventory.add(lbl_battleInventoryRestoreFullArmor);
+
+    btn_battleInventoryBack = new JButton("Back");
+    btn_battleInventoryBack.setBounds(12, 239, 416, 27);
+    panel_battleInventory.add(btn_battleInventoryBack);
 
     panel_battleSwitch = new JPanel();
     frame.getContentPane().add(panel_battleSwitch, "panel_battleSwitch");
@@ -619,13 +636,13 @@ public class GUI {
     lbl_battleHelpDescription1.setBounds(12, 40, 414, 17);
     panel_battleHelp.add(lbl_battleHelpDescription1);
 
-    lbl_battleHelpAttack1 = new JLabel(
-        "Attack 1: Use your first attack on the enemy.");
+    lbl_battleHelpAttack1 =
+        new JLabel("Attack 1: Use your first attack on the enemy.");
     lbl_battleHelpAttack1.setBounds(12, 77, 416, 17);
     panel_battleHelp.add(lbl_battleHelpAttack1);
 
-    lbl_battleHelpAttack2 = new JLabel(
-        "Attack 2: Use your second attack on the enemy.");
+    lbl_battleHelpAttack2 =
+        new JLabel("Attack 2: Use your second attack on the enemy.");
     lbl_battleHelpAttack2.setBounds(12, 98, 416, 17);
     panel_battleHelp.add(lbl_battleHelpAttack2);
 
@@ -642,16 +659,18 @@ public class GUI {
     btn_battleHelpBack = new JButton("Back");
     btn_battleHelpBack.setBounds(12, 231, 414, 27);
     panel_battleHelp.add(btn_battleHelpBack);
-    
+
     lbl_battleHelpDescription2 = new JLabel("turn:");
     lbl_battleHelpDescription2.setBounds(12, 52, 414, 17);
     panel_battleHelp.add(lbl_battleHelpDescription2);
-    
-    lbl_battleHelpCatch = new JLabel("Catch: Attempt to catch the enemy wanimal. Takes a turn.");
+
+    lbl_battleHelpCatch =
+        new JLabel("Catch: Attempt to catch the enemy wanimal. Takes a turn.");
     lbl_battleHelpCatch.setBounds(12, 173, 414, 17);
     panel_battleHelp.add(lbl_battleHelpCatch);
-    
-    lbl_battleHelpFlee = new JLabel("Flee: Attempt to flee from the enemy wanimal. Takes a turn.");
+
+    lbl_battleHelpFlee = new JLabel(
+        "Flee: Attempt to flee from the enemy wanimal. Takes a turn.");
     lbl_battleHelpFlee.setBounds(12, 199, 414, 17);
     panel_battleHelp.add(lbl_battleHelpFlee);
   }
@@ -1231,6 +1250,15 @@ public class GUI {
 
         // restore the player's wanimal's armor to full
         playerWanimal.setCurrentArmor(playerWanimal.getMaxArmor());
+      }
+    });
+
+    // listener to go back to the battle screen when the back button is clicked
+    // on the battle inventory screen
+    btn_battleInventoryBack.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        masterLayout.show(contentPane, "panel_battle");
       }
     });
   }
