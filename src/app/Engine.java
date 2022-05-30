@@ -24,9 +24,9 @@ public class Engine {
   private static Player player;
   private static Battle currentBattle;
 
-  private static void initialize(GUI currentGUI) { gui = currentGUI; }
+  private static void initialize(final GUI currentGUI) { gui = currentGUI; }
 
-  public static void run(GUI currentGUI) { initialize(currentGUI); }
+  public static void run(final GUI currentGUI) { initialize(currentGUI); }
 
   // getters and setters
 
@@ -34,11 +34,11 @@ public class Engine {
 
   public static Player getPlayer() { return player; }
 
-  public static void setPlayer(Player player) { Engine.player = player; }
+  public static void setPlayer(final Player player) { Engine.player = player; }
 
   public static Battle getCurrentBattle() { return currentBattle; }
 
-  public static void setCurrentBattle(Battle currentBattle) {
+  public static void setCurrentBattle(final Battle currentBattle) {
     Engine.currentBattle = currentBattle;
   }
 
@@ -68,7 +68,7 @@ public class Engine {
       // Creating a string that displays all the information on the player in
       // following format Name, realm number, potion number, armor plate number,
       // level, current XP, max XP
-      String studentContent = String.format(
+      final String studentContent = String.format(
           "%s;%d;%d;%d;%d;%d;%d;", Engine.getPlayer().getName(),
           Engine.getPlayer().getRealm(), Engine.getPlayer().getNumPotions(),
           Engine.getPlayer().getNumArmorPlates(), Engine.getPlayer().getLevel(),
@@ -78,19 +78,19 @@ public class Engine {
       saveDataWriter.println(studentContent);
 
       // Finding how many wanimals the player has
-      int length = Engine.getPlayer().getWanimals().size();
+      final int length = Engine.getPlayer().getWanimals().size();
 
       // For loop that runs as many times are there are wanimals in player
       // inventory
       for (int x = 0; x < length; x++) {
-        Wanimal currentWanimal = Engine.getPlayer().getWanimals().get(x);
+        final Wanimal currentWanimal = Engine.getPlayer().getWanimals().get(x);
 
         // get the current wanimal
         // String of all info of the wanimal in following format
         // Name, type, level, current XP, max XP, current HP, max HP,
         // current armor, max armor, base attack stat, first attack name,
         // first attack type, second attack name, second attack type
-        String wanimalContent = String.format(
+        final String wanimalContent = String.format(
             "%s;%s;%d;%d;%d;%d;%d;%d;%d;%d;%s;%d;%s;%d;",
             currentWanimal.getName(), currentWanimal.getType(),
             currentWanimal.getLevel(), currentWanimal.getCurrentXP(),
@@ -143,7 +143,7 @@ public class Engine {
       while ((strCurrentLine = objReader.readLine()) != null) {
         // Finding the length of the line to know how many iterations of the for
         // loop to run
-        int length = strCurrentLine.length();
+        final int length = strCurrentLine.length();
 
         // Predefining the component string as it is the data that will
         // eventually make up the data of the character or their wanimals
@@ -160,7 +160,7 @@ public class Engine {
           for (int x = 0; x < length; x++) {
             // Char curChar is the character at the character at the current
             // iteration of the loop
-            char curChar = strCurrentLine.charAt(x);
+            final char curChar = strCurrentLine.charAt(x);
 
             // Adding it to the curStr variable
             curStr += curChar;
@@ -214,7 +214,7 @@ public class Engine {
           for (int x = 0; x < length; x++) {
             // Char curChar is the character at the character at the current
             // iteration of the loop
-            char curChar = strCurrentLine.charAt(x);
+            final char curChar = strCurrentLine.charAt(x);
 
             // Adding it to the curStr variable
             curStr += curChar;
@@ -252,12 +252,12 @@ public class Engine {
                 secondAtkName = componentStr;
               } else {
                 // Creates the two attack needed as parameters
-                Attack firstAtk = new Attack(firstAtkName, firstAtkType);
-                Attack secondAtk =
+                final Attack firstAtk = new Attack(firstAtkName, firstAtkType);
+                final Attack secondAtk =
                     new Attack(secondAtkName, Integer.parseInt(componentStr));
 
                 // Creates the wanimal from read information
-                Wanimal readWanimal =
+                final Wanimal readWanimal =
                     new Wanimal(wanimalName, type, level, maxHP, curHP, baseAtk,
                                 maxArmor, curArmor, Engine.getPlayer(), maxXP,
                                 curXP, firstAtk, secondAtk);
@@ -285,7 +285,7 @@ public class Engine {
       }
 
       // Catching the exception
-    } catch (IOException e) {
+    } catch (final IOException e) {
       // Prints the error
       e.printStackTrace();
     } finally {
@@ -295,7 +295,7 @@ public class Engine {
           // Closes reader
           objReader.close();
         // Catching and printing exception
-      } catch (IOException ex) {
+      } catch (final IOException ex) {
         ex.printStackTrace();
       }
     }

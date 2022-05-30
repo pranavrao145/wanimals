@@ -26,8 +26,8 @@ public class BattleUtils {
    *
    * @param enemy - the enemy with which to start the new battle
    */
-  public static void createBattle(Wanimal enemy) {
-    Player player = Engine.getPlayer(); // get the player of the current game
+  public static void createBattle(final Wanimal enemy) {
+    final Player player = Engine.getPlayer(); // get the player of the current game
 
     Engine.setCurrentBattle(
         new Battle(player, player.getWanimals().get(0),
@@ -36,7 +36,7 @@ public class BattleUtils {
 
     Engine.getGui().addToBattleLog("Battle has started.");
 
-    Timer timer = new Timer(); // create a new timer object. This will be used
+    final Timer timer = new Timer(); // create a new timer object. This will be used
                                // to check any condition that must be repeatedly
                                // check during the battle
 
@@ -46,7 +46,7 @@ public class BattleUtils {
     timer.scheduleAtFixedRate(new TimerTask() {
       @Override
       public void run() {
-        Battle currentBattle = Engine.getCurrentBattle();
+        final Battle currentBattle = Engine.getCurrentBattle();
 
         if (!(currentBattle != null &&
               currentBattle.isRunning())) { // if there isn't a battle or if
@@ -100,22 +100,22 @@ public class BattleUtils {
    *
    * @param battle - the battle information to use to execute the attack
    */
-  public static void enemyAttack(Battle battle) {
-    Wanimal enemy = battle.getEnemy(); // get and store the enemy in a variable
+  public static void enemyAttack(final Battle battle) {
+    final Wanimal enemy = battle.getEnemy(); // get and store the enemy in a variable
     // for easier access
     Attack attackToExecute =
         enemy.getFirstAttack(); // this variable stores the attack to execute.
     // Set the attack to execute to the first attack
     // of the enemy by default (this may change
     // later)
-    int[] percentageChancesForSecondAttack = {50, 65, 80};
+    final int[] percentageChancesForSecondAttack = {50, 65, 80};
 
     if (enemy.getLevel() >=
         5) { // if the enemy has a level greater than or equal to 5 (meaning
       // they have both attacks avaialable to them. Note that this part
       // part will never execute for enemy under level 5 because they do
       // not have their seocnd attack available
-      double randomNum = Math.random(); // get a random number from 0.0 to 1.0
+      final double randomNum = Math.random(); // get a random number from 0.0 to 1.0
 
       if (randomNum <
           percentageChancesForSecondAttack[battle.getPlayer().getRealm() - 1] /
@@ -144,7 +144,7 @@ public class BattleUtils {
    * @param xp - the amount of XP to apply
    * @param wanimal - the wanimal to which the XP must be applied
    */
-  private static void applyXPtoWanimal(int xp, Wanimal wanimal) {
+  private static void applyXPtoWanimal(final int xp, final Wanimal wanimal) {
     Engine.getGui().addToBattleLog(wanimal.getName() + " gained " + xp +
                                    " xp.");
     for (int i = 0; i < xp; i++) { // for the number of XP there are
@@ -165,7 +165,7 @@ public class BattleUtils {
    * @param xp - the amount of XP to apply
    * @param player - the player to which the XP must be applied
    */
-  private static void applyXPtoPlayer(int xp, Player player) {
+  private static void applyXPtoPlayer(final int xp, final Player player) {
     Engine.getGui().addToBattleLog(player.getName() + " gained " + xp + " xp.");
 
     for (int i = 0; i < xp; i++) { // for the number of XP there are
@@ -184,11 +184,11 @@ public class BattleUtils {
    *
    * @param battle - the battle whose entities to which the XP must be granted
    */
-  private static void giveBattleXP(Battle battle) {
+  private static void giveBattleXP(final Battle battle) {
     int xpToFulfill = 0; // this variable will store the XP that needs to be
                          // granted based on the calculations below
 
-    Player player = battle.getPlayer();
+    final Player player = battle.getPlayer();
     if (battle.getEnemy().getClass() ==
         Boss.class) { // if the enemy wanimal is a boss
                       // the player's inventory
@@ -205,7 +205,7 @@ public class BattleUtils {
         e.printStackTrace();          // print the error message
       };
     } else { // if the enemy wanimal is a regular wild wanimal
-      Wanimal enemy = battle.getEnemy(); // get the enemy for this battle
+      final Wanimal enemy = battle.getEnemy(); // get the enemy for this battle
 
       xpToFulfill =
           100; // set a default value of 100 for the XP needed to be fulfilled
@@ -226,7 +226,7 @@ public class BattleUtils {
     }
 
     // apply the XP calculated to each of the player's wanimals
-    for (Wanimal wanimal : player.getWanimals()) {
+    for (final Wanimal wanimal : player.getWanimals()) {
       applyXPtoWanimal(xpToFulfill, wanimal);
     }
 
@@ -241,8 +241,8 @@ public class BattleUtils {
    * @param currentBattle - the battle containing the player whose wanimals must
    *     be restored to full health and armor
    */
-  public static void restoreHPAndArmor(Battle currentBattle) {
-    for (Wanimal wanimal : currentBattle.getPlayer().getWanimals()) {
+  public static void restoreHPAndArmor(final Battle currentBattle) {
+    for (final Wanimal wanimal : currentBattle.getPlayer().getWanimals()) {
       wanimal.setCurrentHitpoints(wanimal.getMaxHitpoints());
       wanimal.setCurrentArmor(wanimal.getMaxArmor());
     }
@@ -257,13 +257,13 @@ public class BattleUtils {
    * XP assignment
    */
   public static void endCurrentBattle() {
-    GUI gui = Engine.getGui(); // get the current GUI
+    final GUI gui = Engine.getGui(); // get the current GUI
 
     gui.setBattleButtonsEnabled(
         false); // set all buttons on the battle screen to disabled if
                 // they are not already disabled
 
-    Battle currentBattle = Engine.getCurrentBattle();
+    final Battle currentBattle = Engine.getCurrentBattle();
 
     // Determine the situation for the battle ending:
     // 1. Did the player win? (XP + health restored)

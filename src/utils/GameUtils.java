@@ -50,8 +50,8 @@ public class GameUtils {
    * @param realm - the realm to follow when generating this wanimal
    * @return - the randomly generated wanimal
    */
-  public static Wanimal generateRandomWanimal(int realm) {
-    Class<? extends Wanimal> randomWanimalClass =
+  public static Wanimal generateRandomWanimal(final int realm) {
+    final Class<? extends Wanimal> randomWanimalClass =
         wanimalList.get(ThreadLocalRandom.current().nextInt(
             wanimalList
                 .size())); // get a random wanimal class from the list above
@@ -117,7 +117,7 @@ public class GameUtils {
    *
    * @param wanimal - the wanimal to level up
    */
-  public static void levelUpWanimal(Wanimal wanimal) {
+  public static void levelUpWanimal(final Wanimal wanimal) {
     Engine.getGui().addToBattleLog(wanimal.getName() + " leveled up!");
 
     wanimal.setLevel(wanimal.getLevel() +
@@ -146,7 +146,7 @@ public class GameUtils {
    *
    * @param player - the player to level up
    */
-  public static void levelUpPlayer(Player player) {
+  public static void levelUpPlayer(final Player player) {
     Engine.getGui().addToBattleLog(player.getName() + " leveled up!");
 
     player.setLevel(player.getLevel() +
@@ -160,7 +160,7 @@ public class GameUtils {
   }
 
   public static void
-  setVulnerabilities(HashMap<String, String> vulnerabilities) {
+  setVulnerabilities(final HashMap<String, String> vulnerabilities) {
     GameUtils.vulnerabilities = vulnerabilities;
   }
 }

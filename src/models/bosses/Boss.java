@@ -36,10 +36,10 @@ public class Boss extends Wanimal {
    * @param firstAttack - the firstAttack with which to create the new boss
    * @param secondAttack - the secondAttack with which to create the new boss
    */
-  public Boss(String name, String type, int level, int maxHitpoints,
-              int currentHitpoints, int baseAttack, int maxArmor,
-              int currentArmor, Player owner, int maxXP, int currentXP,
-              Attack firstAttack, Attack secondAttack) {
+  public Boss(final String name, final String type, final int level, final int maxHitpoints,
+              final int currentHitpoints, final int baseAttack, final int maxArmor,
+              final int currentArmor, final Player owner, final int maxXP, final int currentXP,
+              final Attack firstAttack, final Attack secondAttack) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
           maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
           secondAttack); // call superconstructor
@@ -69,13 +69,13 @@ public class Boss extends Wanimal {
 
   public static int getExperienceOffered() { return experienceOffered; }
 
-  public static void setExperienceOffered(int experienceOffered) {
+  public static void setExperienceOffered(final int experienceOffered) {
     Boss.experienceOffered = experienceOffered;
   }
 
   public static int getRequiredLevel() { return requiredLevel; }
 
-  public static void setRequiredLevel(int requiredLevel) {
+  public static void setRequiredLevel(final int requiredLevel) {
     Boss.requiredLevel = requiredLevel;
   }
 }

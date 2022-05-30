@@ -41,10 +41,10 @@ public class Wanimal {
    * @param firstAttack - the firstAttack with which to create the new wanimal
    * @param secondAttack - the secondAttack with which to create the new wanimal
    */
-  public Wanimal(String name, String type, int level, int maxHitpoints,
-                 int currentHitpoints, int baseAttack, int maxArmor,
-                 int currentArmor, Player owner, int maxXP, int currentXP,
-                 Attack firstAttack, Attack secondAttack) {
+  public Wanimal(final String name, final String type, final int level, final int maxHitpoints,
+                 final int currentHitpoints, final int baseAttack, final int maxArmor,
+                 final int currentArmor, final Player owner, final int maxXP, final int currentXP,
+                 final Attack firstAttack, final Attack secondAttack) {
     this.name = name;   // set the name of this wanimal to the name given
     this.type = type;   // set the type of this wanimal to the type given
     this.level = level; // set the level of this wanimal to the level given
@@ -95,63 +95,63 @@ public class Wanimal {
 
   public String getName() { return name; }
 
-  public void setName(String name) { this.name = name; }
+  public void setName(final String name) { this.name = name; }
 
   public String getType() { return type; }
 
-  public void setType(String type) { this.type = type; }
+  public void setType(final String type) { this.type = type; }
 
   public int getLevel() { return level; }
 
-  public void setLevel(int level) { this.level = level; }
+  public void setLevel(final int level) { this.level = level; }
 
   public int getMaxHitpoints() { return maxHitpoints; }
 
-  public void setMaxHitpoints(int maxHitpoints) {
+  public void setMaxHitpoints(final int maxHitpoints) {
     this.maxHitpoints = maxHitpoints;
   }
 
   public int getCurrentHitpoints() { return currentHitpoints; }
 
-  public void setCurrentHitpoints(int currentHitpoints) {
+  public void setCurrentHitpoints(final int currentHitpoints) {
     this.currentHitpoints = currentHitpoints;
   }
 
   public int getBaseAttack() { return baseAttack; }
 
-  public void setBaseAttack(int baseAttack) { this.baseAttack = baseAttack; }
+  public void setBaseAttack(final int baseAttack) { this.baseAttack = baseAttack; }
 
   public int getMaxArmor() { return maxArmor; }
 
-  public void setMaxArmor(int maxArmor) { this.maxArmor = maxArmor; }
+  public void setMaxArmor(final int maxArmor) { this.maxArmor = maxArmor; }
 
   public int getCurrentArmor() { return currentArmor; }
 
-  public void setCurrentArmor(int currentArmor) {
+  public void setCurrentArmor(final int currentArmor) {
     this.currentArmor = currentArmor;
   }
 
   public Player getOwner() { return owner; }
 
-  public void setOwner(Player owner) { this.owner = owner; }
+  public void setOwner(final Player owner) { this.owner = owner; }
 
   public int getMaxXP() { return maxXP; }
 
-  public void setMaxXP(int maxXP) { this.maxXP = maxXP; }
+  public void setMaxXP(final int maxXP) { this.maxXP = maxXP; }
 
   public int getCurrentXP() { return currentXP; }
 
-  public void setCurrentXP(int currentXP) { this.currentXP = currentXP; }
+  public void setCurrentXP(final int currentXP) { this.currentXP = currentXP; }
 
   public Attack getFirstAttack() { return firstAttack; }
 
-  public void setFirstAttack(Attack firstAttack) {
+  public void setFirstAttack(final Attack firstAttack) {
     this.firstAttack = firstAttack;
   }
 
   public Attack getSecondAttack() { return secondAttack; }
 
-  public void setSecondAttack(Attack secondAttack) {
+  public void setSecondAttack(final Attack secondAttack) {
     this.secondAttack = secondAttack;
   }
 }

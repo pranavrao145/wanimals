@@ -471,14 +471,14 @@ public class GUI {
                                "panel_moveInventory");
     panel_moveSelectInventory.setLayout(null);
 
-    DefaultTableModel moveSelectInventoryModel =
+    final DefaultTableModel moveSelectInventoryModel =
         new DefaultTableModel(new Object[] {"Name", "Level", "Type", "XP"}, 0) {
           private static final long serialVersionUID =
               1L; // good practice for security
 
           // set this table as uneditable
           @Override
-          public boolean isCellEditable(int row, int column) {
+          public boolean isCellEditable(final int row, final int column) {
             return false;
           }
         };
@@ -736,7 +736,7 @@ public class GUI {
     btn_titleLoadGame.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
-        File saveFile =
+        final File saveFile =
             new File("data/saveData.txt"); // create a new file object to
                                            // represent the save file
 
@@ -774,15 +774,15 @@ public class GUI {
 
     btn_characterCreateAdvance.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
-        ArrayList<Class<? extends Wanimal>> wanimalList =
+      public void actionPerformed(final ActionEvent e) {
+        final ArrayList<Class<? extends Wanimal>> wanimalList =
             new ArrayList<Class<? extends Wanimal>>(
                 Arrays.asList(Wumbo.class, Plant.class, Ash.class, Aqua.class));
 
-        String name = textField_characterCreateName
+        final String name = textField_characterCreateName
                           .getText(); // get the text from the text field
 
-        int starterWanimalIndex =
+        final int starterWanimalIndex =
             comboBox_characterCreateStarterWanimal
                 .getSelectedIndex(); // get the text from the text field
 
@@ -802,7 +802,7 @@ public class GUI {
             }
           });
         } else { // if the text in the text field is NOT empty
-          Player player = new Player();
+          final Player player = new Player();
 
           player.setName(name); // set the name of the player to the name given
 
@@ -836,17 +836,17 @@ public class GUI {
       // the three methods below do not need an implementation as we do not
       // want to do anything when those events are fired
       @Override
-      public void componentHidden(ComponentEvent e) {}
+      public void componentHidden(final ComponentEvent e) {}
 
       @Override
-      public void componentMoved(ComponentEvent e) {}
+      public void componentMoved(final ComponentEvent e) {}
 
       @Override
-      public void componentResized(ComponentEvent e) {}
+      public void componentResized(final ComponentEvent e) {}
 
       @Override
       public void componentShown(
-          ComponentEvent e) {   // when the move select panel is shown
+          final ComponentEvent e) {   // when the move select panel is shown
         refreshMoveSelectGUI(); // refresh the move select panel
       }
     });
@@ -858,7 +858,7 @@ public class GUI {
                                  // this listener has been run or not
 
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         actionRun = false; // start with this flag false (the task has not run)
 
         Utils.runMaybe(40, new Runnable() {
@@ -910,7 +910,7 @@ public class GUI {
     // button is clicked
     btn_moveSelectSaveAndQuit.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         Engine.saveWriteToFile(); // write the existing data to the file
         masterLayout.show(contentPane,
                           "panel_title"); // switch to the title panel
@@ -921,7 +921,7 @@ public class GUI {
     // is clicked
     btn_moveSelectInventory.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         refreshMoveSelectInventoryGUI(); // refresh the move select inventory
                                          // GUI
         masterLayout.show(
@@ -933,8 +933,8 @@ public class GUI {
     // listener for the battle boss button (only works if this button is enabled
     // by the refreshMoveSelectGUI method (see below))
     btn_moveSelectBattleBoss.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        Class<? extends Boss> currentBossClass =
+      public void actionPerformed(final ActionEvent e) {
+        final Class<? extends Boss> currentBossClass =
             bossList.get(Engine.getPlayer().getRealm() - 1);
 
         // attempt to create a new boss and create a new battle with it
@@ -969,7 +969,7 @@ public class GUI {
     // clicked on the move select screen
     btn_moveSelectHelp.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         masterLayout.show(contentPane, "panel_moveSelectHelp");
       }
     });
@@ -982,7 +982,7 @@ public class GUI {
     // clicked on the move select help screen
     btn_moveSelectHelpBack.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         masterLayout.show(contentPane, "panel_moveSelect");
       }
     });
@@ -995,7 +995,7 @@ public class GUI {
     // pressed on the move select inventory screen
     btn_moveSelectInventoryBack.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         masterLayout.show(contentPane, "panel_moveSelect");
       }
     });
@@ -1007,13 +1007,13 @@ public class GUI {
     table_moveSelectInventory.getSelectionModel().addListSelectionListener(
         new ListSelectionListener() {
           @Override
-          public void valueChanged(ListSelectionEvent arg0) {
-            int[] selectedRows =
+          public void valueChanged(final ListSelectionEvent arg0) {
+            final int[] selectedRows =
                 table_moveSelectInventory
                     .getSelectedRows(); // get the selected rows from the table
 
             if (selectedRows.length == 2) { // if there are two selected rows
-              ArrayList<Wanimal> playerWanimals =
+              final ArrayList<Wanimal> playerWanimals =
                   Engine.getPlayer().getWanimals();
 
               Collections.swap(
@@ -1036,11 +1036,11 @@ public class GUI {
     // is clicked
     btn_battleAttack1.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         // get the player's wanimal
-        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+        final Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
 
-        Attack attackToExecute = playerWanimal.getFirstAttack();
+        final Attack attackToExecute = playerWanimal.getFirstAttack();
 
         // execute the player's first attack on the enemy
         attackToExecute.execute(playerWanimal,
@@ -1062,11 +1062,11 @@ public class GUI {
     // is clicked
     btn_battleAttack2.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         // get the player's wanimal
-        Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
+        final Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal();
 
-        Attack attackToExecute = playerWanimal.getSecondAttack();
+        final Attack attackToExecute = playerWanimal.getSecondAttack();
 
         // execute the player's first attack on the enemy
         attackToExecute.execute(playerWanimal,
@@ -1088,7 +1088,7 @@ public class GUI {
     // button is pressed on the battle screen
     btn_battleInventory.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         refreshBattleInventoryGUI(); // refresh the inventory GUI with the
                                      // latest information
         masterLayout.show(
@@ -1101,8 +1101,8 @@ public class GUI {
     // pressed on the battle screen
     btn_battleSwitch.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
-        DefaultComboBoxModel<String> comboBoxModel =
+      public void actionPerformed(final ActionEvent e) {
+        final DefaultComboBoxModel<String> comboBoxModel =
             (DefaultComboBoxModel<String>)comboBox_battleSwitch
                 .getModel(); // get the model for the battle switch combo box so
                              // it can be easily manipulated
@@ -1110,7 +1110,7 @@ public class GUI {
         comboBoxModel.removeAllElements();
 
         // for each wanimal in the player's inventory
-        for (Wanimal wanimal : Engine.getPlayer().getWanimals()) {
+        for (final Wanimal wanimal : Engine.getPlayer().getWanimals()) {
           comboBoxModel.addElement(
               wanimal.getName() + " (Lvl " + wanimal.getLevel() +
               ")"); // add the wanimal's name plus level to the comboBox
@@ -1127,10 +1127,10 @@ public class GUI {
       private boolean actionRun; // this boolean will hold if the action for
                                  // this listener has been run or not
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         actionRun = false; // start with this flag false (the task has not run)
 
-        int calculatedChance = (int)Math.round(
+        final int calculatedChance = (int)Math.round(
             (1 - (Engine.getCurrentBattle().getEnemy().getLevel() / 15.0)) *
             100); // get a percentage calculated chance for the flee to be
                   // successful
@@ -1165,10 +1165,10 @@ public class GUI {
       private boolean actionRun; // this boolean will hold if the action for
                                  // this listener has been run or not
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         actionRun = false; // start with this flag false (the task has not run)
 
-        int calculatedChance = (int)Math.round(
+        final int calculatedChance = (int)Math.round(
             (1 - (Engine.getCurrentBattle().getEnemy().getLevel() / 15.0)) *
             100); // get a percentage calculated chance for the flee to be
                   // successful
@@ -1220,7 +1220,7 @@ public class GUI {
     // clicked on the battle screen
     btn_battleHelp.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         masterLayout.show(contentPane, "panel_battleHelp");
       }
     });
@@ -1233,7 +1233,7 @@ public class GUI {
     // clicked on the battle help screen
     btn_battleHelpBack.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         masterLayout.show(contentPane, "panel_battle");
       }
     });
@@ -1246,11 +1246,11 @@ public class GUI {
     // pressed on the move select switch screen
     btn_battleSwitchAdvance.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
-        Battle currentBattle =
+      public void actionPerformed(final ActionEvent e) {
+        final Battle currentBattle =
             Engine.getCurrentBattle(); // get the current battle object
 
-        Wanimal wanimalToSwitchTo = currentBattle.getPlayer().getWanimals().get(
+        final Wanimal wanimalToSwitchTo = currentBattle.getPlayer().getWanimals().get(
             comboBox_battleSwitch
                 .getSelectedIndex()); // get the selected wanimal from the
                                       // battle switch combo box
@@ -1281,10 +1281,10 @@ public class GUI {
     // potion button is clicked on the battle inventory screen
     btn_battleInventoryUsePotion.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
-        Player player =
+      public void actionPerformed(final ActionEvent e) {
+        final Player player =
             Engine.getCurrentBattle().getPlayer(); // get the current player
-        Wanimal playerWanimal =
+        final Wanimal playerWanimal =
             Engine.getCurrentBattle()
                 .getPlayerWanimal(); // get the player's current wanimal
 
@@ -1305,10 +1305,10 @@ public class GUI {
     // armor plate button is clicked on the battle inventory screen
     btn_battleInventoryUseArmorPlate.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
-        Player player =
+      public void actionPerformed(final ActionEvent e) {
+        final Player player =
             Engine.getCurrentBattle().getPlayer(); // get the current player
-        Wanimal playerWanimal =
+        final Wanimal playerWanimal =
             Engine.getCurrentBattle()
                 .getPlayerWanimal(); // get the player's current wanimal
 
@@ -1329,7 +1329,7 @@ public class GUI {
     // on the battle inventory screen
     btn_battleInventoryBack.addActionListener(new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(final ActionEvent e) {
         masterLayout.show(contentPane, "panel_battle");
       }
     });
@@ -1359,15 +1359,15 @@ public class GUI {
    * @param enabled - whether to enable or disable all the buttons on the battle
    *     screen
    */
-  public void setBattleButtonsEnabled(boolean enabled) {
+  public void setBattleButtonsEnabled(final boolean enabled) {
     // list of all buttons on the battle screen (to be used to dynamically
     // enable or disable buttons depending on enabled flag given)
-    JButton[] battleButtons = {btn_battleAttack1,   btn_battleAttack2,
+    final JButton[] battleButtons = {btn_battleAttack1,   btn_battleAttack2,
                                btn_battleInventory, btn_battleSwitch,
                                btn_battleCatch,     btn_battleFlee};
 
     // set each button disabled or enabled based on the enabled flag given
-    for (JButton battleButton : battleButtons) {
+    for (final JButton battleButton : battleButtons) {
       battleButton.setEnabled(enabled);
     }
   }
@@ -1378,7 +1378,7 @@ public class GUI {
    *
    * @param battle - the battle object with which to refresh the GUI
    */
-  public void refreshBattleGUI(Battle battle) {
+  public void refreshBattleGUI(final Battle battle) {
     if (!Engine.getCurrentBattle()
              .isRunning()) { // if the battle is not running, no need to
                              // update the GUI
@@ -1388,7 +1388,7 @@ public class GUI {
     // set all the labels with their updated values
     lbl_battlePlayer.setText(battle.getPlayer().getName());
 
-    Wanimal playerWanimal = battle.getPlayerWanimal(),
+    final Wanimal playerWanimal = battle.getPlayerWanimal(),
             enemy = battle.getEnemy(); // get the player and enemy wanimals
                                        // for later use
 
@@ -1460,7 +1460,7 @@ public class GUI {
         String.valueOf(Engine.getPlayer().getMaxXP()));
 
     // get the boss for the current realm
-    Class<? extends Boss> currentBossClass =
+    final Class<? extends Boss> currentBossClass =
         bossList.get(Engine.getPlayer().getRealm() - 1);
 
     // this variable will store the required level for the current boss
@@ -1494,7 +1494,7 @@ public class GUI {
    * engine.
    */
   public void setBattleInformGUI() {
-    Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal(),
+    final Wanimal playerWanimal = Engine.getCurrentBattle().getPlayerWanimal(),
             enemyWanimal = Engine.getCurrentBattle()
                                .getEnemy(); // get the player and enemy wanimals
                                             // ready for later usage
@@ -1531,7 +1531,7 @@ public class GUI {
    * in the current battle object.
    */
   private void refreshBattleInventoryGUI() {
-    Battle currentBattle = Engine.getCurrentBattle(); // get the current battle
+    final Battle currentBattle = Engine.getCurrentBattle(); // get the current battle
 
     lbl_battleInventoryWanimalHP.setText(
         "Current wanimal's HP: " +
@@ -1564,7 +1564,7 @@ public class GUI {
    *
    * @param text - the text to add to the battle log
    */
-  public void addToBattleLog(String text) {
+  public void addToBattleLog(final String text) {
     // if there is already text in the battle log
     if (!textArea_battleLog.getText().equals(""))
       textArea_battleLog.setText(
@@ -1579,7 +1579,7 @@ public class GUI {
    * This method refreshes the move select inventory GUI.
    */
   public void refreshMoveSelectInventoryGUI() {
-    Player currentPlayer = Engine.getPlayer(); // get the current player
+    final Player currentPlayer = Engine.getPlayer(); // get the current player
 
     // update potion and armor labels
     lbl_moveSelectInventoryPotions.setText("Number of Potions Remaining: " +
@@ -1588,7 +1588,7 @@ public class GUI {
         "Number of Armor Plates Remaining: " +
         currentPlayer.getNumArmorPlates());
 
-    DefaultTableModel moveSelectInventoryModel =
+    final DefaultTableModel moveSelectInventoryModel =
         (DefaultTableModel)table_moveSelectInventory
             .getModel(); // get the table model for the table on the move select
                          // inventory screen so the table data can be
@@ -1597,8 +1597,8 @@ public class GUI {
     moveSelectInventoryModel.setRowCount(0); // remove all rows from table
 
     // for each wanimal in the player's inventory
-    for (Wanimal wanimal : currentPlayer.getWanimals()) {
-      String wanimalType =
+    for (final Wanimal wanimal : currentPlayer.getWanimals()) {
+      final String wanimalType =
           wanimal.getType(); // get wanimal type and store in variable (as it is
                              // used multiple times below)
 

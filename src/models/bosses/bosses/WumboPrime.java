@@ -36,11 +36,11 @@ public class WumboPrime extends Boss {
    * @param firstAttack - the firstAttack with which to create the new boss
    * @param secondAttack - the secondAttack with which to create the new boss
    */
-  public WumboPrime(String name, String type, int level, int maxHitpoints,
-                    int currentHitpoints, int baseAttack, int maxArmor,
-                    int currentArmor, Player owner, int maxXP, int currentXP,
-                    Attack firstAttack, Attack secondAttack,
-                    int experienceOffered, int requiredLevel) {
+  public WumboPrime(final String name, final String type, final int level, final int maxHitpoints,
+                    final int currentHitpoints, final int baseAttack, final int maxArmor,
+                    final int currentArmor, final Player owner, final int maxXP, final int currentXP,
+                    final Attack firstAttack, final Attack secondAttack,
+                    final int experienceOffered, final int requiredLevel) {
     super(name, type, level, maxHitpoints, currentHitpoints, baseAttack,
           maxArmor, currentArmor, owner, maxXP, currentXP, firstAttack,
           secondAttack); // call superconstructor

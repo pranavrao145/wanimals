@@ -24,7 +24,7 @@ public class Attack {
    * @param name - the name with which to create the new attack
    * @param type - the type with which to create the new attack
    */
-  public Attack(String name, int type) {
+  public Attack(final String name, final int type) {
     this.name = name; // set the name of this attack to the name given
     this.type = type; // set the type of this attack to the type given
   }
@@ -46,7 +46,7 @@ public class Attack {
    * @param currentWanimal - the wanimal whose turn it currently is
    * @param enemyWanimal - the enemy wanimal on to which to execute the attack
    */
-  public void execute(Wanimal currentWanimal, Wanimal enemyWanimal) {
+  public void execute(final Wanimal currentWanimal, final Wanimal enemyWanimal) {
     // calculate the amount of damage to do to the enemy wanimal, depeding on if
     // the attacks is type 1 or 2
     int damageToDo =
@@ -59,7 +59,7 @@ public class Attack {
       // get a random number from 10 to 20 (inclusive) and store it in a
       // variable to calculate how much more damage must be done to the
       // vulnerable wanimal
-      int addedDamage = ThreadLocalRandom.current().nextInt(10, 21);
+      final int addedDamage = ThreadLocalRandom.current().nextInt(10, 21);
 
       // update the damage to do with the new damage added
       damageToDo *= (1.0 + addedDamage / 100.0);
@@ -71,7 +71,7 @@ public class Attack {
         enemyWanimal
             .getCurrentArmor()) { // if the damage to do is greater than or
                                   // equal to the enemy wanimal's armor
-      int remainingDamage =
+      final int remainingDamage =
           damageToDo -
           enemyWanimal.getCurrentArmor(); // calculate the amount of damage that
                                           // would remain after the enemy is
@@ -100,9 +100,9 @@ public class Attack {
 
   public String getName() { return name; }
 
-  public void setName(String name) { this.name = name; }
+  public void setName(final String name) { this.name = name; }
 
   public int getType() { return type; }
 
-  public void setType(int type) { this.type = type; }
+  public void setType(final int type) { this.type = type; }
 }

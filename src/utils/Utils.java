@@ -18,7 +18,7 @@ public class Utils {
    * @param ms - the number of milliseconds for which to wait
    * @param callback - the callback to run after the delay is done
    */
-  public static void delayRun(int ms, Runnable callback) {
+  public static void delayRun(final int ms, final Runnable callback) {
     // using a SwingWorker object, asynchronously wait for 2 seconds and then
     // execute the given method
     final SwingWorker<Object, Object> worker =
@@ -60,8 +60,8 @@ public class Utils {
    * @param callback - the method to execute if the percentage chance is
    *     triggered
    */
-  public static void runMaybe(int percentageChance, Runnable callback) {
-    double randomNum = Math.random(); // get a random number from 0.0 to 1.0
+  public static void runMaybe(final int percentageChance, final Runnable callback) {
+    final double randomNum = Math.random(); // get a random number from 0.0 to 1.0
     if (randomNum <
         percentageChance /
             100.0) {  // if the random number is less than the number given
