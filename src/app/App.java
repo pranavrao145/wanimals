@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: App Class (Wanimals)
 
-Description: This is the App class.
+Description: This is the file containing to main method, runs a new iteration
+				of the game by running a Engine.run() command
 
 Date: June 1, 2022
 *******************************************************************************/
