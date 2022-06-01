@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: BattleUtils Class (Wanimals)
 
-Description: This is the BattleUtils class.
+Description: This is the BattleUtils class. It contians any game-specific
+utility methods that this application needs to function.
 
 Date: June 1, 2022
 *******************************************************************************/

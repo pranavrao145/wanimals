@@ -1,8 +1,8 @@
 /******************************************************************************
 Program: App Class (Wanimals)
 
-Description: This is the file containing to main method, runs a new iteration of
-the game by running a Engine.run() command
+Description: This is the driver code for this student database. This class' main
+method will start the entire program.
 
 Date: June 1, 2022
 *******************************************************************************/
