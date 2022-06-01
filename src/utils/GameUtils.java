@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: GameUtils Class (Wanimals)
 
-Description: This is the GameUtils class.
+Description: This is the GameUtils class. It contians any game-specific utility
+methods that this application needs to function.
 
 Date: June 1, 2022
 *******************************************************************************/

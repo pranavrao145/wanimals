@@ -1,7 +1,9 @@
 /******************************************************************************
 Program: Engine Class (Wanimals)
 
-Description: This is the Engine class.
+Description: This is the engine for this app. This class contains all of the
+methods to run the app itself, such as to intialize and run the app, to search
+and sort, as well as to read and write to the log files.
 
 Date: June 1, 2022
 *******************************************************************************/

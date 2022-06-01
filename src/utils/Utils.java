@@ -1,7 +1,8 @@
 /******************************************************************************
 Program: Utils Class (Wanimals)
 
-Description: This is the Utils class.
+Description: This is the Utils class. It contains all the general utility
+methods required for this application to function.
 
 Date: June 1, 2022
 *******************************************************************************/
